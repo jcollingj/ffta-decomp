@@ -1,0 +1,5 @@
+baserom.gba
+build/
+*.sav
+*.png
+.DS_Store
