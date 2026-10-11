@@ -1,18 +1,7 @@
 #include "inventory.h"
 /* Entry width and partition bounds are recovered from the original searches.
  * Quantity arithmetic intentionally retains byte wrapping before the 99 cap. */
-extern struct InventoryEntry gInventoryEntries[];
-static inline struct InventoryEntry *InventoryForItem(u16 item, int *count)
-{
-    struct InventoryEntry *entries = gInventoryEntries;
-    u32 size = 361;
-    if (item > size && item <= 375) {
-        entries = &gInventoryEntries[361];
-        size = 14;
-    }
-    if (count) *count = size;
-    return entries;
-}
+#include "inventory_internal.h"
 int AddInventoryItem(u16 item, u8 quantity)
 {
     struct InventoryEntry *entry;

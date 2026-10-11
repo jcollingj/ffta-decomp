@@ -9,4 +9,7 @@ u8 GetInventoryItemClass(u16 item);
 u16 CopyInventoryClass(struct InventoryEntry *output, u8 category);
 u16 FindInventoryItemIndex(u16 item);
 u8 ClassifyValueByTens(u16 value);
+u8 GetInventoryQuantityDifference(u16 item);
+u8 HasInventoryItem(u16 item);
+u16 MapSpecialItemIndex(u8 index);
 #endif

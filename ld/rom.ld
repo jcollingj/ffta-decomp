@@ -285,4 +285,7 @@ SECTIONS
     ASSERT(CopyInventoryClass == 0x080CC7F8, "CopyInventoryClass moved")
     ASSERT(FindInventoryItemIndex == 0x080CC86C, "FindInventoryItemIndex moved")
     ASSERT(ClassifyValueByTens == 0x080CC8B4, "ClassifyValueByTens moved")
+    ASSERT(GetInventoryQuantityDifference == 0x080CB2B4, "GetInventoryQuantityDifference moved")
+    ASSERT(HasInventoryItem == 0x080CB320, "HasInventoryItem moved")
+    ASSERT(MapSpecialItemIndex == 0x080CB388, "MapSpecialItemIndex moved")
 }

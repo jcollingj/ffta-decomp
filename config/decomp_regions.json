@@ -1906,6 +1906,30 @@
       "status": "matching_c",
       "source": "src/inventory_filter.c",
       "mode": "thumb"
+    },
+    {
+      "name": "GetInventoryQuantityDifference",
+      "start": 832180,
+      "end": 832288,
+      "status": "matching_c",
+      "source": "src/inventory_lookup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "HasInventoryItem",
+      "start": 832288,
+      "end": 832392,
+      "status": "matching_c",
+      "source": "src/inventory_lookup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "MapSpecialItemIndex",
+      "start": 832392,
+      "end": 832590,
+      "status": "matching_c",
+      "source": "src/special_item_mapping.c",
+      "mode": "thumb"
     }
   ],
   "regions": [
@@ -2079,9 +2103,30 @@
     },
     {
       "start": 832076,
-      "end": 832676,
+      "end": 832180,
       "kind": "copied",
       "source": "asm/rom_inventory_partition_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 832180,
+      "end": 832392,
+      "kind": "decompiled_c",
+      "source": "src/inventory_lookup.c",
+      "note": "Recovered inventory lookup/mapping including literal pools and alignment"
+    },
+    {
+      "start": 832392,
+      "end": 832592,
+      "kind": "decompiled_c",
+      "source": "src/special_item_mapping.c",
+      "note": "Recovered inventory lookup/mapping including literal pools and alignment"
+    },
+    {
+      "start": 832592,
+      "end": 832676,
+      "kind": "copied",
+      "source": "asm/rom_inventory_lookup_tail.s",
       "note": "Unclassified code and data"
     },
     {
