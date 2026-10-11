@@ -14,5 +14,9 @@ def swap(m):
     return f"0x{(r << 10) | (g << 5) | b:04X}"
 
 src = open(PATH).read()
-open(PATH, "w").write(re.sub(r"0x[0-9A-F]{4}", swap, src))
+open(PATH, "w").write("".join(
+    re.sub(r"0x[0-9A-F]{4}(?![0-9A-Fa-f])", swap, line)
+    if line.lstrip().startswith(".2byte") else line
+    for line in src.splitlines(keepends=True)
+))
 print("swapped R/B channels in", PATH)

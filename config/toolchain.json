@@ -1,0 +1,10 @@
+{
+  "thumb_compiler": "pret/agbcc",
+  "repository": "https://github.com/pret/agbcc.git",
+  "revision": "da598c1d918402c42c0c0d7128ba14567f3175e9",
+  "compiler_banner": "gcc 2.9-arm-000512 for Thumb/elf",
+  "flags": ["-O2", "-mthumb-interwork"],
+  "verified_preprocessor": "arm-none-eabi-cpp 15.2.0",
+  "verified_binutils": "2.45",
+  "scope": "232 byte-matching functions; not proof of the original compiler/options for every ROM region"
+}

@@ -1,0 +1,110 @@
+#!/usr/bin/env python3
+"""Capture, verify, and copy durable local FFTA baselines outside build/."""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import shutil
+import tempfile
+import urllib.parse
+import urllib.request
+
+REPO = Path(__file__).resolve().parents[2]
+
+
+def get(route):
+    with urllib.request.urlopen("http://localhost:8080/" + route, timeout=30) as r:
+        return r.read().rstrip(b"\x00\r\n ")
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify(root):
+    manifest = json.loads((root / "manifest.json").read_text())
+    for name, expected in manifest["sha256"].items():
+        if digest(root / name) != expected:
+            raise ValueError(f"baseline checksum mismatch: {name}")
+    return manifest
+
+
+def capture(name, note):
+    if not name or any(c not in "abcdefghijklmnopqrstuvwxyz0123456789-_" for c in name):
+        raise ValueError("use a lowercase name with letters, digits, hyphens or underscores")
+    root = REPO / "checkpoints/baselines" / name
+    backup = REPO / "backups/baselines" / name
+    if root.exists() or backup.exists():
+        raise ValueError("baseline already exists; refusing to overwrite")
+    status = json.loads(get("status"))
+    if status["run-mode"] != "PAUSE" or not status["rom-loaded"]:
+        raise ValueError("a ROM must be loaded and paused")
+    if any(status["inputs"].values()):
+        raise ValueError("release all inputs before capturing")
+    rom, save = (Path(status[k]) for k in ("rom-path", "save-path"))
+    if not rom.is_absolute():
+        rom = REPO / rom
+    if not save.is_absolute():
+        save = REPO / save
+    if not save.is_file() or save.stat().st_size == 0:
+        raise ValueError("no battery save exists; use the game's Save menu first")
+    root.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=root.parent, prefix=".capture-") as temp:
+        stage = Path(temp)
+        state = stage / "ffta.state.png"
+        response = get("save?" + urllib.parse.urlencode({"path": str(state)}))
+        if response != b"ok" or not state.is_file():
+            raise ValueError("emulator checkpoint capture failed")
+        shutil.copyfile(rom, stage / "ffta.gba")
+        shutil.copyfile(save, stage / "ffta.sav")
+        manifest = {
+            "name": name, "created_utc": datetime.now(timezone.utc).isoformat(),
+            "note": note, "emulator": status["emulator"],
+            "rom_sha1": hashlib.sha1(rom.read_bytes()).hexdigest(),
+            "source_rom": str(rom), "source_save": str(save),
+            "sha256": {p.name: digest(p) for p in stage.iterdir()},
+            "capture_validation": "checksums only; runtime acceptance is recorded in docs/WORK_LOG.md",
+        }
+        (stage / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
+        verify(stage)
+        shutil.copytree(stage, root)
+    backup.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copytree(root, backup)
+    for folder in (root, backup):
+        for p in folder.iterdir():
+            p.chmod(0o444)
+        verify(folder)
+    print(json.dumps({"baseline": str(root), "backup": str(backup),
+                      "next": "Cold-boot a working copy and verify in-game before marking accepted."}, indent=2))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    sub = parser.add_subparsers(dest="command", required=True)
+    cap = sub.add_parser("capture")
+    cap.add_argument("name")
+    cap.add_argument("--note", required=True)
+    check = sub.add_parser("verify")
+    check.add_argument("path", type=Path)
+    prepare = sub.add_parser("prepare")
+    prepare.add_argument("baseline", type=Path)
+    prepare.add_argument("destination", type=Path)
+    prepare.add_argument("--rom", type=Path, help="optional modified ROM")
+    args = parser.parse_args()
+    if args.command == "capture":
+        capture(args.name, args.note)
+    elif args.command == "verify":
+        print(json.dumps(verify(args.path), indent=2))
+    else:
+        verify(args.baseline)
+        rom = args.rom or args.baseline / "ffta.gba"
+        data = rom.read_bytes()
+        args.destination.mkdir(parents=True, exist_ok=False)
+        (args.destination / "ffta.gba").write_bytes(data)
+        shutil.copyfile(args.baseline / "ffta.sav", args.destination / "ffta.sav")
+        print(args.destination / "ffta.gba")
+
+
+if __name__ == "__main__":
+    main()

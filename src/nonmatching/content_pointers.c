@@ -1,0 +1,9 @@
+#include "types.h"
+extern const void * const gContentPointers[];
+const void *GetRemappedContentPointer(u16 index)
+{
+    if (!index) return gContentPointers[0];
+    if (index > 85) index += 540;
+    else index += 625;
+    return gContentPointers[(signed short)index];
+}

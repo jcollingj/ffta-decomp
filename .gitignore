@@ -3,3 +3,15 @@ build/
 *.sav
 *.png
 .DS_Store
+*.gba
+__pycache__/
+checkpoints/
+backups/
+logs/
+tools/.deps/
+.env
+.env.*
+*.mp4
+*.webm
+*.state
+*.ss0

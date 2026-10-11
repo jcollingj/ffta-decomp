@@ -1,0 +1,9 @@
+{
+  "ability_id": 76,
+  "string_id": 221,
+  "expected_name": "First Aid",
+  "replacement_name": "Field Aid",
+  "expected_record": "dd00000a00000000010100195b260101016210004a00810000013c00",
+  "effects": [89, 38, 195, 1],
+  "effect_labels": ["Full HP recovery", "Remove debuffs", "Add Regen", "None"]
+}

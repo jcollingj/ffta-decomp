@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+"""Record fftactl actions as a silent, game-time MP4 (agent pauses omitted)."""
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import urllib.request
+from clip_recording import capture, save_json
+
+REPO = Path(__file__).resolve().parents[2]
+PORT = int(os.environ.get('FFTA_PORT', '8080'))
+ACTIVE = REPO / 'logs' / f'clip-active-{PORT}.json'
+
+
+def request(route, binary=False):
+    with urllib.request.urlopen(f'http://localhost:{PORT}{route}', timeout=30) as r:
+        value = r.read()
+    return value if binary else value.decode().strip('\x00\r\n ')
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('command', choices=['start', 'status', 'stop', 'abort'])
+    parser.add_argument('name', nargs='?')
+    args = parser.parse_args()
+    if args.command == 'start':
+        if ACTIVE.exists():
+            raise ValueError('recording already active; stop it first')
+        if not shutil.which('ffmpeg'):
+            raise ValueError('ffmpeg must be installed')
+        name = args.name
+        if not name or any(c not in 'abcdefghijklmnopqrstuvwxyz0123456789-_' for c in name):
+            raise ValueError('name must use lowercase letters, digits, hyphens or underscores')
+        status = json.loads(request('/status'))
+        if status['run-mode'] != 'PAUSE' or not status['rom-loaded']:
+            raise ValueError('recording requires a paused, loaded ROM')
+        if any(status['inputs'].values()):
+            raise ValueError('release all buttons before recording')
+        rom = Path(status['rom-path'])
+        if not rom.is_absolute():
+            rom = REPO / rom
+        root = REPO / 'logs/clips' / name
+        root.mkdir(parents=True, exist_ok=False)
+        (root / 'frames').mkdir()
+        (root / 'poster.png').write_bytes(request('/screen', binary=True))
+        state = dict(name=name, port=PORT, created_utc=datetime.now(timezone.utc).isoformat(),
+                     emulator=status['emulator'], rom=str(rom),
+                     rom_sha1=hashlib.sha1(rom.read_bytes()).hexdigest(),
+                     fps=30, audio=False, timing='60 emulated frames per second; sampled every 2 frames',
+                     emulated_frames=0, video_frames=0, pending_frames=0, incomplete=False)
+        save_json(root / 'recording.json', state)
+        save_json(ACTIVE, {'directory': str(root)})
+        print(root)
+        return
+    if not ACTIVE.exists():
+        raise ValueError('no active recording on this port')
+    root = Path(json.loads(ACTIVE.read_text())['directory'])
+    state = json.loads((root / 'recording.json').read_text())
+    if args.command == 'abort':
+        state['aborted_utc'] = datetime.now(timezone.utc).isoformat()
+        save_json(root / 'recording.json', state)
+        ACTIVE.unlink()
+        print(f'Recording aborted; raw evidence retained at {root}')
+        return
+    if args.command == 'status':
+        print(json.dumps(state, indent=2))
+        return
+    if state['incomplete']:
+        raise ValueError('capture failed; use clip abort to retain raw frames and release recording')
+    if state['pending_frames']:
+        capture(root, state, request)
+        state['pending_frames'] = 0
+        save_json(root / 'recording.json', state)
+    if not state['video_frames']:
+        raise ValueError('no game frames recorded; advance using fftactl first')
+    output = root / 'clip.mp4'
+    if output.exists():
+        raise ValueError('output already exists; refusing overwrite')
+    subprocess.run(['ffmpeg', '-v', 'error', '-n', '-framerate', '30',
+                    '-i', str(root / 'frames/%08d.png'),
+                    '-vf', 'scale=960:640:flags=neighbor', '-c:v', 'libx264',
+                    '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', str(output)], check=True)
+    state['finished_utc'] = datetime.now(timezone.utc).isoformat()
+    state['mp4_sha256'] = hashlib.sha256(output.read_bytes()).hexdigest()
+    save_json(root / 'recording.json', state)
+    ACTIVE.unlink()
+    print(output)
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (ValueError, OSError, RuntimeError) as e:
+        raise SystemExit(str(e))

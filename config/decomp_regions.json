@@ -1,0 +1,2390 @@
+{
+  "rom_size": 16777216,
+  "rom_sha1": "4ac05441f4de70a4ec3dd932116346c61b8783d9",
+  "code_inventory_complete": false,
+  "functions": [
+    {
+      "name": "ReadUnitField",
+      "start": 818852,
+      "end": 819580,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField01AboveOne",
+      "start": 819580,
+      "end": 819602,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField01Equals",
+      "start": 819604,
+      "end": 819630,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField03Equals1",
+      "start": 819632,
+      "end": 819654,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField03Equals2",
+      "start": 819656,
+      "end": 819678,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField03Equals3",
+      "start": 819680,
+      "end": 819702,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField03Equals4",
+      "start": 819704,
+      "end": 819726,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField03Equals5",
+      "start": 819728,
+      "end": 819750,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField04Equals24",
+      "start": 819752,
+      "end": 819774,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit15",
+      "start": 819776,
+      "end": 819806,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit13",
+      "start": 819808,
+      "end": 819838,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField19IsZero",
+      "start": 819840,
+      "end": 819862,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit12",
+      "start": 819864,
+      "end": 819894,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit14",
+      "start": 819896,
+      "end": 819926,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit3",
+      "start": 819928,
+      "end": 819956,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit4",
+      "start": 819956,
+      "end": 819984,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit2",
+      "start": 819984,
+      "end": 820012,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit6",
+      "start": 820012,
+      "end": 820040,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit5",
+      "start": 820040,
+      "end": 820068,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField27HasBit8",
+      "start": 820068,
+      "end": 820098,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField03InRange6To18",
+      "start": 820100,
+      "end": 820132,
+      "status": "matching_c",
+      "source": "src/unit_fields.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FindEmptyUnitPoolASlot",
+      "start": 820132,
+      "end": 820170,
+      "status": "matching_c",
+      "source": "src/unit_pool.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitMatchesJobMappingSet",
+      "start": 820252,
+      "end": 820414,
+      "status": "matching_c",
+      "source": "src/unit_job_set.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadContentValue0",
+      "start": 820468,
+      "end": 820528,
+      "status": "matching_c",
+      "source": "src/content_values.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadContentValue1",
+      "start": 820528,
+      "end": 820592,
+      "status": "matching_c",
+      "source": "src/content_values.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetJobProperty",
+      "start": 820592,
+      "end": 821796,
+      "status": "matching_c",
+      "source": "src/job_property.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitProperty",
+      "start": 824048,
+      "end": 824084,
+      "status": "matching_c",
+      "source": "src/unit_property.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitNameStringId",
+      "start": 824084,
+      "end": 824128,
+      "status": "matching_c",
+      "source": "src/unit_property.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "EnableFixedJobFlags",
+      "start": 824128,
+      "end": 824262,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ApplyUnitJobWithFlag",
+      "start": 824264,
+      "end": 824302,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadJobMappingValue",
+      "start": 824304,
+      "end": 824320,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FindJobMappingKey",
+      "start": 824320,
+      "end": 824358,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadUnitJobRelatedValue",
+      "start": 824360,
+      "end": 824414,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadMappedClassValue",
+      "start": 824416,
+      "end": 824528,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FindJobForAbilityRange",
+      "start": 824528,
+      "end": 824640,
+      "status": "matching_c",
+      "source": "src/job_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetGameFlag",
+      "start": 824640,
+      "end": 824690,
+      "status": "matching_c",
+      "source": "src/game_flags.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SetGameFlag",
+      "start": 824692,
+      "end": 824744,
+      "status": "matching_c",
+      "source": "src/game_flags.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadSaveByte",
+      "start": 824744,
+      "end": 824768,
+      "status": "matching_c",
+      "source": "src/save_access.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "WriteSaveByte",
+      "start": 824768,
+      "end": 824792,
+      "status": "matching_c",
+      "source": "src/save_access.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetGameFlagFromBuffer",
+      "start": 824792,
+      "end": 824842,
+      "status": "matching_c",
+      "source": "src/save_access.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SetGameFlagInBuffer",
+      "start": 824844,
+      "end": 824900,
+      "status": "matching_c",
+      "source": "src/save_access.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetItemProperty",
+      "start": 829348,
+      "end": 829694,
+      "status": "matching_c",
+      "source": "src/item.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "AddInventoryItem",
+      "start": 829696,
+      "end": 829926,
+      "status": "matching_c",
+      "source": "src/inventory.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "RemoveInventoryItem",
+      "start": 829928,
+      "end": 830068,
+      "status": "matching_c",
+      "source": "src/inventory.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetAbilityProperty",
+      "start": 838992,
+      "end": 839264,
+      "status": "matching_c",
+      "source": "src/ability.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SelectUnitAbilityList",
+      "start": 839264,
+      "end": 839492,
+      "status": "matching_c",
+      "source": "src/ability_list.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ApplyItemAbilityFlags",
+      "start": 839492,
+      "end": 839608,
+      "status": "matching_c",
+      "source": "src/item_abilities.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "HasMasteredJobAbilities",
+      "start": 840388,
+      "end": 840546,
+      "source": "src/job_ability_progress.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "EnableJobFlagForAbility",
+      "start": 840548,
+      "end": 840742,
+      "source": "src/job_ability_progress.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetJobAbilityList",
+      "start": 840744,
+      "end": 840832,
+      "source": "src/job_ability_progress.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetAbilityListEntry",
+      "start": 840832,
+      "end": 840856,
+      "status": "matching_c",
+      "source": "src/ability_state.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadAbilitySlotA",
+      "start": 840856,
+      "end": 840874,
+      "status": "matching_c",
+      "source": "src/ability_state.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadAbilitySlotB",
+      "start": 840876,
+      "end": 840894,
+      "status": "matching_c",
+      "source": "src/ability_state.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadAbilitySlotC",
+      "start": 840896,
+      "end": 840914,
+      "status": "matching_c",
+      "source": "src/ability_state.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadAbilitySlotAValue",
+      "start": 840916,
+      "end": 840970,
+      "status": "matching_c",
+      "source": "src/ability_state.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadAbilitySlotBValue",
+      "start": 840972,
+      "end": 841026,
+      "status": "matching_c",
+      "source": "src/ability_state.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SetAbilityAvailable",
+      "start": 841028,
+      "end": 841054,
+      "status": "matching_c",
+      "source": "src/ability_state_setter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "IsAbilityAvailable",
+      "start": 841056,
+      "end": 841090,
+      "status": "matching_c",
+      "source": "src/ability_state_query.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SelectUnitAbilityValue",
+      "start": 841092,
+      "end": 841248,
+      "status": "matching_c",
+      "source": "src/ability_slots.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SyncPairedAbilityState",
+      "start": 841248,
+      "end": 841298,
+      "status": "matching_c",
+      "source": "src/ability_slots.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ClearMatchingAbilitySlot",
+      "start": 841300,
+      "end": 841384,
+      "status": "matching_c",
+      "source": "src/ability_slots.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitHasBlockingState",
+      "start": 841384,
+      "end": 841482,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ClearUnitStateUnlessExcluded",
+      "start": 841484,
+      "end": 841588,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetOpposingStateCounters",
+      "start": 841588,
+      "end": 841712,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "TickOpposingStateCounters",
+      "start": 841712,
+      "end": 841860,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetIndexedUnitState",
+      "start": 841860,
+      "end": 841908,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit1",
+      "start": 841908,
+      "end": 841932,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit2",
+      "start": 841932,
+      "end": 841956,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit3",
+      "start": 841956,
+      "end": 841980,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit4",
+      "start": 841980,
+      "end": 842004,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit5",
+      "start": 842004,
+      "end": 842028,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit6",
+      "start": 842028,
+      "end": 842052,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE8Bit7",
+      "start": 842052,
+      "end": 842076,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit0",
+      "start": 842076,
+      "end": 842100,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit1",
+      "start": 842100,
+      "end": 842124,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit2",
+      "start": 842124,
+      "end": 842148,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit3",
+      "start": 842148,
+      "end": 842172,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit4",
+      "start": 842172,
+      "end": 842196,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit5",
+      "start": 842196,
+      "end": 842220,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit6",
+      "start": 842220,
+      "end": 842244,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateE9Bit7",
+      "start": 842244,
+      "end": 842268,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit0",
+      "start": 842268,
+      "end": 842292,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit2",
+      "start": 842292,
+      "end": 842316,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit1",
+      "start": 842316,
+      "end": 842340,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit1",
+      "start": 842340,
+      "end": 842364,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit2",
+      "start": 842364,
+      "end": 842388,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit4",
+      "start": 842388,
+      "end": 842412,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit5",
+      "start": 842412,
+      "end": 842436,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit6",
+      "start": 842436,
+      "end": 842460,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit7",
+      "start": 842460,
+      "end": 842484,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit0",
+      "start": 842484,
+      "end": 842508,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit1",
+      "start": 842508,
+      "end": 842532,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit2",
+      "start": 842532,
+      "end": 842556,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit3",
+      "start": 842556,
+      "end": 842580,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit4",
+      "start": 842580,
+      "end": 842604,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit5",
+      "start": 842604,
+      "end": 842628,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit6",
+      "start": 842628,
+      "end": 842652,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEBBit7",
+      "start": 842652,
+      "end": 842676,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit0",
+      "start": 842676,
+      "end": 842700,
+      "source": "src/unit_status.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEABit3",
+      "start": 842700,
+      "end": 842724,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit3",
+      "start": 842724,
+      "end": 842748,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit4",
+      "start": 842748,
+      "end": 842772,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit5",
+      "start": 842772,
+      "end": 842796,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit6",
+      "start": 842796,
+      "end": 842820,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateECBit7",
+      "start": 842820,
+      "end": 842844,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit0",
+      "start": 842844,
+      "end": 842868,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit1",
+      "start": 842868,
+      "end": 842892,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit2",
+      "start": 842892,
+      "end": 842916,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit3",
+      "start": 842916,
+      "end": 842940,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit4",
+      "start": 842940,
+      "end": 842964,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit5",
+      "start": 842964,
+      "end": 842988,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit6",
+      "start": 842988,
+      "end": 843012,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnitStateEDBit7",
+      "start": 843012,
+      "end": 843036,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit1",
+      "start": 843036,
+      "end": 843070,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit2",
+      "start": 843072,
+      "end": 843106,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit3",
+      "start": 843108,
+      "end": 843142,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit4",
+      "start": 843144,
+      "end": 843178,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit5",
+      "start": 843180,
+      "end": 843214,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit6",
+      "start": 843216,
+      "end": 843250,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE8Bit7",
+      "start": 843252,
+      "end": 843284,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit0",
+      "start": 843284,
+      "end": 843318,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit1",
+      "start": 843320,
+      "end": 843354,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit2",
+      "start": 843356,
+      "end": 843390,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit3",
+      "start": 843392,
+      "end": 843426,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit4",
+      "start": 843428,
+      "end": 843462,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit5",
+      "start": 843464,
+      "end": 843498,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit6",
+      "start": 843500,
+      "end": 843534,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateE9Bit7",
+      "start": 843536,
+      "end": 843568,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit0",
+      "start": 843568,
+      "end": 843602,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit2",
+      "start": 843604,
+      "end": 843638,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit1",
+      "start": 843640,
+      "end": 843674,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit1",
+      "start": 843676,
+      "end": 843710,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit2",
+      "start": 843712,
+      "end": 843746,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit4",
+      "start": 843748,
+      "end": 843782,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit5",
+      "start": 843784,
+      "end": 843818,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit6",
+      "start": 843820,
+      "end": 843854,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit7",
+      "start": 843856,
+      "end": 843888,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit0",
+      "start": 843888,
+      "end": 843922,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit1",
+      "start": 843924,
+      "end": 843958,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit2",
+      "start": 843960,
+      "end": 843994,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit3",
+      "start": 843996,
+      "end": 844030,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit4",
+      "start": 844032,
+      "end": 844066,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit5",
+      "start": 844068,
+      "end": 844102,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit6",
+      "start": 844104,
+      "end": 844138,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEBBit7",
+      "start": 844140,
+      "end": 844172,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit0",
+      "start": 844172,
+      "end": 844206,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEABit3",
+      "start": 844208,
+      "end": 844242,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit3",
+      "start": 844244,
+      "end": 844278,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit4",
+      "start": 844280,
+      "end": 844314,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit5",
+      "start": 844316,
+      "end": 844350,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit6",
+      "start": 844352,
+      "end": 844386,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateECBit7",
+      "start": 844388,
+      "end": 844420,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit0",
+      "start": 844420,
+      "end": 844454,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit1",
+      "start": 844456,
+      "end": 844490,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit2",
+      "start": 844492,
+      "end": 844526,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit3",
+      "start": 844528,
+      "end": 844562,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit4",
+      "start": 844564,
+      "end": 844598,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit5",
+      "start": 844600,
+      "end": 844634,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit6",
+      "start": 844636,
+      "end": 844670,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetUnitStateEDBit7",
+      "start": 844672,
+      "end": 844704,
+      "source": "src/unit_state_access.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterD8",
+      "start": 844704,
+      "end": 844710,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterD9",
+      "start": 844712,
+      "end": 844718,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterDA",
+      "start": 844720,
+      "end": 844726,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterDB",
+      "start": 844728,
+      "end": 844734,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterDC",
+      "start": 844736,
+      "end": 844742,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterDD",
+      "start": 844744,
+      "end": 844750,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterDE",
+      "start": 844752,
+      "end": 844758,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterDF",
+      "start": 844760,
+      "end": 844766,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE0",
+      "start": 844768,
+      "end": 844774,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE1",
+      "start": 844776,
+      "end": 844782,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE2",
+      "start": 844784,
+      "end": 844790,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE3",
+      "start": 844792,
+      "end": 844798,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE4",
+      "start": 844800,
+      "end": 844806,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE5",
+      "start": 844808,
+      "end": 844814,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitCounterE6",
+      "start": 844816,
+      "end": 844822,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterD8",
+      "start": 844824,
+      "end": 844830,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterD9",
+      "start": 844832,
+      "end": 844838,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterDA",
+      "start": 844840,
+      "end": 844846,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterDB",
+      "start": 844848,
+      "end": 844854,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterDC",
+      "start": 844856,
+      "end": 844862,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterDD",
+      "start": 844864,
+      "end": 844870,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterDE",
+      "start": 844872,
+      "end": 844878,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterDF",
+      "start": 844880,
+      "end": 844886,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE0",
+      "start": 844888,
+      "end": 844894,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE1",
+      "start": 844896,
+      "end": 844902,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE2",
+      "start": 844904,
+      "end": 844910,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE3",
+      "start": 844912,
+      "end": 844918,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE4",
+      "start": 844920,
+      "end": 844926,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE5",
+      "start": 844928,
+      "end": 844934,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "WriteUnitCounterE6",
+      "start": 844936,
+      "end": 844942,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AddOpposingStateCounter",
+      "start": 844944,
+      "end": 845020,
+      "source": "src/unit_counters.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetRecord70Property",
+      "start": 845020,
+      "end": 845990,
+      "source": "src/record70.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "DecodeRecordByte",
+      "start": 832676,
+      "end": 832702,
+      "source": "src/record_decode.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetContentPointer123",
+      "start": 832804,
+      "end": 832828,
+      "source": "src/content_pointer_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AddContentIndex1081",
+      "start": 832828,
+      "end": 832844,
+      "source": "src/content_pointer_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ScanEquipmentMask81",
+      "start": 832844,
+      "end": 832936,
+      "source": "src/equipment_scan.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "JobAllowsItem",
+      "start": 832936,
+      "end": 833076,
+      "source": "src/job_item_eligibility.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "LoadUnitRecordSlot",
+      "start": 833116,
+      "end": 833300,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty04",
+      "start": 833300,
+      "end": 833360,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty05",
+      "start": 833360,
+      "end": 833420,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CompareUnsignedBytes",
+      "start": 833076,
+      "end": 833084,
+      "source": "src/item_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CompareUnsignedHalfwords",
+      "start": 833084,
+      "end": 833092,
+      "source": "src/item_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ItemProperty07Bit1",
+      "start": 833092,
+      "end": 833114,
+      "source": "src/item_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty09",
+      "start": 833420,
+      "end": 833472,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty10Or11",
+      "start": 833472,
+      "end": 833544,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadRecordCopySource",
+      "start": 834428,
+      "end": 834500,
+      "source": "src/record_copy_source.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetFlag60AtSelectedValues",
+      "start": 834500,
+      "end": 834580,
+      "source": "src/save_milestone.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CalculateItemAmount",
+      "start": 834580,
+      "end": 834706,
+      "source": "src/item_amount.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ItemAmountAdjustmentApplies",
+      "start": 837976,
+      "end": 838048,
+      "source": "src/item_adjustment.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetItemAdjustmentRecord",
+      "start": 838896,
+      "end": 838990,
+      "source": "src/item_adjustment_record.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ItemInAdjustmentList",
+      "start": 838048,
+      "end": 838126,
+      "source": "src/item_adjustment_list.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadItemAdjustmentEntry",
+      "start": 838128,
+      "end": 838176,
+      "source": "src/item_adjustment_list.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountCollectionBytes",
+      "start": 838228,
+      "end": 838272,
+      "source": "src/collection_slots.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountCollectionHalfwords",
+      "start": 838272,
+      "end": 838316,
+      "source": "src/collection_slots.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AddCollectionHalfword",
+      "start": 838316,
+      "end": 838360,
+      "source": "src/collection_slots.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJob",
+      "start": 838360,
+      "end": 838376,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty01",
+      "start": 838376,
+      "end": 838408,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty04",
+      "start": 838408,
+      "end": 838440,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty06",
+      "start": 838440,
+      "end": 838472,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty09",
+      "start": 838472,
+      "end": 838504,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobContentPointer",
+      "start": 838504,
+      "end": 838548,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "HasSaveCollectionRecord",
+      "start": 838548,
+      "end": 838596,
+      "source": "src/save_collection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountSaveCollectionRecords",
+      "start": 838596,
+      "end": 838652,
+      "source": "src/save_collection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "IncrementSaveCounterBelow99",
+      "start": 838652,
+      "end": 838684,
+      "source": "src/save_collection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "HasSelectedPoolUnit",
+      "start": 838684,
+      "end": 838762,
+      "source": "src/unit_pool_predicate.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ProcessSelectedPoolUnits",
+      "start": 838816,
+      "end": 838896,
+      "source": "src/unit_pool_process.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ProcessSelectedPoolUnit",
+      "start": 837212,
+      "end": 837360,
+      "source": "src/unit_pool_action.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetSelectedPoolUnitState",
+      "start": 837360,
+      "end": 837512,
+      "source": "src/unit_pool_set.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "NextRandom15",
+      "start": 10244,
+      "end": 10276,
+      "source": "src/random.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetRandomState",
+      "start": 10276,
+      "end": 10288,
+      "source": "src/random.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetRandomStateAddress",
+      "start": 10288,
+      "end": 10296,
+      "source": "src/random.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountRandomItemSlots",
+      "start": 837580,
+      "end": 837624,
+      "source": "src/random_item_count.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    }
+  ],
+  "regions": [
+    {
+      "start": 0,
+      "end": 160,
+      "kind": "copied",
+      "source": "asm/header.s",
+      "note": "Entry branch and logo; copied, not recovered code"
+    },
+    {
+      "start": 160,
+      "end": 189,
+      "kind": "source_data",
+      "source": "asm/header.s",
+      "note": "Authored cartridge header fields"
+    },
+    {
+      "start": 189,
+      "end": 190,
+      "kind": "generated",
+      "source": "tools/gbafix.py",
+      "note": "Generated header checksum"
+    },
+    {
+      "start": 190,
+      "end": 192,
+      "kind": "source_data",
+      "source": "asm/header.s",
+      "note": "Authored reserved header bytes"
+    },
+    {
+      "start": 192,
+      "end": 10244,
+      "kind": "copied",
+      "source": "asm/rom.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 10244,
+      "end": 10296,
+      "kind": "decompiled_c",
+      "source": "src/random.c",
+      "note": "Matching recovered C including literal pools"
+    },
+    {
+      "start": 10296,
+      "end": 818852,
+      "kind": "copied",
+      "source": "asm/rom_random_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 818852,
+      "end": 820132,
+      "kind": "decompiled_c",
+      "source": "src/unit_fields.c",
+      "note": "69-selector reader and 20 predicates, including 28 alignment bytes"
+    },
+    {
+      "start": 820132,
+      "end": 820172,
+      "kind": "decompiled_c",
+      "source": "src/unit_pool.c",
+      "note": "Matching first-empty-slot search including two alignment bytes"
+    },
+    {
+      "start": 820172,
+      "end": 820252,
+      "kind": "copied",
+      "source": "asm/rom_fields_tail.s",
+      "note": "Original two-pool unit lookup"
+    },
+    {
+      "start": 820252,
+      "end": 820416,
+      "kind": "decompiled_c",
+      "source": "src/unit_job_set.c",
+      "note": "Matching job-mapping predicate including switch table and two alignment bytes"
+    },
+    {
+      "start": 820416,
+      "end": 820468,
+      "kind": "copied",
+      "source": "asm/rom_unit_set_tail.s",
+      "note": "Original unit classification"
+    },
+    {
+      "start": 820468,
+      "end": 820592,
+      "kind": "decompiled_c",
+      "source": "src/content_values.c",
+      "note": "Two matching content-value readers including literal pools"
+    },
+    {
+      "start": 820592,
+      "end": 821796,
+      "kind": "decompiled_c",
+      "source": "src/job_property.c",
+      "note": "Matching packed job-property reader with inheritance and switch table"
+    },
+    {
+      "start": 821796,
+      "end": 824048,
+      "kind": "copied",
+      "source": "asm/rom_job_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 824048,
+      "end": 824128,
+      "kind": "decompiled_c",
+      "source": "src/unit_property.c",
+      "note": "Two matching unit property/name readers"
+    },
+    {
+      "start": 824128,
+      "end": 824640,
+      "kind": "decompiled_c",
+      "source": "src/job_mapping.c",
+      "note": "Seven matching job mapping/flag/range routines including pools and eight alignment bytes"
+    },
+    {
+      "start": 824640,
+      "end": 824744,
+      "kind": "decompiled_c",
+      "source": "src/game_flags.c",
+      "note": "Matching bit-flag reader/writer; includes 2 alignment bytes"
+    },
+    {
+      "start": 824744,
+      "end": 824900,
+      "kind": "decompiled_c",
+      "source": "src/save_access.c",
+      "note": "Four matching save-image accessors; includes two alignment bytes"
+    },
+    {
+      "start": 824900,
+      "end": 829348,
+      "kind": "copied",
+      "source": "asm/rom_flags_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 829348,
+      "end": 829696,
+      "kind": "decompiled_c",
+      "source": "src/item.c",
+      "note": "Matching item reader including switch table and two zero alignment bytes"
+    },
+    {
+      "start": 829696,
+      "end": 830068,
+      "kind": "decompiled_c",
+      "source": "src/inventory.c",
+      "note": "Matching inventory add/remove including literal pools and two alignment bytes"
+    },
+    {
+      "start": 830068,
+      "end": 832676,
+      "kind": "copied",
+      "source": "asm/rom_item_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 832676,
+      "end": 832704,
+      "kind": "decompiled_c",
+      "source": "src/record_decode.c",
+      "note": "Compact record-byte decoder including two alignment bytes"
+    },
+    {
+      "start": 832704,
+      "end": 832804,
+      "kind": "copied",
+      "source": "asm/rom_decode_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 832804,
+      "end": 832844,
+      "kind": "decompiled_c",
+      "source": "src/content_pointer_helpers.c",
+      "note": "Content pointer/index helpers including literal pools"
+    },
+    {
+      "start": 832844,
+      "end": 832936,
+      "kind": "decompiled_c",
+      "source": "src/equipment_scan.c",
+      "note": "Five-slot scan and optional clearing with mask 0x81"
+    },
+    {
+      "start": 832936,
+      "end": 833076,
+      "kind": "decompiled_c",
+      "source": "src/job_item_eligibility.c",
+      "note": "Job/item category mask and special-item eligibility"
+    },
+    {
+      "start": 833076,
+      "end": 833116,
+      "kind": "decompiled_c",
+      "source": "src/item_helpers.c",
+      "note": "Two unsigned comparators and item-bit reader with two alignment bytes"
+    },
+    {
+      "start": 833116,
+      "end": 833544,
+      "kind": "decompiled_c",
+      "source": "src/unit_record14.c",
+      "note": "Five packed unit-record readers including optional 32-byte copy"
+    },
+    {
+      "start": 833544,
+      "end": 834428,
+      "kind": "copied",
+      "source": "asm/rom_pointer_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 834428,
+      "end": 834500,
+      "kind": "decompiled_c",
+      "source": "src/record_copy_source.c",
+      "note": "32-byte source-bank accessor selected by two save-image bits"
+    },
+    {
+      "start": 834500,
+      "end": 834580,
+      "kind": "decompiled_c",
+      "source": "src/save_milestone.c",
+      "note": "Flag 60 updates for selected save-byte values"
+    },
+    {
+      "start": 834580,
+      "end": 834708,
+      "kind": "decompiled_c",
+      "source": "src/item_amount.c",
+      "note": "Item amount calculation including two alignment bytes"
+    },
+    {
+      "start": 834708,
+      "end": 837212,
+      "kind": "copied",
+      "source": "asm/rom_record_source_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 837212,
+      "end": 837360,
+      "kind": "decompiled_c",
+      "source": "src/unit_pool_action.c",
+      "note": "Clear selected unit fields and ID-specific game flags"
+    },
+    {
+      "start": 837360,
+      "end": 837512,
+      "kind": "decompiled_c",
+      "source": "src/unit_pool_set.c",
+      "note": "Set unit state/counter and ID-specific flags; clear two trailing bytes"
+    },
+    {
+      "start": 837512,
+      "end": 837580,
+      "kind": "copied",
+      "source": "asm/rom_pool_action_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 837580,
+      "end": 837624,
+      "kind": "decompiled_c",
+      "source": "src/random_item_count.c",
+      "note": "Matching recovered C including literal pools"
+    },
+    {
+      "start": 837624,
+      "end": 837976,
+      "kind": "copied",
+      "source": "asm/rom_random_items_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 837976,
+      "end": 838048,
+      "kind": "decompiled_c",
+      "source": "src/item_adjustment.c",
+      "note": "Item amount category-mask predicate"
+    },
+    {
+      "start": 838048,
+      "end": 838176,
+      "kind": "decompiled_c",
+      "source": "src/item_adjustment_list.c",
+      "note": "Adjustment item-list membership and indexed read including two alignment bytes"
+    },
+    {
+      "start": 838176,
+      "end": 838228,
+      "kind": "copied",
+      "source": "asm/rom_adjustment_tail.s",
+      "note": "Original class lookup"
+    },
+    {
+      "start": 838228,
+      "end": 838360,
+      "kind": "decompiled_c",
+      "source": "src/collection_slots.c",
+      "note": "Two 20-slot counters and first-empty-halfword insertion"
+    },
+    {
+      "start": 838360,
+      "end": 838548,
+      "kind": "decompiled_c",
+      "source": "src/mapped_job.c",
+      "note": "Mapped job reader, four property wrappers, and content-pointer lookup"
+    },
+    {
+      "start": 838548,
+      "end": 838684,
+      "kind": "decompiled_c",
+      "source": "src/save_collection.c",
+      "note": "Save record presence/count and bounded counter increment"
+    },
+    {
+      "start": 838684,
+      "end": 838764,
+      "kind": "decompiled_c",
+      "source": "src/unit_pool_predicate.c",
+      "note": "24-unit pool predicate including two alignment bytes"
+    },
+    {
+      "start": 838764,
+      "end": 838816,
+      "kind": "copied",
+      "source": "asm/rom_collection_tail.s",
+      "note": "Original unit byte amount calculation"
+    },
+    {
+      "start": 838816,
+      "end": 838896,
+      "kind": "decompiled_c",
+      "source": "src/unit_pool_process.c",
+      "note": "Process qualifying records in the 24-unit pool"
+    },
+    {
+      "start": 838896,
+      "end": 838992,
+      "kind": "decompiled_c",
+      "source": "src/item_adjustment_record.c",
+      "note": "Five-way adjustment-record selector with two alignment bytes"
+    },
+    {
+      "start": 838992,
+      "end": 839264,
+      "kind": "decompiled_c",
+      "source": "src/ability.c",
+      "note": "GetAbilityProperty, matching C including literal pool and switch table"
+    },
+    {
+      "start": 839264,
+      "end": 839492,
+      "kind": "decompiled_c",
+      "source": "src/ability_list.c",
+      "note": "SelectUnitAbilityList, matching C including literal pool"
+    },
+    {
+      "start": 839492,
+      "end": 839608,
+      "kind": "decompiled_c",
+      "source": "src/item_abilities.c",
+      "note": "Matching item-linked job/ability flag application"
+    },
+    {
+      "start": 839608,
+      "end": 840388,
+      "kind": "copied",
+      "source": "asm/rom_ability_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 840388,
+      "end": 840832,
+      "kind": "decompiled_c",
+      "source": "src/job_ability_progress.c",
+      "note": "Three matching job/ability progression routines including pools, switch table, and four alignment bytes"
+    },
+    {
+      "start": 840832,
+      "end": 841028,
+      "kind": "decompiled_c",
+      "source": "src/ability_state.c",
+      "note": "Six matching ability list/slot readers including pools and alignment"
+    },
+    {
+      "start": 841028,
+      "end": 841056,
+      "kind": "decompiled_c",
+      "source": "src/ability_state_setter.c",
+      "note": "Matching availability setter including two alignment bytes"
+    },
+    {
+      "start": 841056,
+      "end": 841092,
+      "kind": "decompiled_c",
+      "source": "src/ability_state_query.c",
+      "note": "Matching availability query including two alignment bytes"
+    },
+    {
+      "start": 841092,
+      "end": 841384,
+      "kind": "decompiled_c",
+      "source": "src/ability_slots.c",
+      "note": "Three matching ability-state helpers including switch table and two alignment bytes"
+    },
+    {
+      "start": 841384,
+      "end": 842700,
+      "kind": "decompiled_c",
+      "source": "src/unit_status.c",
+      "note": "38 matching unit state functions including two alignment bytes"
+    },
+    {
+      "start": 842700,
+      "end": 844704,
+      "kind": "decompiled_c",
+      "source": "src/unit_state_access.c",
+      "note": "14 matching state readers and 47 setters, including 82 alignment bytes"
+    },
+    {
+      "start": 844704,
+      "end": 845020,
+      "kind": "decompiled_c",
+      "source": "src/unit_counters.c",
+      "note": "30 byte accessors and matching opposing-counter addition, including 60 alignment bytes"
+    },
+    {
+      "start": 845020,
+      "end": 845992,
+      "kind": "decompiled_c",
+      "source": "src/record70.c",
+      "note": "Packed 70-byte record reader with switch table and two alignment bytes"
+    },
+    {
+      "start": 845992,
+      "end": 5361908,
+      "kind": "copied",
+      "source": "asm/rom_slots_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 5361908,
+      "end": 5362048,
+      "kind": "source_data",
+      "source": "data/equipment_class_masks.s",
+      "note": "35 equipment category masks indexed by job property 36"
+    },
+    {
+      "start": 5362048,
+      "end": 5374080,
+      "kind": "source_data",
+      "source": "data/items.s",
+      "note": "376 decoded 32-byte item records with signed modifiers, explicit unknown fields, and fixed-layout guards"
+    },
+    {
+      "start": 5374080,
+      "end": 5378580,
+      "kind": "source_data",
+      "source": "data/item_ability_sets.s",
+      "note": "225 decoded count/job/ability-index records with range and table-size guards"
+    },
+    {
+      "start": 5378580,
+      "end": 5386660,
+      "kind": "copied",
+      "source": "asm/rom_item_sets_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 5386660,
+      "end": 5386740,
+      "kind": "source_data",
+      "source": "data/job_requirements.s",
+      "note": "20 decoded pairs of job/count prerequisites used by original job selectors"
+    },
+    {
+      "start": 5386740,
+      "end": 5386826,
+      "kind": "source_data",
+      "source": "data/job_mapping_data.s",
+      "note": "43 decoded two-byte key/value records; verified reverse-search extent"
+    },
+    {
+      "start": 5386826,
+      "end": 5414628,
+      "kind": "copied",
+      "source": "asm/rom_mapping_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 5414628,
+      "end": 5415230,
+      "kind": "source_data",
+      "source": "data/counted_record_ids.s",
+      "note": "300 halfword IDs and sentinel read by routine at CE8A8"
+    },
+    {
+      "start": 5415230,
+      "end": 9798104,
+      "kind": "copied",
+      "source": "asm/rom_counted_ids_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 9798104,
+      "end": 9798616,
+      "kind": "source_data",
+      "source": "data/title_palette.s",
+      "note": "256 BGR555 colors"
+    },
+    {
+      "start": 9798616,
+      "end": 16777216,
+      "kind": "copied",
+      "source": "asm/rom2.s",
+      "note": "Unclassified code and data"
+    }
+  ]
+}

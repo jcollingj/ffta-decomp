@@ -1,0 +1,82 @@
+{
+  "note": "Research reference bounds only. These candidates are not included in recovered progress; matching admission requires independent integration and full ROM verification.",
+  "functions": [
+    {
+      "name": "BuildAvailableJobList",
+      "start": 821796,
+      "end": 822306,
+      "source": "src/nonmatching/job_availability.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FindUnitByField01",
+      "start": 820172,
+      "end": 820252,
+      "source": "src/nonmatching/unit_lookup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitField01InSpecialSet",
+      "start": 820416,
+      "end": 820466,
+      "source": "src/nonmatching/unit_lookup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "BuildAvailableAbilityList",
+      "start": 839608,
+      "end": 839914,
+      "source": "src/nonmatching/unit_ability_lists.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "BuildProgressAbilityList",
+      "start": 839916,
+      "end": 840186,
+      "source": "src/nonmatching/unit_ability_lists.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "HasEquipmentAbility",
+      "start": 840188,
+      "end": 840388,
+      "source": "src/nonmatching/equipment_ability.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CountSelectedRecordFlags",
+      "start": 845992,
+      "end": 846140,
+      "source": "src/nonmatching/record_flag_count.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetRemappedContentPointer",
+      "start": 832736,
+      "end": 832804,
+      "source": "src/nonmatching/content_pointers.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadCollectionClass",
+      "start": 838176,
+      "end": 838228,
+      "source": "src/nonmatching/collection_slots.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CalculateUnitByteAmount",
+      "start": 838764,
+      "end": 838816,
+      "source": "src/nonmatching/unit_pool_checks.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FillRandomItemSlots",
+      "start": 837512,
+      "end": 837580,
+      "source": "src/nonmatching/random_items.c",
+      "mode": "thumb"
+    }
+  ]
+}

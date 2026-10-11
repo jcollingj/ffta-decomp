@@ -1,0 +1,87 @@
+#!/usr/bin/env python3
+"""luna — persistent Codex thread that plays FFTA tactically.
+
+  tools/emu/luna new [extra instructions...]   start a fresh briefed Luna thread
+  tools/emu/luna <intent...>                   send an intent to the saved thread
+  tools/emu/luna status                        show saved thread id
+
+Claude sets strategy; Luna executes via tools/emu/fftactl and appends to
+logs/playthrough.log. One thread persists across calls (logs/.luna_thread).
+Set LUNA_MODEL and CODEX_BIN to override the model and executable.
+"""
+import json
+import os
+import pathlib
+import subprocess
+import sys
+
+REPO = pathlib.Path(__file__).resolve().parents[2]
+THREAD_FILE = REPO / "logs" / ".luna_thread"
+MODEL = os.environ.get("LUNA_MODEL", "gpt-6-luna")
+COMMON = [
+    os.environ.get("CODEX_BIN", "codex"), "exec", "-C", str(REPO), "-m", MODEL,
+    "-s", "workspace-write",
+    "-c", "sandbox_workspace_write.network_access=true",
+    "-c", 'model_reasoning_effort="low"',
+    "--skip-git-repo-check", "--json",
+]
+
+
+def run(cmd):
+    thread_id, messages = None, []
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, text=True)
+    for line in proc.stdout:
+        try:
+            e = json.loads(line)
+        except ValueError:
+            continue
+        t = e.get("type")
+        if t == "thread.started":
+            thread_id = e["thread_id"]
+        elif t == "item.completed" and e.get("item", {}).get("type") == "agent_message":
+            messages.append(e["item"]["text"])
+        elif t == "turn.completed":
+            u = e.get("usage", {})
+            print(f"[luna tokens: in={u.get('input_tokens')} out={u.get('output_tokens')}]",
+                  file=sys.stderr)
+        elif t == "error":
+            print(f"[luna error: {e.get('message')}]", file=sys.stderr)
+    proc.wait()
+    return thread_id, messages, proc.returncode
+
+
+def main():
+    args = sys.argv[1:]
+    if not args:
+        print(__doc__)
+        return 1
+
+    if args[0] == "status":
+        print(THREAD_FILE.read_text().strip() if THREAD_FILE.exists() else "no luna thread yet")
+        return 0
+
+    if args[0] == "new":
+        brief = (REPO / "tools" / "emu" / "LUNA_BRIEFING.md").read_text()
+        extra = " ".join(args[1:])
+        if extra:
+            brief += f"\n\n## First instructions from the strategist\n{extra}\n"
+        tid, msgs, rc = run(COMMON + [brief])
+        if tid:
+            THREAD_FILE.parent.mkdir(exist_ok=True)
+            THREAD_FILE.write_text(tid + "\n")
+            print(f"[luna thread pinned: {tid}]", file=sys.stderr)
+        print("\n\n".join(msgs))
+        return rc
+
+    if not THREAD_FILE.exists():
+        print("no luna thread yet — run: tools/emu/luna new", file=sys.stderr)
+        return 1
+    tid = THREAD_FILE.read_text().strip()
+    intent = " ".join(args)
+    _, msgs, rc = run(COMMON + ["resume", tid, intent])
+    print("\n\n".join(msgs))
+    return rc
+
+
+if __name__ == "__main__":
+    sys.exit(main())
