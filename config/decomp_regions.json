@@ -1930,6 +1930,22 @@
       "status": "matching_c",
       "source": "src/special_item_mapping.c",
       "mode": "thumb"
+    },
+    {
+      "name": "UnitItemCategoryAllowed",
+      "start": 832592,
+      "end": 832652,
+      "status": "matching_c",
+      "source": "src/unit_equipment_mask.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "InspectEquipmentMode0",
+      "start": 832652,
+      "end": 832676,
+      "status": "matching_c",
+      "source": "src/unit_equipment_mask.c",
+      "mode": "thumb"
     }
   ],
   "regions": [
@@ -2125,9 +2141,9 @@
     {
       "start": 832592,
       "end": 832676,
-      "kind": "copied",
-      "source": "asm/rom_inventory_lookup_tail.s",
-      "note": "Unclassified code and data"
+      "kind": "decompiled_c",
+      "source": "src/unit_equipment_mask.c",
+      "note": "Unit equipment category-mask predicate and mode-zero inspection wrapper"
     },
     {
       "start": 832676,

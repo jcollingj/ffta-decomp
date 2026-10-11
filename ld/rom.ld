@@ -288,4 +288,6 @@ SECTIONS
     ASSERT(GetInventoryQuantityDifference == 0x080CB2B4, "GetInventoryQuantityDifference moved")
     ASSERT(HasInventoryItem == 0x080CB320, "HasInventoryItem moved")
     ASSERT(MapSpecialItemIndex == 0x080CB388, "MapSpecialItemIndex moved")
+    ASSERT(UnitItemCategoryAllowed == 0x080CB450, "UnitItemCategoryAllowed moved")
+    ASSERT(InspectEquipmentMode0 == 0x080CB48C, "InspectEquipmentMode0 moved")
 }

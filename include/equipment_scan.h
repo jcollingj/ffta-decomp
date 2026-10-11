@@ -6,4 +6,6 @@ struct EquipmentView { u8 prefix[0x2a]; u16 items[5]; };
 extern u32 InspectEquipment(struct EquipmentView *, u16, u8, u8);
 extern void ReplaceEquipment(struct EquipmentView *, u16, u8);
 u8 ScanEquipmentMask81(struct EquipmentView *unit, u8 clear);
+u8 UnitItemCategoryAllowed(const u8 *unit, u16 item);
+u8 InspectEquipmentMode0(struct EquipmentView *unit, u16 item, u8 slot);
 #endif
