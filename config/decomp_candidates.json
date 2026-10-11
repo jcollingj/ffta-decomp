@@ -77,6 +77,13 @@
       "end": 837580,
       "source": "src/nonmatching/random_items.c",
       "mode": "thumb"
+    },
+    {
+      "name": "EquipmentProvidesAbility",
+      "start": 840188,
+      "end": 840388,
+      "source": "src/nonmatching/equipment_provider.c",
+      "mode": "thumb"
     }
   ]
 }
