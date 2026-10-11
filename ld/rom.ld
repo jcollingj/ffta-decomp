@@ -290,4 +290,5 @@ SECTIONS
     ASSERT(MapSpecialItemIndex == 0x080CB388, "MapSpecialItemIndex moved")
     ASSERT(UnitItemCategoryAllowed == 0x080CB450, "UnitItemCategoryAllowed moved")
     ASSERT(InspectEquipmentMode0 == 0x080CB48C, "InspectEquipmentMode0 moved")
+    ASSERT(InspectEquipment == 0x080CAE2C, "InspectEquipment moved")
 }

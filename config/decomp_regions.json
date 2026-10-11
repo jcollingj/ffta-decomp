@@ -1946,6 +1946,14 @@
       "status": "matching_c",
       "source": "src/unit_equipment_mask.c",
       "mode": "thumb"
+    },
+    {
+      "name": "InspectEquipment",
+      "start": 831020,
+      "end": 831350,
+      "status": "matching_c",
+      "source": "src/equipment_inspect.c",
+      "mode": "thumb"
     }
   ],
   "regions": [
@@ -2105,9 +2113,23 @@
     },
     {
       "start": 830068,
-      "end": 831988,
+      "end": 831020,
       "kind": "copied",
       "source": "asm/rom_item_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 831020,
+      "end": 831352,
+      "kind": "decompiled_c",
+      "source": "src/equipment_inspect.c",
+      "note": "Equipment inspection with temporary removal; includes literal pool and alignment"
+    },
+    {
+      "start": 831352,
+      "end": 831988,
+      "kind": "copied",
+      "source": "asm/rom_equipment_inspect_tail.s",
       "note": "Unclassified code and data"
     },
     {

@@ -19,9 +19,6 @@
 .type _call_via_r3, %function
 .thumb_set _call_via_r3, 0x08142251
 
-.global InspectEquipment
-.type InspectEquipment, %function
-.thumb_set InspectEquipment, 0x080CAE2D
 
 .global ReplaceEquipment
 .type ReplaceEquipment, %function
@@ -43,3 +40,10 @@
 .global __modsi3
 .type __modsi3, %function
 .thumb_set __modsi3, 0x08142951
+
+.global EquipmentProvidesAbility
+.type EquipmentProvidesAbility, %function
+.thumb_set EquipmentProvidesAbility, 0x080CD1FD
+.global CheckEquipmentSet
+.type CheckEquipmentSet, %function
+.thumb_set CheckEquipmentSet, 0x080CABA9
