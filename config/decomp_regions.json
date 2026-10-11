@@ -1858,6 +1858,54 @@
       "source": "src/random_item_count.c",
       "mode": "thumb",
       "status": "matching_c"
+    },
+    {
+      "name": "IsItemInRange1To252",
+      "start": 831988,
+      "end": 832016,
+      "status": "matching_c",
+      "source": "src/inventory_partition.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetInventoryPartition",
+      "start": 832016,
+      "end": 832076,
+      "status": "matching_c",
+      "source": "src/inventory_partition.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetInventoryItemClass",
+      "start": 834868,
+      "end": 835008,
+      "status": "matching_c",
+      "source": "src/inventory_class.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CopyInventoryClass",
+      "start": 837624,
+      "end": 837738,
+      "status": "matching_c",
+      "source": "src/inventory_filter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FindInventoryItemIndex",
+      "start": 837740,
+      "end": 837812,
+      "status": "matching_c",
+      "source": "src/inventory_filter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ClassifyValueByTens",
+      "start": 837812,
+      "end": 837840,
+      "status": "matching_c",
+      "source": "src/inventory_filter.c",
+      "mode": "thumb"
     }
   ],
   "regions": [
@@ -2017,9 +2065,23 @@
     },
     {
       "start": 830068,
-      "end": 832676,
+      "end": 831988,
       "kind": "copied",
       "source": "asm/rom_item_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 831988,
+      "end": 832076,
+      "kind": "decompiled_c",
+      "source": "src/inventory_partition.c",
+      "note": "Recovered inventory helpers including literal pools and alignment"
+    },
+    {
+      "start": 832076,
+      "end": 832676,
+      "kind": "copied",
+      "source": "asm/rom_inventory_partition_tail.s",
       "note": "Unclassified code and data"
     },
     {
@@ -2101,9 +2163,23 @@
     },
     {
       "start": 834708,
-      "end": 837212,
+      "end": 834868,
       "kind": "copied",
       "source": "asm/rom_record_source_tail.s",
+      "note": "Unclassified code and data"
+    },
+    {
+      "start": 834868,
+      "end": 835008,
+      "kind": "decompiled_c",
+      "source": "src/inventory_class.c",
+      "note": "Recovered inventory helpers including literal pools and alignment"
+    },
+    {
+      "start": 835008,
+      "end": 837212,
+      "kind": "copied",
+      "source": "asm/rom_inventory_class_tail.s",
       "note": "Unclassified code and data"
     },
     {
@@ -2136,6 +2212,13 @@
     },
     {
       "start": 837624,
+      "end": 837840,
+      "kind": "decompiled_c",
+      "source": "src/inventory_filter.c",
+      "note": "Recovered inventory helpers including literal pools and alignment"
+    },
+    {
+      "start": 837840,
       "end": 837976,
       "kind": "copied",
       "source": "asm/rom_random_items_tail.s",

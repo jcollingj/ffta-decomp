@@ -279,4 +279,10 @@ SECTIONS
     ASSERT(SetRandomState == 0x08002824, "SetRandomState moved")
     ASSERT(GetRandomStateAddress == 0x08002830, "GetRandomStateAddress moved")
     ASSERT(CountRandomItemSlots == 0x080CC7CC, "CountRandomItemSlots moved")
+    ASSERT(IsItemInRange1To252 == 0x080CB1F4, "IsItemInRange1To252 moved")
+    ASSERT(GetInventoryPartition == 0x080CB210, "GetInventoryPartition moved")
+    ASSERT(GetInventoryItemClass == 0x080CBD34, "GetInventoryItemClass moved")
+    ASSERT(CopyInventoryClass == 0x080CC7F8, "CopyInventoryClass moved")
+    ASSERT(FindInventoryItemIndex == 0x080CC86C, "FindInventoryItemIndex moved")
+    ASSERT(ClassifyValueByTens == 0x080CC8B4, "ClassifyValueByTens moved")
 }

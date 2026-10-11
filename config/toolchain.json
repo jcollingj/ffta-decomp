@@ -6,5 +6,5 @@
   "flags": ["-O2", "-mthumb-interwork"],
   "verified_preprocessor": "arm-none-eabi-cpp 15.2.0",
   "verified_binutils": "2.45",
-  "scope": "232 byte-matching functions; not proof of the original compiler/options for every ROM region"
+  "scope": "238 byte-matching functions; not proof of the original compiler/options for every ROM region"
 }

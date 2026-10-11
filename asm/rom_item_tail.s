@@ -1,3 +1,3 @@
-@ Original routines before the compact record-byte decoder.
+@ Unrecovered original code/data.
 .section .text
-.incbin "baserom.gba", 0xCAA74, 0xa30
+.incbin "baserom.gba", 0xCAA74, 0x780
