@@ -45,7 +45,7 @@
     {
       "id": "L008",
       "parent_failure": "Parent did not distinguish live-registry checks from stable fixtures",
-      "rule": "Use synthetic fixtures for exact expected aggregate counts; production registries get invariant checks. Validate distinct agent identities as well as numeric IDs, and finite timing values.",
+      "rule": "Use synthetic fixtures for exact expected aggregate counts; production registries get invariant checks. Validate distinct agent identities as well as numeric IDs, and finite timing values. Optional partial timestamps remain valid and unmeasured; missing time is not an error or zero.",
       "evidence": "Session 4 test hardcoded three reviewed sessions against the evolving registry."
     },
     {
@@ -71,6 +71,60 @@
       "parent_failure": "Parent did not specify separately linkable outputs for nonadjacent data intervals",
       "rule": "Each nonadjacent ROM interval must emit an independently placeable object or explicitly placed section. Neighboring symbol addresses give upper bounds, not proof all intervening bytes share a schema.",
       "evidence": "Session9 initially rendered distant tables contiguously and proposed251 records from adjacent symbol; narrowedto86 and requested separateoutputs."
+    },
+    {
+      "id": "L013",
+      "parent_failure": "Parent did not require register provenance for research claims",
+      "rule": "Trace each load to its actual base and last arithmetic assignment. Nearby pointer chains are not evidence of a pointer field in the indexed record. Distinguish instruction extent, literal pools, and alignment when reporting recovery blocks. End addresses are exclusive: include the full last instruction before labeling any following bytes padding.",
+      "evidence": "Session13 mistook helperfilledstacklistpointer for contentrecordfield; actualrecordreadbyte+32."
+    },
+    {
+      "id": "L014",
+      "parent_failure": "Parent ran full discovery while workers were editing test/source files",
+      "rule": "Before a full integration gate, request a short write freeze from all active coding agents, not only a shared ELF lease. Focused immutable artifacts can be checked during work; full discovery waits for stable owned files.",
+      "evidence": "Class/fullbatch gates saw transient registry and content-index test failures during activeagentwrites."
+    },
+    {
+      "id": "L015",
+      "parent_failure": "Parent conflated a function interval with an entire C compilation unit in task-tool requirements",
+      "rule": "Isolated probes compile whole source files. Verify translation-unit placement separately from function bounds, suppress unsafe inferred probe commands for shared sources, and keep JSON output parseable under every flag combination.",
+      "evidence": "Session17 packet emittedfunctionstartprobe for multifuncsources and mixedrawdisassemblywithJSON."
+    },
+    {
+      "id": "L016",
+      "parent_failure": "Parent did not give old-compiler-compatible layout assertion patterns",
+      "rule": "Pinned agbcc GCC2.9 does not support newer builtins such as __builtin_offsetof. Use supported target layout assertions plus original load offsets. Function equality is not full-block equality: emit required end alignment with .align 2,0 and verify padding.",
+      "evidence": "Session18 headerbuiltinfailedtargetcompile; matching22bytefunction stilldifferedin2bytealignmentuntilzero-filldirective."
+    },
+    {
+      "id": "L017",
+      "parent_failure": "Parent did not explicitly prohibit oracle setup from satisfying the actual test outputs",
+      "rule": "Calculate expected mutations on separate storage; actual outputs must start with distinguishable sentinel values before the tested call. A no-op or missing-store mutant must fail. Linker start-plus-constant assertions do not measure function size; use the strict symbol comparison gate.",
+      "evidence": "Session20 oracle initialized realexternaloutputs beforecall; session18 linker sizeassertion merelyrecheckedstart."
+    },
+    {
+      "id": "L018",
+      "parent_failure": "Parent serialized independent leaf probes behind unnecessary shared-ELF leases",
+      "rule": "Leaf probes with no undefined symbols need no reference ELF. For dependencies, use an immutable verified reference snapshot and record its hash; keep final matching admission on the integrated build. Prefer atomic manifest writes and a short source-write freeze only for full gates.",
+      "evidence": "Sessions18/19/20/21/22waitedforunrelatedELFrelinks despiteleafcode; session23 assignedisolationtooling."
+    },
+    {
+      "id": "L019",
+      "parent_failure": "Parent delegated carving into an unreadable one-line build object list",
+      "rule": "Keep OBJS one object per line; replace only the bounded copied object sequence. Compare the before/after object tokens and verify every unrelated object retains order. A matching gate must pass before publishing a new reference ELF. Search consumers of edited build syntax before changing it; update and test parsers in the same task.",
+      "evidence": "Session20 accidentallydroppedunit_pool.o; parentdiffreviewfounditafterundefinedsymbol/downstreamlinkfail. Sameagentrestoresandformatslist."
+    },
+    {
+      "id": "L020",
+      "parent_failure": "Parent integration prompt allowed only one new object although an interior ROM carve requires a suffix too.",
+      "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order.",
+      "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing."
+    },
+    {
+      "id": "L021",
+      "parent_failure": "Compiler-shape prompt lacked an explicit bounded hypothesis budget and reusable results artifact.",
+      "rule": "For a dedicated compiler-shape research session, record roughly 8\u201312 distinct natural-source hypotheses, source hashes and symbol/block deltas, retaining the best semantically tested source. Derive branch targets from disassembly rather than manually transcribing addresses.",
+      "evidence": "Session26 first stopped after two no-effect variants; parent revised prompt, same agent tested12 variants and reduced root-candidate differences12to6. Parent caught documentation target typo, agent decoded original branch to correct it."
     }
   ]
 }

@@ -1,3 +1,3 @@
 @ Unrecovered original code/data.
 .section .text
-.incbin "baserom.gba", 0x2838, 0xC566C
+.incbin "baserom.gba", 0xA040, 0x8FC78

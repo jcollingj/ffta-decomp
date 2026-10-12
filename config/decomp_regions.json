@@ -4,6 +4,38 @@
   "code_inventory_complete": false,
   "functions": [
     {
+      "name": "GetContentFlag21F",
+      "start": 40892,
+      "end": 40912,
+      "status": "matching_c",
+      "source": "src/content_flags.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CopySaveHalfword2194To2192AndSetFlag21F",
+      "start": 40912,
+      "end": 40952,
+      "status": "matching_c",
+      "source": "src/content_flags.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadCurrentContentIndex",
+      "start": 40984,
+      "end": 40996,
+      "status": "matching_c",
+      "source": "src/content_index.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadContentIndexOrFallback",
+      "start": 40996,
+      "end": 41024,
+      "status": "matching_c",
+      "source": "src/content_index.c",
+      "mode": "thumb"
+    },
+    {
       "name": "ReadUnitField",
       "start": 818852,
       "end": 819580,
@@ -1860,6 +1892,70 @@
       "status": "matching_c"
     },
     {
+      "name": "CountLinkedNodes",
+      "start": 817928,
+      "end": 817950,
+      "source": "src/list_count.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetListOwnerWord0",
+      "start": 818036,
+      "end": 818040,
+      "source": "src/list_accessors.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CopyListOwnerWords",
+      "start": 818040,
+      "end": 818050,
+      "source": "src/list_accessors.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CopyListNodes",
+      "start": 818052,
+      "end": 818074,
+      "source": "src/list_accessors.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListSearchCallback",
+      "start": 818744,
+      "end": 818792,
+      "source": "src/list_search_callback.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListCallbackAppend",
+      "start": 818792,
+      "end": 818808,
+      "source": "src/list_callbacks.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListCallbackSelectClear",
+      "start": 818808,
+      "end": 818836,
+      "source": "src/list_callbacks.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListCallbackClearFlag0",
+      "start": 818836,
+      "end": 818850,
+      "source": "src/list_callbacks.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountRandomItemSlots",
       "start": 837580,
       "end": 837624,
@@ -1970,6 +2066,30 @@
       "status": "matching_c",
       "source": "src/inventory_entry_byte3.c",
       "mode": "thumb"
+    },
+    {
+      "name": "CountContextListAt10",
+      "start": 629944,
+      "end": 629956,
+      "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountContextListAt14",
+      "start": 629956,
+      "end": 629968,
+      "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountContextListAt18",
+      "start": 629968,
+      "end": 629980,
+      "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
     }
   ],
   "regions": [
@@ -2017,10 +2137,94 @@
     },
     {
       "start": 10296,
-      "end": 818852,
+      "end": 40892,
+      "kind": "copied",
+      "source": "asm/rom_content_prefix.s",
+      "note": "Unrecovered original code/data before content flag accessors"
+    },
+    {
+      "start": 40892,
+      "end": 40952,
+      "kind": "decompiled_c",
+      "source": "src/content_flags.c",
+      "note": "Two matching content-flag accessors including literal pools"
+    },
+    {
+      "start": 40952,
+      "end": 40984,
+      "kind": "copied",
+      "source": "asm/rom_content_flag_clear.s",
+      "note": "Unrecovered conditional content-flag clear routine"
+    },
+    {
+      "start": 40984,
+      "end": 41024,
+      "kind": "decompiled_c",
+      "source": "src/content_index.c",
+      "note": "Two matching generic content-index accessors including literal pools"
+    },
+    {
+      "start": 41024,
+      "end": 629944,
       "kind": "copied",
       "source": "asm/rom_random_tail.s",
-      "note": "Unclassified code and data"
+      "note": "Unrecovered original code/data before list-count wrappers"
+    },
+    {
+      "start": 629944,
+      "end": 629980,
+      "kind": "decompiled_c",
+      "source": "src/list_count_wrappers.c",
+      "note": "Three matching context list-count wrappers"
+    },
+    {
+      "start": 629980,
+      "end": 817928,
+      "kind": "copied",
+      "source": "asm/rom_list_count_wrappers_suffix.s",
+      "note": "Unrecovered original code/data after list-count wrappers"
+    },
+    {
+      "start": 817928,
+      "end": 817952,
+      "kind": "decompiled_c",
+      "source": "src/list_count.c",
+      "note": "Linked-list node counter including two zero alignment bytes"
+    },
+    {
+      "start": 817952,
+      "end": 818036,
+      "kind": "copied",
+      "source": "asm/rom_list_accessors_prefix.s",
+      "note": "Unrecovered code/data before list accessors"
+    },
+    {
+      "start": 818036,
+      "end": 818076,
+      "kind": "decompiled_c",
+      "source": "src/list_accessors.c",
+      "note": "Three matching list accessors and two zero alignment bytes"
+    },
+    {
+      "start": 818076,
+      "end": 818744,
+      "kind": "copied",
+      "source": "asm/rom_random_tail_suffix.s",
+      "note": "Unrecovered original code/data after list accessors and before ListSearchCallback"
+    },
+    {
+      "start": 818744,
+      "end": 818792,
+      "kind": "decompiled_c",
+      "source": "src/list_search_callback.c",
+      "note": "Matching list search callback"
+    },
+    {
+      "start": 818792,
+      "end": 818852,
+      "kind": "decompiled_c",
+      "source": "src/list_callbacks.c",
+      "note": "Three callbacks and two zero alignment bytes"
     },
     {
       "start": 818852,
@@ -2500,10 +2704,24 @@
     },
     {
       "start": 845992,
+      "end": 3753820,
+      "kind": "copied",
+      "source": "asm/rom_slots_prefix.s",
+      "note": "Unclassified code and data before bounded class records"
+    },
+    {
+      "start": 3753820,
+      "end": 3753848,
+      "kind": "source_data",
+      "source": "data/class_records4.s",
+      "note": "Seven 4-byte records through adjacent gMappedJobs boundary; remaining lookup domain is unknown"
+    },
+    {
+      "start": 3753848,
       "end": 5361908,
       "kind": "copied",
       "source": "asm/rom_slots_tail.s",
-      "note": "Unclassified code and data"
+      "note": "Unclassified code and data after bounded class records"
     },
     {
       "start": 5361908,
@@ -2556,10 +2774,24 @@
     },
     {
       "start": 5386826,
+      "end": 5410612,
+      "kind": "copied",
+      "source": "asm/rom_mapping_prefix.s",
+      "note": "Unclassified data before bounded class-record prefix"
+    },
+    {
+      "start": 5410612,
+      "end": 5411988,
+      "kind": "source_data",
+      "source": "data/class_records16.s",
+      "note": "86 16-byte records supported by lookup paths; later interval remains unclassified/copied"
+    },
+    {
+      "start": 5411988,
       "end": 5414628,
       "kind": "copied",
       "source": "asm/rom_mapping_tail.s",
-      "note": "Unclassified code and data"
+      "note": "Unclassified data through the counted-record list"
     },
     {
       "start": 5414628,

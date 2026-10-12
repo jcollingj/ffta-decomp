@@ -36,4 +36,6 @@ gClassRecords4:
 .if (. - gClassRecords4) != 28
     .error "gClassRecords4 table size changed"
 .endif
+.global gClassRecords4End
+gClassRecords4End:
 .size gClassRecords4, .-gClassRecords4

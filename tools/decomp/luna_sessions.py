@@ -12,6 +12,11 @@ Reviewed records require nonempty ``review_commit`` or ``review_evidence``.
 ``revision_rounds``, and ``parent_corrective_edits`` are nonnegative integers
 (default zero). ``parent_minutes`` and ``agent_minutes`` are nonnegative
 numbers or null (default null). Null means unknown, never zero.
+Optional code/data byte subtotals classify ``accepted_matching_bytes`` and
+their sum may not exceed it; any remainder is reported as unclassified.
+``first_review_accepted`` is true, false, or null/absent (unknown).
+Valid timezone-aware ``started_utc`` and ``finished_utc`` are reported as
+elapsed wall time only when both exist; this never fills ``agent_minutes``.
 
 IDs describe actual sessions only; they must be consecutive from 1. Planned
 records are allowed as explicit placeholders, but are excluded from started
@@ -23,6 +28,7 @@ import argparse
 import json
 import math
 from pathlib import Path
+from datetime import datetime
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -30,6 +36,7 @@ DEFAULT_REGISTRY = ROOT / "config/luna_sessions.json"
 STATUSES = {"planned", "running", "review_pending", "reviewed"}
 COUNTERS = ("accepted_matching_functions", "accepted_matching_bytes",
             "revision_rounds", "parent_corrective_edits")
+CLASSIFIED_BYTES = ("accepted_matching_code_bytes", "accepted_matching_data_bytes")
 TIMINGS = ("parent_minutes", "agent_minutes")
 
 
@@ -81,10 +88,31 @@ def validate(registry):
             value = record.get(field, 0)
             if isinstance(value, bool) or not isinstance(value, int) or value < 0:
                 raise ValueError(f"session {sid}: {field} must be a nonnegative integer")
+        for field in CLASSIFIED_BYTES:
+            value = record.get(field, 0)
+            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+                raise ValueError(f"session {sid}: {field} must be a nonnegative integer")
+        if sum(record.get(field, 0) for field in CLASSIFIED_BYTES) > record.get("accepted_matching_bytes", 0):
+            raise ValueError(f"session {sid}: classified accepted bytes exceed accepted_matching_bytes")
+        if "first_review_accepted" in record and record["first_review_accepted"] is not None and not isinstance(record["first_review_accepted"], bool):
+            raise ValueError(f"session {sid}: first_review_accepted must be boolean or null")
         for field in TIMINGS:
             value = record.get(field)
             if value is not None:
                 _nonnegative_number(value, field, sid)
+        parsed = {}
+        for field in ("started_utc", "finished_utc"):
+            if field in record:
+                value = record[field]
+                try:
+                    timestamp = datetime.fromisoformat(value.replace("Z", "+00:00")) if isinstance(value, str) else None
+                except ValueError:
+                    timestamp = None
+                if timestamp is None or timestamp.tzinfo is None or timestamp.utcoffset() is None:
+                    raise ValueError(f"session {sid}: {field} must be a valid timezone-aware timestamp")
+                parsed[field] = timestamp
+        if "started_utc" in parsed and "finished_utc" in parsed and parsed["finished_utc"] < parsed["started_utc"]:
+            raise ValueError(f"session {sid}: finished_utc precedes started_utc")
     if len(set(ids)) != len(ids):
         raise ValueError("duplicate session id")
     if len(set(agent_ids)) != len(agent_ids):
@@ -102,6 +130,28 @@ def report(registry):
 
     def metrics(rows):
         result = {key: sum(row.get(key, 0) for row in rows) for key in COUNTERS}
+        for key in CLASSIFIED_BYTES:
+            result[key] = sum(row.get(key, 0) for row in rows)
+        result["unclassified_accepted_bytes"] = sum(
+            row.get("accepted_matching_bytes", 0) - sum(row.get(key, 0) for key in CLASSIFIED_BYTES)
+            for row in rows)
+        review_values = [row.get("first_review_accepted") for row in rows]
+        result["first_review_accepted"] = {
+            "true": sum(value is True for value in review_values),
+            "false": sum(value is False for value in review_values),
+            "unknown": sum(value is None for value in review_values),
+        }
+        result["reviewed_accepted_outputs"] = sum(
+            bool(row.get("accepted_matching_bytes", 0) or row.get("accepted_matching_functions", 0))
+            for row in rows)
+        elapsed = []
+        for row in rows:
+            if "started_utc" in row and "finished_utc" in row:
+                start = datetime.fromisoformat(row["started_utc"].replace("Z", "+00:00"))
+                finish = datetime.fromisoformat(row["finished_utc"].replace("Z", "+00:00"))
+                elapsed.append((finish - start).total_seconds() / 60)
+        result["elapsed_minutes"] = {"known_minutes": sum(elapsed), "known_records": len(elapsed),
+                                     "unknown_records": len(rows) - len(elapsed)}
         for key in TIMINGS:
             known = [row[key] for row in rows if row.get(key) is not None]
             result[key] = {"known_minutes": sum(known), "known_records": len(known),
@@ -135,14 +185,24 @@ def main(argv=None):
               f"{result['planned']} planned (target {result['target_sessions']})")
         m = result["reviewed_metrics"]
         print(f"Accepted matching output: {m['accepted_matching_functions']} functions, "
-              f"{m['accepted_matching_bytes']} bytes")
-        for role in TIMINGS:
+              f"{m['accepted_matching_bytes']} bytes total; "
+              f"{m['accepted_matching_code_bytes']} code, {m['accepted_matching_data_bytes']} data, "
+              f"{m['unclassified_accepted_bytes']} unclassified")
+        first = m["first_review_accepted"]
+        print(f"First review: {first['true']} accepted, {first['false']} not accepted, {first['unknown']} unknown; "
+              f"{m['reviewed_accepted_outputs']} reviewed accepted outputs")
+        for role in (*TIMINGS, "elapsed_minutes"):
             t = m[role]
             print(f"{role}: {t['known_minutes']} known minutes across {t['known_records']} "
                   f"records; {t['unknown_records']} unknown")
-        print("Reviewed batches of 10: " + ", ".join(
-            f"{b['session_ids'][0]}–{b['session_ids'][1]}={b['reviewed']}" for b in result["reviewed_batches_of_10"]))
-        print("Elapsed/concurrent time is not interpreted as person-effort.")
+        for b in result["reviewed_batches_of_10"][:2]:
+            print(f"Reviewed batch {b['session_ids'][0]}–{b['session_ids'][1]}: {b['reviewed']} reviewed; "
+                  f"{b['accepted_matching_code_bytes']} code bytes, {b['accepted_matching_data_bytes']} data bytes, "
+                  f"{b['unclassified_accepted_bytes']} unclassified; "
+                  f"first review T/F/? {b['first_review_accepted']['true']}/"
+                  f"{b['first_review_accepted']['false']}/{b['first_review_accepted']['unknown']}; "
+                  f"{b['parent_corrective_edits']} parent edits, {b['revision_rounds']} revisions")
+        print("Parent minutes are effort; elapsed minutes are wall time and are never used as agent_minutes.")
     return 0
 
 

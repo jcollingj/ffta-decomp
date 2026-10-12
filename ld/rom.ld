@@ -26,8 +26,6 @@ SECTIONS
     gItemAdjustment4 = 0x08528B04;
     gItemAdjustment5 = 0x08528B64;
     gItemAdjustment6 = 0x08528BC4;
-    gClassRecords4 = 0x0839475C;
-    gClassRecords16 = 0x08528F34;
     gCollectionBytes = 0x02002E64;
     gCollectionHalfwords = 0x02001F3C;
     gMappedJobs = 0x08394778;
@@ -35,10 +33,27 @@ SECTIONS
     gRandomItemSlots = 0x02001F30;
     gRecords70 = 0x0855AE4C;
     gAbilities = 0x0855187C;
+    ASSERT(GetContentFlag21F == 0x08009FBC, "GetContentFlag21F moved")
+    ASSERT(CopySaveHalfword2194To2192AndSetFlag21F == 0x08009FD0, "CopySaveHalfword2194To2192AndSetFlag21F moved")
+    ASSERT(CopySaveHalfword2194To2192AndSetFlag21F - GetContentFlag21F == 20, "content flag getter size changed")
     . = 0x08000000;
     .text : {
         *(.text)
     }
+    ASSERT(ReadCurrentContentIndex == 0x0800A018, "ReadCurrentContentIndex moved")
+    ASSERT(ReadContentIndexOrFallback == 0x0800A024, "ReadContentIndexOrFallback moved")
+    ASSERT(ReadContentIndexOrFallback - ReadCurrentContentIndex == 12, "content-index function boundary changed")
+    ASSERT(CountContextListAt10 == 0x08099CB8, "CountContextListAt10 moved")
+    ASSERT(CountContextListAt14 == 0x08099CC4, "CountContextListAt14 moved")
+    ASSERT(CountContextListAt18 == 0x08099CD0, "CountContextListAt18 moved")
+    ASSERT(CountLinkedNodes == 0x080C7B08, "CountLinkedNodes moved")
+    ASSERT(GetListOwnerWord0 == 0x080C7B74, "GetListOwnerWord0 moved")
+    ASSERT(CopyListOwnerWords == 0x080C7B78, "CopyListOwnerWords moved")
+    ASSERT(CopyListNodes == 0x080C7B84, "CopyListNodes moved")
+    ASSERT(ListSearchCallback == 0x080C7E38, "ListSearchCallback moved")
+    ASSERT(ListCallbackAppend == 0x080C7E68, "ListCallbackAppend moved")
+    ASSERT(ListCallbackSelectClear == 0x080C7E78, "ListCallbackSelectClear moved")
+    ASSERT(ListCallbackClearFlag0 == 0x080C7E94, "ListCallbackClearFlag0 moved")
     ASSERT(ReadUnitField == 0x80c7ea4, "ReadUnitField moved")
     ASSERT(UnitField01AboveOne == 0x80c817c, "UnitField01AboveOne moved")
     ASSERT(UnitField01Equals == 0x80c8194, "UnitField01Equals moved")
@@ -238,6 +253,12 @@ SECTIONS
     ASSERT(WriteUnitCounterE5 == 0x80ce480, "WriteUnitCounterE5 moved")
     ASSERT(WriteUnitCounterE6 == 0x80ce488, "WriteUnitCounterE6 moved")
     ASSERT(AddOpposingStateCounter == 0x80ce490, "AddOpposingStateCounter moved")
+    ASSERT(gClassRecords4 == 0x0839475C, "gClassRecords4 moved")
+    ASSERT(gClassRecords4End == 0x08394778, "gClassRecords4 end moved")
+    ASSERT(gClassRecords4End - gClassRecords4 == 28, "gClassRecords4 size changed")
+    ASSERT(gClassRecords16 == 0x08528F34, "gClassRecords16 moved")
+    ASSERT(gClassRecords16End == 0x08529494, "gClassRecords16 end moved")
+    ASSERT(gClassRecords16End - gClassRecords16 == 1376, "gClassRecords16 size changed")
     ASSERT(gCountedRecordIds == 0x08529EE4, "gCountedRecordIds moved")
     ASSERT(GetRecord70Property == 0x080CE4DC, "GetRecord70Property moved")
     ASSERT(DecodeRecordByte == 0x080CB4A4, "DecodeRecordByte moved")

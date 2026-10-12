@@ -12,6 +12,7 @@ import subprocess
 import time
 from compare import compare_bytes
 from probe_report import compare_functions, merge_references, text_symbols
+from probe_reference import ReferenceElfError, load_reference_symbols
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -22,6 +23,8 @@ def main():
     parser.add_argument('--start', required=True, type=lambda s: int(s, 0), help='ROM file offset')
     parser.add_argument('--end', required=True, type=lambda s: int(s, 0), help='exclusive ROM file offset')
     parser.add_argument('--opt', default='2', choices=['0', '1', '2', 's'])
+    parser.add_argument('--reference-elf', type=Path, default=ROOT/'build/ffta.elf',
+                        help='ELF supplying external symbol addresses/types (default: build/ffta.elf)')
     parser.add_argument('--disassemble', action='store_true', help='save original/candidate disassembly for each referenced function')
     args = parser.parse_args()
     if not 0 <= args.start < args.end <= 0x1000000:
@@ -36,11 +39,11 @@ def main():
     run(['arm-none-eabi-as', '-mcpu=arm7tdmi', '-o', folder/'candidate.o', folder/'candidate.s'])
     undefined = [line.split()[-1] for line in subprocess.check_output(
         ['arm-none-eabi-nm', '-u', str(folder/'candidate.o')], text=True).splitlines()]
-    symbols = {}
-    for line in subprocess.check_output(['arm-none-eabi-readelf', '-sW', str(ROOT/'build/ffta.elf')], text=True).splitlines():
-        parts = line.split()
-        if len(parts) >= 8 and parts[0].endswith(':') and parts[0][:-1].isdigit() and parts[6] != 'UND':
-            symbols[parts[7]] = (int(parts[1], 16), parts[3])
+    try:
+        symbols, reference_identity = load_reference_symbols(
+            undefined, args.reference_elf, folder)
+    except ReferenceElfError as error:
+        raise SystemExit(str(error)) from error
     refs = ['.thumb']
     for name in undefined:
         if name not in symbols:
@@ -68,6 +71,7 @@ def main():
         ['arm-none-eabi-nm', '-S', str(folder/'candidate.elf')], text=True))
     reports = compare_functions(base, actual, args.start, references, candidate_symbols)
     result.update(functions=reports, optimization=args.opt, source=str(args.source),
+                  reference_elf=reference_identity,
                   seconds=time.perf_counter()-start)
     for report in reports:
         name = report['name']

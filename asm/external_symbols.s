@@ -1,8 +1,5 @@
 @ Verified Thumb entry points in still-copied regions; names are provisional.
 .thumb
-.global ReadCurrentContentIndex
-.type ReadCurrentContentIndex, %function
-.thumb_set ReadCurrentContentIndex, 0x0800A019
 .global ApplyUnitJob
 .type ApplyUnitJob, %function
 .thumb_set ApplyUnitJob, 0x080C8C25

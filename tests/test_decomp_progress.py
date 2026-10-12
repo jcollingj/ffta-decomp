@@ -26,6 +26,23 @@ class ProgressTests(unittest.TestCase):
                 dict(start=0, end=6, kind='copied', source='asm/test.s'),
                 dict(start=6, end=8, kind='source_data', source='asm/test.s')])
 
+    def test_explicit_object_lists_accept_single_line_and_continuations(self):
+        expected = ['build/first.o', 'build/second-file.o', 'build/third.o']
+        self.assertEqual(progress.parse_build_objects(
+            'OBJS := build/first.o build/second-file.o build/third.o\n'), expected)
+        self.assertEqual(progress.parse_build_objects(
+            'OBJS    := \\\n\tbuild/first.o \\\n\tbuild/second-file.o \\\n\tbuild/third.o\n'), expected)
+
+    def test_explicit_object_list_rejects_unsupported_tokens_and_duplicates(self):
+        for makefile in (
+                'OBJS := build/test.o $(EXTRA_OBJECTS)\n',
+                'OBJS := build/test.o build/test.o\n',
+                'OBJS := build/test.o; touch bad\n',
+                'OBJS := build/test.o\nOBJS += build/other.o\n',
+                'OBJS := build/test.o \\\n\tUNTERMINATED\n'):
+            with self.subTest(makefile=makefile), self.assertRaises(ValueError):
+                progress.parse_build_objects(makefile)
+
     def test_unknown_code_denominator_not_reported_as_rom_percent(self):
         result = progress.audit(self.manifest, self.root, self.rom)
         self.assertEqual(result['source_or_generated_percent'], 25)

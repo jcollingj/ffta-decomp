@@ -65,6 +65,13 @@
       "mode": "thumb"
     },
     {
+      "name": "ClearContentFlag21FIfSet",
+      "start": 40952,
+      "end": 40984,
+      "source": "src/nonmatching/content_flag_clear.c",
+      "mode": "thumb"
+    },
+    {
       "name": "FillRandomItemSlots",
       "start": 837512,
       "end": 837580,
@@ -104,6 +111,20 @@
       "start": 830068,
       "end": 830242,
       "source": "src/nonmatching/compact_records.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CountTreeNodes",
+      "start": 817952,
+      "end": 818036,
+      "source": "src/nonmatching/tree_count.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CountTreeRootNodes",
+      "start": 818668,
+      "end": 818742,
+      "source": "src/nonmatching/tree_root_count.c",
       "mode": "thumb"
     }
   ]

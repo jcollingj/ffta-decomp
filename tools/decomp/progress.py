@@ -57,6 +57,42 @@ def measure(manifest):
     }
 
 
+def parse_build_objects(makefile):
+    """Return explicit OBJS tokens in order; reject unsupported make syntax."""
+    lines = makefile.splitlines()
+    assignments = [(index, line) for index, line in enumerate(lines)
+                   if re.match(r'^\s*OBJS\b', line)]
+    if len(assignments) != 1:
+        raise ValueError('expected exactly one explicit OBJS assignment')
+
+    index, line = assignments[0]
+    if not re.match(r'^\s*OBJS\s*:=', line):
+        raise ValueError('OBJS must use an explicit := assignment')
+    body = re.sub(r'^\s*OBJS\s*:=', '', line, count=1)
+    pieces = []
+    while True:
+        stripped = body.rstrip()
+        continued = stripped.endswith('\\')
+        pieces.append(stripped[:-1] if continued else body)
+        if not continued:
+            break
+        index += 1
+        if index >= len(lines):
+            raise ValueError('unterminated OBJS continuation')
+        body = lines[index].lstrip()
+
+    objects = ' '.join(pieces).split()
+    if not objects:
+        raise ValueError('OBJS assignment is empty')
+    for obj in objects:
+        if (not re.fullmatch(r'build/[A-Za-z0-9_.+-]+\.o', obj)
+                or Path(obj).parent != Path('build') or Path(obj).name in ('.o', '..o')):
+            raise ValueError(f'unsupported OBJS token: {obj}')
+    if len(set(objects)) != len(objects):
+        raise ValueError('duplicate object in OBJS assignment')
+    return objects
+
+
 def audit(manifest, root, rom):
     report = measure(manifest)
     data = rom.read_bytes()
@@ -66,11 +102,8 @@ def audit(manifest, root, rom):
     # Check every source in the current matching build, including sources not
     # listed by the manifest, so a newly introduced incbin cannot go unnoticed.
     makefile = (root / 'Makefile').read_text()
-    match = re.search(r'^OBJS\s*[:=]+\s*(.+)$', makefile, re.M)
-    if not match or '\\' in match[1]:
-        raise ValueError('update progress auditor for the new build object list')
     sources = set()
-    for obj in match[1].split():
+    for obj in parse_build_objects(makefile):
         stem = Path(obj).stem
         candidates = [root / folder / f'{stem}{suffix}'
                       for folder, suffix in [('asm', '.s'), ('data', '.s'), ('src', '.c')]]

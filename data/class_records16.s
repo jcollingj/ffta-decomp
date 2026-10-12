@@ -126,4 +126,6 @@ gClassRecords16:
 .if (. - gClassRecords16) != 1376
     .error "gClassRecords16 table size changed"
 .endif
+.global gClassRecords16End
+gClassRecords16End:
 .size gClassRecords16, .-gClassRecords16

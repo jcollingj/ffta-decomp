@@ -164,6 +164,8 @@ def _render_table(records: list[dict], *, symbol: str, macro: str, fields: dict,
         f".if (. - {symbol}) != {count * size}",
         f'    .error "{symbol} table size changed"',
         ".endif",
+        f".global {symbol}End",
+        f"{symbol}End:",
         f".size {symbol}, .-{symbol}",
     ])
     return "\n".join(lines) + "\n"
