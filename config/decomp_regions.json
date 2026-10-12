@@ -1804,6 +1804,14 @@
       "status": "matching_c"
     },
     {
+      "name": "CalculateUnitByteAmount",
+      "start": 838764,
+      "end": 838816,
+      "source": "src/unit_byte_amount.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "ProcessSelectedPoolUnits",
       "start": 838816,
       "end": 838896,
@@ -2381,9 +2389,9 @@
     {
       "start": 838764,
       "end": 838816,
-      "kind": "copied",
-      "source": "asm/rom_collection_tail.s",
-      "note": "Original unit byte amount calculation"
+      "kind": "decompiled_c",
+      "source": "src/unit_byte_amount.c",
+      "note": "Matching unit byte amount calculation"
     },
     {
       "start": 838816,
@@ -2520,10 +2528,17 @@
     },
     {
       "start": 5378580,
-      "end": 5386660,
+      "end": 5380628,
       "kind": "copied",
       "source": "asm/rom_item_sets_tail.s",
-      "note": "Unclassified code and data"
+      "note": "Unclassified code and data before the authored job table"
+    },
+    {
+      "start": 5380628,
+      "end": 5386660,
+      "kind": "source_data",
+      "source": "data/jobs.s",
+      "note": "116 authored 52-byte job records; fields remain partially unknown"
     },
     {
       "start": 5386660,

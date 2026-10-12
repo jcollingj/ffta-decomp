@@ -65,13 +65,6 @@
       "mode": "thumb"
     },
     {
-      "name": "CalculateUnitByteAmount",
-      "start": 838764,
-      "end": 838816,
-      "source": "src/nonmatching/unit_pool_checks.c",
-      "mode": "thumb"
-    },
-    {
       "name": "FillRandomItemSlots",
       "start": 837512,
       "end": 837580,
@@ -104,6 +97,13 @@
       "start": 831704,
       "end": 831986,
       "source": "src/nonmatching/equipment_replace_direct.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "CompactSaveRecords64",
+      "start": 830068,
+      "end": 830242,
+      "source": "src/nonmatching/compact_records.c",
       "mode": "thumb"
     }
   ]

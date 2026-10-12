@@ -1,0 +1,76 @@
+{
+  "lessons": [
+    {
+      "id": "L001",
+      "parent_failure": "Parent gave insufficient branch evidence",
+      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry.",
+      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch."
+    },
+    {
+      "id": "L002",
+      "parent_failure": "Parent did not specify fixture fidelity",
+      "rule": "Keep source declarations intact; use const fixtures and independently derived fixed vectors. Do not redefine const or alter the function under test to fit a fixture.",
+      "evidence": "Random-item harness initially removed const and mirrored the implementation as its only oracle."
+    },
+    {
+      "id": "L003",
+      "parent_failure": "Parent omitted dependency discovery instructions",
+      "rule": "Resolve call targets through ld/rom.ld, source declarations, and symbol tables before inventing names. Report unknown verified targets. UNINVENTORIED is a missing-reference warning, not a blocked compilation.",
+      "evidence": "Agents invented a name for already recovered ApplyItemAbilityFlags and mistook probe warning for failure."
+    },
+    {
+      "id": "L004",
+      "parent_failure": "Parent selected compiler edge cases without strategy",
+      "rule": "State a concrete compiler hypothesis, make one natural-source change, record probe result and source hash, retain semantically correct best candidate. A close byte count cannot justify incorrect behavior.",
+      "evidence": "Initial four-byte matching tasks produced little accepted recovery; corrected replacement semantics increased the mismatch."
+    },
+    {
+      "id": "L005",
+      "parent_failure": "Parent repaired too much directly",
+      "rule": "Return actionable evidence and ask the same agent to repair its own work, update a regression, and explain the generalized lesson. Parent edits only for integration or a documented escalation.",
+      "evidence": "Parent corrected replacement control flow and fixtures itself during the first pilot."
+    },
+    {
+      "id": "L006",
+      "parent_failure": "Parent provided weak acceptance criteria for tests",
+      "rule": "Test distinguishing cases, no-op callback counts, whole-state collateral writes, and signed/narrowing boundaries. Prefer real recovered dependencies; explicitly label stubs and uncounted candidates.",
+      "evidence": "Support7 single-item test did not distinguish the exception from ordinary acceptance; fake paired-state helper duplicated recovered code."
+    },
+    {
+      "id": "L007",
+      "parent_failure": "Parent did not require explicit loop back-edge evidence",
+      "rule": "Map each back-edge and every index/pointer update before coding a loop. Use a distinguishing independent fixture for paths that skip increments.",
+      "evidence": "Session 5 incremented after holes even though caaf6 branches past cab08/cab0a/cab0c; mirrored harness passed."
+    },
+    {
+      "id": "L008",
+      "parent_failure": "Parent did not distinguish live-registry checks from stable fixtures",
+      "rule": "Use synthetic fixtures for exact expected aggregate counts; production registries get invariant checks. Validate distinct agent identities as well as numeric IDs, and finite timing values.",
+      "evidence": "Session 4 test hardcoded three reviewed sessions against the evolving registry."
+    },
+    {
+      "id": "L009",
+      "parent_failure": "Parent requested roundtrip without enough independent schema evidence",
+      "rule": "Verify field semantics against an independent recovered reader or target disassembly. Reject malformed encodings by decoded width. Ensure negative tests mutate the intended named field and check the intended failure.",
+      "evidence": "Session 6 raw hex could shrink an encoded record; positional packed-field negative test targeted the wrong field."
+    },
+    {
+      "id": "L010",
+      "parent_failure": "Parent did not require literal-pool address verification independent of harness",
+      "rule": "Record numeric radix explicitly and check resolved addresses from original literal words. Fixtures must not share an unchecked offset with the implementation; include a decoy at plausible wrong offsets. Verify callback interleaving, not only per-callback counts.",
+      "evidence": "Session 5 used decimal968 where ROM literal is hex0x968; its mirrored offset harness passed."
+    },
+    {
+      "id": "L011",
+      "parent_failure": "Parent manually converted a manifest address incorrectly and phrased permission ambiguously",
+      "rule": "Derive hex addresses mechanically from the authoritative manifest; conflicting prompt bounds must be reconciled before probing. State explicitly that multiple bounded hypothesis probes are allowed after the shared ELF lease.",
+      "evidence": "Session10 caught CBCE0 vs actualCB4E0; session8 interpreted once allowed as one probe."
+    },
+    {
+      "id": "L012",
+      "parent_failure": "Parent did not specify separately linkable outputs for nonadjacent data intervals",
+      "rule": "Each nonadjacent ROM interval must emit an independently placeable object or explicitly placed section. Neighboring symbol addresses give upper bounds, not proof all intervening bytes share a schema.",
+      "evidence": "Session9 initially rendered distant tables contiguously and proposed251 records from adjacent symbol; narrowedto86 and requested separateoutputs."
+    }
+  ]
+}

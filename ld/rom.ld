@@ -10,7 +10,7 @@ SECTIONS
     gInventoryEntries = 0x02001940;
     gClearMemory = 0x0836D4B8;
     gSaveData = 0x02000000;
-    gJobs = 0x08521A14;
+    gSaveSection21A0 = 0x020021A0;
     gGameFlags = 0x02001F70;
     gAbilityLists = 0x0851BA84;
     gContentPointers = 0x08526680;
@@ -72,6 +72,10 @@ SECTIONS
     ASSERT(ReadJobMappingValue == 0x80c93f0, "ReadJobMappingValue moved")
     ASSERT(ReadMappedClassValue == 0x80c9460, "ReadMappedClassValue moved")
     ASSERT(ReadUnitJobRelatedValue == 0x80c9428, "ReadUnitJobRelatedValue moved")
+    gJobsEnd = gJobRequirements;
+    ASSERT(gJobs == 0x08521A14, "gJobs moved")
+    ASSERT(gJobsEnd == 0x085231A4, "gJobs end moved")
+    ASSERT(gJobsEnd - gJobs == 6032, "gJobs size changed")
     ASSERT(gJobRequirements == 0x085231A4, "gJobRequirements moved")
     ASSERT(gJobMapping == 0x085231F4, "gJobMapping moved")
     ASSERT(GetGameFlag == 0x080C9540, "GetGameFlag moved")
@@ -270,6 +274,7 @@ SECTIONS
     ASSERT(CountSaveCollectionRecords == 0x080CCBC4, "CountSaveCollectionRecords moved")
     ASSERT(IncrementSaveCounterBelow99 == 0x080CCBFC, "IncrementSaveCounterBelow99 moved")
     ASSERT(HasSelectedPoolUnit == 0x080CCC1C, "HasSelectedPoolUnit moved")
+    ASSERT(CalculateUnitByteAmount == 0x080CCC6C, "CalculateUnitByteAmount moved")
     ASSERT(ProcessSelectedPoolUnits == 0x080CCCA0, "ProcessSelectedPoolUnits moved")
     ASSERT(ProcessSelectedPoolUnit == 0x080CC65C, "ProcessSelectedPoolUnit moved")
     ASSERT(SetSelectedPoolUnitState == 0x080CC6F0, "SetSelectedPoolUnitState moved")
