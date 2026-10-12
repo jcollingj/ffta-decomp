@@ -1,9 +1,9 @@
 #include "list_visit.h"
 
-void VisitLinkedNodes(struct ListCountOwner *owner, ListVisitCallback callback,
+void VisitLinkedNodes(struct Container *owner, ListVisitCallback callback,
                       void *context)
 {
-    struct ListCountNode *node = owner->head;
+    struct ListCountNode *node = owner->list_head;
 
     while (node != 0) {
         if (callback(node, context) == 0)

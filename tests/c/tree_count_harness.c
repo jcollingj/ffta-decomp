@@ -6,7 +6,7 @@
 
 #define MAX_NODES 700
 
-static struct TreeCountOwner owner;
+static struct Container owner;
 static struct TreeCountNode nodes[MAX_NODES];
 static struct TreeCountNode decoys[4];
 
@@ -23,9 +23,8 @@ static void reset_nodes(unsigned n)
     memset(&owner, 0xA5, sizeof(owner));
     memset(nodes, 0x5A, sizeof(nodes));
     memset(decoys, 0xC3, sizeof(decoys));
-    owner.unknown00 = 0x12345678;
-    owner.unknown04 = 0x89ABCDEF;
-    owner.root = n ? &nodes[0] : 0;
+    owner.allocator_owner = (void *)0x12345678;
+    owner.tree_root = n ? &nodes[0] : 0;
     for (i = 0; i < n; i++) {
         nodes[i].parent = 0;
         nodes[i].child_a = 0;
@@ -47,13 +46,13 @@ static void link_b(unsigned parent, unsigned child)
 
 static void verify(unsigned expected)
 {
-    struct TreeCountOwner owner_before = owner;
+    struct Container owner_before = owner;
     struct TreeCountNode nodes_before[MAX_NODES];
     struct TreeCountNode decoys_before[4];
     memcpy(nodes_before, nodes, sizeof(nodes));
     memcpy(decoys_before, decoys, sizeof(decoys));
     assert(CountTreeNodes(&owner) == expected);
-    assert(oracle_count(owner.root) == expected);
+    assert(oracle_count(owner.tree_root) == expected);
     assert(memcmp(&owner, &owner_before, sizeof(owner)) == 0);
     assert(memcmp(nodes, nodes_before, sizeof(nodes)) == 0);
     assert(memcmp(decoys, decoys_before, sizeof(decoys)) == 0);
@@ -64,11 +63,11 @@ int main(void)
     unsigned i;
 
     /* Native host pointers intentionally widen the fixture fields. Target
-       pointer offsets are 8/12/16; these host fixture offsets are 8/16/24. */
+       node pointers are at offsets 8/12/16; host owner root is at 16. */
     assert(offsetof(struct TreeCountNode, parent) == 8);
     assert(offsetof(struct TreeCountNode, child_a) == 8 + sizeof(void *));
     assert(offsetof(struct TreeCountNode, child_b) == 8 + 2 * sizeof(void *));
-    assert(offsetof(struct TreeCountOwner, root) == 8);
+    assert(offsetof(struct Container, tree_root) == 16);
 
     reset_nodes(0);
     verify(0);

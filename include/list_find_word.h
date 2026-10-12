@@ -4,7 +4,7 @@
 #include "list_count.h"
 
 /* Returns the first node whose word at offset zero equals word. */
-struct ListCountNode *FindListNodeByWord(const struct ListCountOwner *owner,
+struct ListCountNode *FindListNodeByWord(const struct Container *owner,
                                         u32 word);
 
 #endif

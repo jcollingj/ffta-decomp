@@ -15,7 +15,7 @@ typedef char ListCallbackStateTargetSize[
 typedef char ListCallbackStateHostSize[
     sizeof(void *) != 8 || sizeof(struct ListCallbackState) == 16 ? 1 : -1];
 
-int ListCallbackAppend(void *value, struct ListCallbackState *state);
+int ListCallbackAppend(void *value, void *context);
 int ListCallbackSelectClear(const u32 *node_words, const u32 **output);
 int ListCallbackClearFlag0(u32 *node_words);
 

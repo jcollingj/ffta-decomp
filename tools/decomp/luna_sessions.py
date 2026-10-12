@@ -101,7 +101,7 @@ def validate(registry):
             if value is not None:
                 _nonnegative_number(value, field, sid)
         parsed = {}
-        for field in ("started_utc", "finished_utc"):
+        for field in ("started_utc", "finished_utc", "registered_utc", "reviewed_utc"):
             if field in record:
                 value = record[field]
                 try:
@@ -195,7 +195,9 @@ def main(argv=None):
             t = m[role]
             print(f"{role}: {t['known_minutes']} known minutes across {t['known_records']} "
                   f"records; {t['unknown_records']} unknown")
-        for b in result["reviewed_batches_of_10"][:2]:
+        for b in result["reviewed_batches_of_10"]:
+            if not b["reviewed"]:
+                continue
             print(f"Reviewed batch {b['session_ids'][0]}–{b['session_ids'][1]}: {b['reviewed']} reviewed; "
                   f"{b['accepted_matching_code_bytes']} code bytes, {b['accepted_matching_data_bytes']} data bytes, "
                   f"{b['unclassified_accepted_bytes']} unclassified; "

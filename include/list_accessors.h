@@ -8,7 +8,7 @@ u32 GetListOwnerWord0(const u32 *owner_words);
 void CopyListOwnerWords(const u32 *owner_words, u32 *out_word4, u32 *out_word0);
 
 /* Copies the head and subsequent nodes to output, then returns zero. */
-u32 CopyListNodes(const struct ListCountOwner *owner,
+u32 CopyListNodes(const struct Container *owner,
                   struct ListCountNode **output);
 
 #endif

@@ -12,10 +12,10 @@ void CopyListOwnerWords(const u32 *owner_words, u32 *out_word4, u32 *out_word0)
     *out_word0 = owner_words[0];
 }
 
-u32 CopyListNodes(const struct ListCountOwner *owner,
+u32 CopyListNodes(const struct Container *owner,
                   struct ListCountNode **output)
 {
-    const struct ListCountNode *node = owner->head;
+    const struct ListCountNode *node = owner->list_head;
 
     while (node != 0) {
         *output++ = (struct ListCountNode *)node;

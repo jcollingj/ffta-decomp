@@ -5,7 +5,7 @@
 #include "../../src/list_visit.c"
 
 struct Fixture {
-    struct ListCountOwner owner;
+    struct Container owner;
     struct ListCountNode nodes[6];
     struct ListCountNode guards[2];
 };
@@ -38,8 +38,8 @@ static void make_fixture(struct Fixture *fixture, unsigned length)
     unsigned i;
 
     memset(fixture, 0xA5, sizeof(*fixture));
-    fixture->owner.unknown00 = 0xD00DFEED;
-    fixture->owner.head = length == 0 ? 0 : &fixture->nodes[0];
+    fixture->owner.allocator_owner = (void *)0xD00DFEED;
+    fixture->owner.list_head = length == 0 ? 0 : &fixture->nodes[0];
     for (i = 0; i < 6; i++) {
         fixture->nodes[i].unknown00 = 0x11110000 + i;
         fixture->nodes[i].unknown04 = 0x22220000 + i;
@@ -72,7 +72,7 @@ int main(void)
     struct ListCountNode *expected[6];
     unsigned i;
 
-    assert(offsetof(struct ListCountOwner, head) ==
+    assert(offsetof(struct Container, list_head) ==
            (sizeof(void *) == 8 ? 8 : 4));
     assert(offsetof(struct ListCountNode, next) == 8);
 

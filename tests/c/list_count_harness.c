@@ -6,17 +6,17 @@
 
 int main(void)
 {
-    struct ListCountOwner owner;
+    struct Container owner;
     struct ListCountNode nodes[1000];
     struct ListCountNode decoys[3];
-    struct ListCountOwner owner_before;
+    struct Container owner_before;
     struct ListCountNode nodes_before[1000];
     struct ListCountNode decoys_before[3];
     static const unsigned lengths[] = {0, 1, 2, 5, 255, 256, 1000};
     unsigned test;
 
     /* Host fixtures use host pointer alignment and native pointer width. */
-    assert(sizeof(void *) != 8 || offsetof(struct ListCountOwner, head) == 8);
+    assert(sizeof(void *) != 8 || offsetof(struct Container, list_head) == 8);
     assert(offsetof(struct ListCountNode, next) == 8);
 
     for (test = 0; test < sizeof(lengths) / sizeof(lengths[0]); test++) {
@@ -25,8 +25,8 @@ int main(void)
         memset(&owner, 0xA5, sizeof(owner));
         memset(nodes, 0x5A, sizeof(nodes));
         memset(decoys, 0xC3, sizeof(decoys));
-        owner.unknown00 = 0xD00DFEED;
-        owner.head = length ? &nodes[0] : 0;
+        owner.allocator_owner = (void *)0xD00DFEED;
+        owner.list_head = length ? &nodes[0] : 0;
         for (i = 0; i < length; i++)
             nodes[i].next = i + 1 < length ? &nodes[i + 1] : 0;
         /* These nodes are valid but unlinked; they must not affect the count. */

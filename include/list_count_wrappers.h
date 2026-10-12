@@ -5,9 +5,9 @@
 /* The 16-byte prefix and all three owner pointers have unknown meanings. */
 struct ListCountContext {
     u8 unknown00[16];
-    struct ListCountOwner *unknown10;
-    struct ListCountOwner *unknown14;
-    struct ListCountOwner *unknown18;
+    struct Container *unknown10;
+    struct Container *unknown14;
+    struct Container *unknown18;
 };
 
 u32 CountContextListAt10(const struct ListCountContext *context);

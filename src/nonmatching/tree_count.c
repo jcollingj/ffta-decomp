@@ -2,10 +2,10 @@
 
 /* Original interval is [0xC7B20, 0xC7B74), 84 bytes; its final `bx r1`
    begins at 0xC7B72. The current candidate symbol is only 82 bytes. */
-u32 CountTreeNodes(const struct TreeCountOwner *owner)
+u32 CountTreeNodes(const struct Container *owner)
 {
     u32 count;
-    const struct TreeCountNode *root = owner->root;
+    const struct TreeCountNode *root = owner->tree_root;
     const struct TreeCountNode *node;
     const struct TreeCountNode *previous;
 

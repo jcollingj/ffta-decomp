@@ -3,11 +3,11 @@
 
 #include "tree_count.h"
 
-typedef int (*TreeTraversalCallback)(struct TreeCountNode *node, void *context);
+typedef int (*TreeTraversalCallback)(void *value, void *context);
 
 /* Visit the root's binary subtree in child_a, node, child_b order. A callback
    returning zero stops the entire traversal. */
-void TraverseTreeInOrder(const struct TreeCountOwner *owner,
+void TraverseTreeInOrder(const struct Container *owner,
                          TreeTraversalCallback callback, void *context);
 
 #endif

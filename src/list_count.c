@@ -1,8 +1,8 @@
 #include "list_count.h"
 
-u32 CountLinkedNodes(const struct ListCountOwner *owner)
+u32 CountLinkedNodes(const struct Container *owner)
 {
-    const struct ListCountNode *node = owner->head;
+    const struct ListCountNode *node = owner->list_head;
     u32 count = 0;
 
     while (node != 0) {

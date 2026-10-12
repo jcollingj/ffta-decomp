@@ -2,6 +2,7 @@
 #define FFTA_TREE_COUNT_H
 
 #include "types.h"
+#include "container.h"
 
 /* Only these pointer fields are established by the original loads. */
 struct TreeCountNode {
@@ -12,15 +13,8 @@ struct TreeCountNode {
     struct TreeCountNode *child_b;
 };
 
-struct TreeCountOwner {
-    u32 unknown00;
-    u32 unknown04;
-    struct TreeCountNode *root;
-};
+u32 CountTreeNodes(const struct Container *owner);
 
-u32 CountTreeNodes(const struct TreeCountOwner *owner);
-
-/* With target 32-bit pointers these fields land at offsets 8/12/16. The
-   host harness records its native-width fixture offsets separately. */
+/* With target 32-bit pointers the node links land at offsets 8/12/16. */
 
 #endif

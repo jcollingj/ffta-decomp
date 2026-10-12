@@ -1,9 +1,9 @@
 #include "tree_reverse_visit.h"
 
-void TraverseTreeReverseInOrder(const struct TreeCountOwner *owner,
+void TraverseTreeReverseInOrder(const struct Container *owner,
                                 TreeReverseVisitCallback callback, void *context)
 {
-    struct TreeCountNode *node = owner->root;
+    struct TreeCountNode *node = owner->tree_root;
     struct TreeCountNode *previous = (struct TreeCountNode *)-1;
     struct TreeCountNode *root = node;
 

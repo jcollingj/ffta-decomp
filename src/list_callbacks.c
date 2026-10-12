@@ -1,7 +1,8 @@
 #include "list_callbacks.h"
 
-int ListCallbackAppend(void *value, struct ListCallbackState *state)
+int ListCallbackAppend(void *value, void *context)
 {
+    struct ListCallbackState *state = (struct ListCallbackState *)context;
     void **cursor = state->cursor;
 
     *cursor++ = value;

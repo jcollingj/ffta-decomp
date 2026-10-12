@@ -5,7 +5,7 @@
 
 typedef u32 (*ListVisitCallback)(struct ListCountNode *node, void *context);
 
-void VisitLinkedNodes(struct ListCountOwner *owner, ListVisitCallback callback,
+void VisitLinkedNodes(struct Container *owner, ListVisitCallback callback,
                       void *context);
 
 #endif

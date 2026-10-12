@@ -34,6 +34,11 @@ SECTIONS
     gRecords70 = 0x0855AE4C;
     gAbilities = 0x0855187C;
     ASSERT(GetContentFlag21F == 0x08009FBC, "GetContentFlag21F moved")
+    ASSERT(AllocatorAllocate == 0x08007138, "AllocatorAllocate moved")
+    ASSERT(AllocatorFree == 0x08007170, "AllocatorFree moved")
+    ASSERT(AllocatorAllocationSize == 0x0800717C, "AllocatorAllocationSize moved")
+    ASSERT(AllocatorFree - AllocatorAllocate == 56, "allocator allocation wrapper boundary changed")
+    ASSERT(AllocatorAllocationSize - AllocatorFree == 12, "allocator free wrapper size changed")
     ASSERT(CopySaveHalfword2194To2192AndSetFlag21F == 0x08009FD0, "CopySaveHalfword2194To2192AndSetFlag21F moved")
     ASSERT(CopySaveHalfword2194To2192AndSetFlag21F - GetContentFlag21F == 20, "content flag getter size changed")
     . = 0x08000000;
@@ -46,10 +51,14 @@ SECTIONS
     ASSERT(CountContextListAt10 == 0x08099CB8, "CountContextListAt10 moved")
     ASSERT(CountContextListAt14 == 0x08099CC4, "CountContextListAt14 moved")
     ASSERT(CountContextListAt18 == 0x08099CD0, "CountContextListAt18 moved")
+    ASSERT(ContainerCreate == 0x080C799C, "ContainerCreate moved")
     ASSERT(CountLinkedNodes == 0x080C7B08, "CountLinkedNodes moved")
     ASSERT(GetListOwnerWord0 == 0x080C7B74, "GetListOwnerWord0 moved")
     ASSERT(CopyListOwnerWords == 0x080C7B78, "CopyListOwnerWords moved")
     ASSERT(CopyListNodes == 0x080C7B84, "CopyListNodes moved")
+    ASSERT(TreeCollectInOrder == 0x080C7B9C, "TreeCollectInOrder moved")
+    ASSERT(TreeCollectReverseInOrder == 0x080C7BC8, "TreeCollectReverseInOrder moved")
+    ASSERT(TreeCollectReverseInOrder - TreeCollectInOrder == 44, "tree collection wrapper boundary changed")
     ASSERT(FindListNodeByWord == 0x080C7BF4, "FindListNodeByWord moved")
     ASSERT(SetListWords == 0x080C7C40, "SetListWords moved")
     ASSERT(VisitLinkedNodes == 0x080C7CC0, "VisitLinkedNodes moved")

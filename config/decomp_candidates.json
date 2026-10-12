@@ -126,6 +126,13 @@
       "end": 818742,
       "source": "src/nonmatching/tree_root_count.c",
       "mode": "thumb"
+    },
+    {
+      "name": "VisitCircularListFrom",
+      "start": 818404,
+      "end": 818454,
+      "source": "src/nonmatching/list_circular_visit.c",
+      "mode": "thumb"
     }
   ]
 }

@@ -6,12 +6,12 @@
 #include "../../src/list_find_word.c"
 #include "../../src/list_set_words.c"
 
-static void CheckSearch(const struct ListCountOwner *owner, u32 word,
+static void CheckSearch(const struct Container *owner, u32 word,
                         struct ListCountNode *expected,
-                        struct ListCountOwner *owner_storage,
+                        struct Container *owner_storage,
                         struct ListCountNode *nodes, unsigned node_count)
 {
-    struct ListCountOwner owner_before = *owner_storage;
+    struct Container owner_before = *owner_storage;
     struct ListCountNode nodes_before[520];
 
     assert(node_count <= 520);
@@ -23,17 +23,17 @@ static void CheckSearch(const struct ListCountOwner *owner, u32 word,
 
 static void TestFind(void)
 {
-    struct ListCountOwner owner;
+    struct Container owner;
     struct ListCountNode nodes[520];
     unsigned i;
 
     memset(&owner, 0xA5, sizeof(owner));
     memset(nodes, 0x5A, sizeof(nodes));
-    owner.unknown00 = 0xD00DFEED;
-    owner.head = 0;
+    owner.allocator_owner = (void *)0xD00DFEED;
+    owner.list_head = 0;
     CheckSearch(&owner, 0, 0, &owner, nodes, 520);
 
-    owner.head = &nodes[0];
+    owner.list_head = &nodes[0];
     nodes[0].unknown00 = 0;
     nodes[0].unknown04 = 0xAAAAAAAA;
     nodes[0].next = &nodes[1];
@@ -50,7 +50,7 @@ static void TestFind(void)
     nodes[519].unknown00 = 0xF1234567u;
     nodes[519].unknown04 = 0x87654321u;
     nodes[519].next = 0;
-    owner.head = &nodes[0];
+    owner.list_head = &nodes[0];
     CheckSearch(&owner, 0xF1234567u, &nodes[519], &owner, nodes, 520);
 
     nodes[17].unknown00 = 0x76543210u;

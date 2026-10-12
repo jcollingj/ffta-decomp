@@ -14,17 +14,21 @@ OBJS    := \
 	build/header.o \
 	build/rom.o \
 	build/random.o \
-	build/rom_content_prefix.o \
+	build/rom_content_prefix_prefix.o \
+	build/allocator_wrappers.o \
+	build/rom_content_prefix_suffix.o \
 	build/content_flags.o \
 	build/rom_content_flag_clear.o \
 	build/content_index.o \
 	build/rom_random_tail.o \
 	build/list_count_wrappers.o \
-	build/rom_list_count_wrappers_suffix.o \
+	build/rom_list_count_wrappers_suffix_prefix.o \
+	build/container_create.o \
+	build/rom_list_count_wrappers_suffix_suffix.o \
 	build/list_count.o \
 	build/rom_list_accessors_prefix.o \
 	build/list_accessors.o \
-	build/rom_list_find_prefix.o \
+	build/tree_collect.o \
 	build/list_find_word.o \
 	build/rom_list_find_gap.o \
 	build/list_set_words.o \

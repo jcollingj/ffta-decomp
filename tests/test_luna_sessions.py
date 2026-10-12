@@ -1,6 +1,9 @@
 import importlib.util
+import contextlib
+import io
 import json
 import math
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -13,9 +16,13 @@ SPEC.loader.exec_module(luna_sessions)
 
 class LunaSessionRegistryTests(unittest.TestCase):
     def setUp(self):
-        self.registry = json.loads((ROOT / "config/luna_sessions.json").read_text())
+        self.registry = {"target_sessions": 2, "sessions": [
+            {"id": 1, "agent": "fixture-agent", "model": "model-x", "task": "fixture task",
+             "status": "reviewed", "review_evidence": "synthetic evidence"},
+            {"id": 2, "status": "planned"},
+        ]}
 
-    def test_existing_registry_is_valid_and_unknown_timing_stays_unknown(self):
+    def test_synthetic_registry_is_valid_and_unknown_timing_stays_unknown(self):
         luna_sessions.validate(self.registry)
         result = luna_sessions.report(self.registry)
         self.assertLessEqual(result["reviewed"], result["started"])
@@ -124,6 +131,22 @@ class LunaSessionRegistryTests(unittest.TestCase):
         self.assertEqual(metrics["elapsed_minutes"], {"known_minutes": 0, "known_records": 0, "unknown_records": 1})
         self.assertEqual(metrics["agent_minutes"], {"known_minutes": 0, "known_records": 0, "unknown_records": 1})
 
+    def test_lifecycle_timestamps_are_optional_but_validated_individually(self):
+        base = {"target_sessions": 1, "sessions": [{
+            "id": 1, "agent": "agent-a", "model": "model-x", "task": "task-a",
+            "status": "reviewed", "review_evidence": "reviewed",
+        }]}
+        # Missing registration/review timestamps stay unknown and do not infer elapsed or effort.
+        metrics = luna_sessions.report(base)["reviewed_metrics"]
+        self.assertEqual(metrics["elapsed_minutes"]["unknown_records"], 1)
+        self.assertEqual(metrics["agent_minutes"]["unknown_records"], 1)
+        for field in ("registered_utc", "reviewed_utc"):
+            for value in ("not-a-timestamp", "2026-10-12T01:00:00"):
+                malformed = json.loads(json.dumps(base))
+                malformed["sessions"][0][field] = value
+                with self.subTest(field=field, value=value), self.assertRaisesRegex(ValueError, field):
+                    luna_sessions.validate(malformed)
+
     def test_started_records_need_metadata_and_unique_agent_identity(self):
         incomplete = {"id": 1, "status": "running", "agent": "agent-a", "model": "model-x"}
         with self.assertRaisesRegex(ValueError, "nonempty task"):
@@ -140,6 +163,34 @@ class LunaSessionRegistryTests(unittest.TestCase):
                 luna_sessions.validate({"target_sessions": 1, "sessions": [{
                     "id": 1, "agent": "agent-a", "model": "model-x", "task": "task-a",
                     "status": "running", "agent_minutes": value}]})
+
+    def test_text_report_includes_every_nonempty_batch_through_tenth(self):
+        sessions = []
+        for sid in range(1, 101):
+            record = {"id": sid, "status": "planned"}
+            if sid in (1, 21, 91):
+                record.update(agent=f"agent-{sid}", model="model-x", task="task",
+                              status="reviewed", review_evidence="fixture")
+            sessions.append(record)
+        with tempfile.TemporaryDirectory() as temp_dir:
+            fixture_path = Path(temp_dir) / "registry.json"
+            fixture_path.write_text(json.dumps({"target_sessions": 100, "sessions": sessions}))
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                self.assertEqual(luna_sessions.main([str(fixture_path)]), 0)
+            lines = output.getvalue().splitlines()
+            batch_lines = [line for line in lines if line.startswith("Reviewed batch ")]
+            self.assertEqual(len(batch_lines), 3)
+            self.assertIn("Reviewed batch 1–10: 1 reviewed", batch_lines[0])
+            self.assertIn("Reviewed batch 21–30: 1 reviewed", batch_lines[1])
+            self.assertIn("Reviewed batch 91–100: 1 reviewed", batch_lines[2])
+
+            json_output = io.StringIO()
+            with contextlib.redirect_stdout(json_output):
+                self.assertEqual(luna_sessions.main([str(fixture_path), "--json"]), 0)
+            parsed = json.loads(json_output.getvalue())
+            self.assertEqual(parsed["reviewed_batches_of_10"], luna_sessions.report(
+                json.loads(fixture_path.read_text()))["reviewed_batches_of_10"])
 
 
 if __name__ == "__main__":

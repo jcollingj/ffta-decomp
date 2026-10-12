@@ -1,9 +1,9 @@
 #include "list_traversal.h"
 
-void TraverseTreeInOrder(const struct TreeCountOwner *owner,
+void TraverseTreeInOrder(const struct Container *owner,
                          TreeTraversalCallback callback, void *context)
 {
-    struct TreeCountNode *node = owner->root;
+    struct TreeCountNode *node = owner->tree_root;
     struct TreeCountNode *previous = (struct TreeCountNode *)-1;
     struct TreeCountNode *root = node;
 

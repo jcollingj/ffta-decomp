@@ -19,9 +19,10 @@ struct VisitState {
     struct TreeCountNode *replacement_child_b;
 };
 
-static int record_visit(struct TreeCountNode *node, void *context)
+static int record_visit(void *value, void *context)
 {
     struct VisitState *state = (struct VisitState *)context;
+    struct TreeCountNode *node = (struct TreeCountNode *)value;
 
     assert(context == state->expected_context);
     assert(state->calls < NODE_COUNT);
@@ -54,12 +55,11 @@ static void link_b(unsigned parent, unsigned child)
     nodes[child].parent = &nodes[parent];
 }
 
-static void init_owner(struct TreeCountOwner *owner,
+static void init_owner(struct Container *owner,
                        struct TreeCountNode *root)
 {
-    owner->unknown00 = 0x12345678;
-    owner->unknown04 = 0x89ABCDEF;
-    owner->root = root;
+    owner->allocator_owner = (void *)0x12345678;
+    owner->tree_root = root;
 }
 
 static void build_balanced_tree(void)
@@ -71,12 +71,12 @@ static void build_balanced_tree(void)
     link_b(1, 4);
 }
 
-static void expect_readonly_visits(const struct TreeCountOwner *owner,
+static void expect_readonly_visits(const struct Container *owner,
                                    struct VisitState *state,
                                    const unsigned *expected, unsigned count)
 {
     struct TreeCountNode nodes_before[NODE_COUNT];
-    struct TreeCountOwner owner_before;
+    struct Container owner_before;
     unsigned i;
 
     memcpy(nodes_before, nodes, sizeof(nodes));
@@ -99,7 +99,7 @@ static void init_state(struct VisitState *state)
 
 int main(void)
 {
-    struct TreeCountOwner owner;
+    struct Container owner;
     struct VisitState state;
     const unsigned one[] = {0};
     const unsigned tree_order[] = {3, 1, 4, 0, 2};
@@ -111,7 +111,7 @@ int main(void)
     init_owner(&owner, 0);
     {
         struct TreeCountNode nodes_before[NODE_COUNT];
-        struct TreeCountOwner owner_before;
+        struct Container owner_before;
 
         memcpy(nodes_before, nodes, sizeof(nodes));
         memcpy(&owner_before, &owner, sizeof(owner_before));
@@ -161,7 +161,7 @@ int main(void)
     init_owner(&owner, &nodes[0]);
     {
         struct TreeCountNode expected_nodes[NODE_COUNT];
-        struct TreeCountOwner owner_before;
+        struct Container owner_before;
         unsigned i;
 
         memcpy(expected_nodes, nodes, sizeof(nodes));

@@ -143,6 +143,36 @@
       "parent_failure": "Arithmetic test prompt requested boundary coverage without forbidding a duplicated implementation formula as its oracle.",
       "rule": "Use fixed expected boundary values or an independently derived wider arithmetic oracle for truncation, rounding, wrap, and saturation. Pair callback argument checks with whole initialized caller-owned state comparisons where the wrapper itself should not mutate it.",
       "evidence": "Session32 parent returned duplicate roundingexpression in expectedunits and missingallocation/free callerstate guards."
+    },
+    {
+      "id": "L025",
+      "parent_failure": "Parent explicitly allowed host callback stubs without resolving incompatible production callback function types.",
+      "rule": "Recovered callback APIs must use compatible C function-pointer signatures end to end, not just target ABI-compatible casts. Prefer generic void-pointer callback arguments when evidence shows generic containers. Recheck every existing matching function after header changes and test real callback/traversal composition. Never retain or inspect a pointer to expired stack state; capture live values or assert outputs.",
+      "evidence": "Session34 parentreviewidentified incompatibleTreeTraversalCallback/ListCallbackAppend call; sameauthor assigned genericcompatibleAPI plus realintegrationharness."
+    },
+    {
+      "id": "L026",
+      "parent_failure": "Parent phrase Planapproved after32release could be read as a release announcement.",
+      "rule": "Distinguish PLAN APPROVED, HOLD, and LEASE GRANTED NOW in separate explicit messages. A plan approval does not grant shared-file ownership. State the prior owner has released before issuing a grant, and list exact files; use readable spaced sentences.",
+      "evidence": "Session34 interpreted ambiguous parent plan approval as release and changed shared callback headers during32integration; parent paused writes, obtained stable states, then explicitly granted lease. No ROM mismatch survived review."
+    },
+    {
+      "id": "L027",
+      "parent_failure": "Parent creation prompt requested native pointer fields without naming known node types or requiring composition with existing owner views.",
+      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts.",
+      "evidence": "Session36 corrected Container head types; session37 assigned demonstrated partial-owner/native-layout incompatibility for source-first type unification."
+    },
+    {
+      "id": "L028",
+      "parent_failure": "Lifecycle tool prompt introduced timestamps without explicitly extending registry validation or distinguishing atomic writes from writer coordination.",
+      "rule": "Validate every newly introduced optional timestamp independently and keep missing times unknown. Document a single-writer lease even when writes use atomic replacement. Exercise each public CLI mutation path on disposable fixtures and keep text/documentation behavior consistent.",
+      "evidence": "Session35 added optional registered/reviewed timestamp validation, CLI review output and singlewriter guidance after parent review."
+    },
+    {
+      "id": "L029",
+      "parent_failure": "Parent excluded an entire mixed-purpose file when only two raw-word APIs should remain outside owner-type migration.",
+      "rule": "Map ownership at function granularity when a file contains multiple representations. Migrate proven owner-pointer functions consistently; leave raw record APIs unchanged. Do not replace known members with byte-offset casts merely to avoid a type decision.",
+      "evidence": "Session37 identified CopyListNodes still used ListCountOwner after parent blanketexcludedaccessors; parent correctedscope and agent migrated only that function, preserving all targetbytes."
     }
   ]
 }

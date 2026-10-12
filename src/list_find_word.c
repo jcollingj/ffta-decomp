@@ -1,9 +1,9 @@
 #include "list_find_word.h"
 
-struct ListCountNode *FindListNodeByWord(const struct ListCountOwner *owner,
+struct ListCountNode *FindListNodeByWord(const struct Container *owner,
                                         u32 word)
 {
-    struct ListCountNode *node = owner->head;
+    struct ListCountNode *node = owner->list_head;
 
     while (node != 0) {
         if (word == node->unknown00)

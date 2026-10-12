@@ -4,6 +4,54 @@
   "code_inventory_complete": false,
   "functions": [
     {
+      "name": "NextRandom15",
+      "start": 10244,
+      "end": 10276,
+      "source": "src/random.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetRandomState",
+      "start": 10276,
+      "end": 10288,
+      "source": "src/random.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetRandomStateAddress",
+      "start": 10288,
+      "end": 10296,
+      "source": "src/random.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AllocatorAllocate",
+      "start": 28984,
+      "end": 29038,
+      "status": "matching_c",
+      "source": "src/allocator_wrappers.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "AllocatorFree",
+      "start": 29040,
+      "end": 29052,
+      "status": "matching_c",
+      "source": "src/allocator_wrappers.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "AllocatorAllocationSize",
+      "start": 29052,
+      "end": 29068,
+      "status": "matching_c",
+      "source": "src/allocator_wrappers.c",
+      "mode": "thumb"
+    },
+    {
       "name": "GetContentFlag21F",
       "start": 40892,
       "end": 40912,
@@ -34,6 +82,158 @@
       "status": "matching_c",
       "source": "src/content_index.c",
       "mode": "thumb"
+    },
+    {
+      "name": "CountContextListAt10",
+      "start": 629944,
+      "end": 629956,
+      "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountContextListAt14",
+      "start": 629956,
+      "end": 629968,
+      "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountContextListAt18",
+      "start": 629968,
+      "end": 629980,
+      "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContainerCreate",
+      "start": 817564,
+      "end": 817588,
+      "source": "src/container_create.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountLinkedNodes",
+      "start": 817928,
+      "end": 817950,
+      "source": "src/list_count.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetListOwnerWord0",
+      "start": 818036,
+      "end": 818040,
+      "source": "src/list_accessors.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CopyListOwnerWords",
+      "start": 818040,
+      "end": 818050,
+      "source": "src/list_accessors.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CopyListNodes",
+      "start": 818052,
+      "end": 818074,
+      "source": "src/list_accessors.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "TreeCollectInOrder",
+      "start": 818076,
+      "end": 818120,
+      "source": "src/tree_collect.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "TreeCollectReverseInOrder",
+      "start": 818120,
+      "end": 818164,
+      "source": "src/tree_collect.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "FindListNodeByWord",
+      "start": 818164,
+      "end": 818194,
+      "source": "src/list_find_word.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetListWords",
+      "start": 818240,
+      "end": 818246,
+      "source": "src/list_set_words.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitLinkedNodes",
+      "start": 818368,
+      "end": 818402,
+      "source": "src/list_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "TraverseTreeInOrder",
+      "start": 818456,
+      "end": 818542,
+      "status": "matching_c",
+      "source": "src/list_traversal.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "TraverseTreeReverseInOrder",
+      "start": 818544,
+      "end": 818630,
+      "status": "matching_c",
+      "source": "src/tree_reverse_visit.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ListSearchCallback",
+      "start": 818744,
+      "end": 818792,
+      "source": "src/list_search_callback.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListCallbackAppend",
+      "start": 818792,
+      "end": 818808,
+      "source": "src/list_callbacks.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListCallbackSelectClear",
+      "start": 818808,
+      "end": 818836,
+      "source": "src/list_callbacks.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ListCallbackClearFlag0",
+      "start": 818836,
+      "end": 818850,
+      "source": "src/list_callbacks.c",
+      "mode": "thumb",
+      "status": "matching_c"
     },
     {
       "name": "ReadUnitField",
@@ -386,6 +586,414 @@
       "status": "matching_c",
       "source": "src/inventory.c",
       "mode": "thumb"
+    },
+    {
+      "name": "AdjustInventoryEntryByte3",
+      "start": 830244,
+      "end": 830374,
+      "status": "matching_c",
+      "source": "src/inventory_entry_byte3.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "InspectEquipment",
+      "start": 831020,
+      "end": 831350,
+      "status": "matching_c",
+      "source": "src/equipment_inspect.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "IsItemInRange1To252",
+      "start": 831988,
+      "end": 832016,
+      "status": "matching_c",
+      "source": "src/inventory_partition.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetInventoryPartition",
+      "start": 832016,
+      "end": 832076,
+      "status": "matching_c",
+      "source": "src/inventory_partition.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetInventoryQuantityDifference",
+      "start": 832180,
+      "end": 832288,
+      "status": "matching_c",
+      "source": "src/inventory_lookup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "HasInventoryItem",
+      "start": 832288,
+      "end": 832392,
+      "status": "matching_c",
+      "source": "src/inventory_lookup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "MapSpecialItemIndex",
+      "start": 832392,
+      "end": 832590,
+      "status": "matching_c",
+      "source": "src/special_item_mapping.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UnitItemCategoryAllowed",
+      "start": 832592,
+      "end": 832652,
+      "status": "matching_c",
+      "source": "src/unit_equipment_mask.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "InspectEquipmentMode0",
+      "start": 832652,
+      "end": 832676,
+      "status": "matching_c",
+      "source": "src/unit_equipment_mask.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "DecodeRecordByte",
+      "start": 832676,
+      "end": 832702,
+      "source": "src/record_decode.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetContentPointer123",
+      "start": 832804,
+      "end": 832828,
+      "source": "src/content_pointer_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AddContentIndex1081",
+      "start": 832828,
+      "end": 832844,
+      "source": "src/content_pointer_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ScanEquipmentMask81",
+      "start": 832844,
+      "end": 832936,
+      "source": "src/equipment_scan.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "JobAllowsItem",
+      "start": 832936,
+      "end": 833076,
+      "source": "src/job_item_eligibility.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CompareUnsignedBytes",
+      "start": 833076,
+      "end": 833084,
+      "source": "src/item_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CompareUnsignedHalfwords",
+      "start": 833084,
+      "end": 833092,
+      "source": "src/item_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ItemProperty07Bit1",
+      "start": 833092,
+      "end": 833114,
+      "source": "src/item_helpers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "LoadUnitRecordSlot",
+      "start": 833116,
+      "end": 833300,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty04",
+      "start": 833300,
+      "end": 833360,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty05",
+      "start": 833360,
+      "end": 833420,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty09",
+      "start": 833420,
+      "end": 833472,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadUnitRecordProperty10Or11",
+      "start": 833472,
+      "end": 833544,
+      "source": "src/unit_record14.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadRecordCopySource",
+      "start": 834428,
+      "end": 834500,
+      "source": "src/record_copy_source.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetFlag60AtSelectedValues",
+      "start": 834500,
+      "end": 834580,
+      "source": "src/save_milestone.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CalculateItemAmount",
+      "start": 834580,
+      "end": 834706,
+      "source": "src/item_amount.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetInventoryItemClass",
+      "start": 834868,
+      "end": 835008,
+      "status": "matching_c",
+      "source": "src/inventory_class.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ProcessSelectedPoolUnit",
+      "start": 837212,
+      "end": 837360,
+      "source": "src/unit_pool_action.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetSelectedPoolUnitState",
+      "start": 837360,
+      "end": 837512,
+      "source": "src/unit_pool_set.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountRandomItemSlots",
+      "start": 837580,
+      "end": 837624,
+      "source": "src/random_item_count.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CopyInventoryClass",
+      "start": 837624,
+      "end": 837738,
+      "status": "matching_c",
+      "source": "src/inventory_filter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "FindInventoryItemIndex",
+      "start": 837740,
+      "end": 837812,
+      "status": "matching_c",
+      "source": "src/inventory_filter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ClassifyValueByTens",
+      "start": 837812,
+      "end": 837840,
+      "status": "matching_c",
+      "source": "src/inventory_filter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ItemAmountAdjustmentApplies",
+      "start": 837976,
+      "end": 838048,
+      "source": "src/item_adjustment.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ItemInAdjustmentList",
+      "start": 838048,
+      "end": 838126,
+      "source": "src/item_adjustment_list.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadItemAdjustmentEntry",
+      "start": 838128,
+      "end": 838176,
+      "source": "src/item_adjustment_list.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountCollectionBytes",
+      "start": 838228,
+      "end": 838272,
+      "source": "src/collection_slots.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountCollectionHalfwords",
+      "start": 838272,
+      "end": 838316,
+      "source": "src/collection_slots.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AddCollectionHalfword",
+      "start": 838316,
+      "end": 838360,
+      "source": "src/collection_slots.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJob",
+      "start": 838360,
+      "end": 838376,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty01",
+      "start": 838376,
+      "end": 838408,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty04",
+      "start": 838408,
+      "end": 838440,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty06",
+      "start": 838440,
+      "end": 838472,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobProperty09",
+      "start": 838472,
+      "end": 838504,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ReadMappedJobContentPointer",
+      "start": 838504,
+      "end": 838548,
+      "source": "src/mapped_job.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "HasSaveCollectionRecord",
+      "start": 838548,
+      "end": 838596,
+      "source": "src/save_collection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CountSaveCollectionRecords",
+      "start": 838596,
+      "end": 838652,
+      "source": "src/save_collection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "IncrementSaveCounterBelow99",
+      "start": 838652,
+      "end": 838684,
+      "source": "src/save_collection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "HasSelectedPoolUnit",
+      "start": 838684,
+      "end": 838762,
+      "source": "src/unit_pool_predicate.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CalculateUnitByteAmount",
+      "start": 838764,
+      "end": 838816,
+      "source": "src/unit_byte_amount.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ProcessSelectedPoolUnits",
+      "start": 838816,
+      "end": 838896,
+      "source": "src/unit_pool_process.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "GetItemAdjustmentRecord",
+      "start": 838896,
+      "end": 838990,
+      "source": "src/item_adjustment_record.c",
+      "mode": "thumb",
+      "status": "matching_c"
     },
     {
       "name": "GetAbilityProperty",
@@ -1570,566 +2178,6 @@
       "source": "src/record70.c",
       "mode": "thumb",
       "status": "matching_c"
-    },
-    {
-      "name": "DecodeRecordByte",
-      "start": 832676,
-      "end": 832702,
-      "source": "src/record_decode.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "GetContentPointer123",
-      "start": 832804,
-      "end": 832828,
-      "source": "src/content_pointer_helpers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "AddContentIndex1081",
-      "start": 832828,
-      "end": 832844,
-      "source": "src/content_pointer_helpers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ScanEquipmentMask81",
-      "start": 832844,
-      "end": 832936,
-      "source": "src/equipment_scan.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "JobAllowsItem",
-      "start": 832936,
-      "end": 833076,
-      "source": "src/job_item_eligibility.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "LoadUnitRecordSlot",
-      "start": 833116,
-      "end": 833300,
-      "source": "src/unit_record14.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadUnitRecordProperty04",
-      "start": 833300,
-      "end": 833360,
-      "source": "src/unit_record14.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadUnitRecordProperty05",
-      "start": 833360,
-      "end": 833420,
-      "source": "src/unit_record14.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CompareUnsignedBytes",
-      "start": 833076,
-      "end": 833084,
-      "source": "src/item_helpers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CompareUnsignedHalfwords",
-      "start": 833084,
-      "end": 833092,
-      "source": "src/item_helpers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ItemProperty07Bit1",
-      "start": 833092,
-      "end": 833114,
-      "source": "src/item_helpers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadUnitRecordProperty09",
-      "start": 833420,
-      "end": 833472,
-      "source": "src/unit_record14.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadUnitRecordProperty10Or11",
-      "start": 833472,
-      "end": 833544,
-      "source": "src/unit_record14.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadRecordCopySource",
-      "start": 834428,
-      "end": 834500,
-      "source": "src/record_copy_source.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "SetFlag60AtSelectedValues",
-      "start": 834500,
-      "end": 834580,
-      "source": "src/save_milestone.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CalculateItemAmount",
-      "start": 834580,
-      "end": 834706,
-      "source": "src/item_amount.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ItemAmountAdjustmentApplies",
-      "start": 837976,
-      "end": 838048,
-      "source": "src/item_adjustment.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "GetItemAdjustmentRecord",
-      "start": 838896,
-      "end": 838990,
-      "source": "src/item_adjustment_record.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ItemInAdjustmentList",
-      "start": 838048,
-      "end": 838126,
-      "source": "src/item_adjustment_list.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadItemAdjustmentEntry",
-      "start": 838128,
-      "end": 838176,
-      "source": "src/item_adjustment_list.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountCollectionBytes",
-      "start": 838228,
-      "end": 838272,
-      "source": "src/collection_slots.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountCollectionHalfwords",
-      "start": 838272,
-      "end": 838316,
-      "source": "src/collection_slots.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "AddCollectionHalfword",
-      "start": 838316,
-      "end": 838360,
-      "source": "src/collection_slots.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadMappedJob",
-      "start": 838360,
-      "end": 838376,
-      "source": "src/mapped_job.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadMappedJobProperty01",
-      "start": 838376,
-      "end": 838408,
-      "source": "src/mapped_job.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadMappedJobProperty04",
-      "start": 838408,
-      "end": 838440,
-      "source": "src/mapped_job.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadMappedJobProperty06",
-      "start": 838440,
-      "end": 838472,
-      "source": "src/mapped_job.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadMappedJobProperty09",
-      "start": 838472,
-      "end": 838504,
-      "source": "src/mapped_job.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ReadMappedJobContentPointer",
-      "start": 838504,
-      "end": 838548,
-      "source": "src/mapped_job.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "HasSaveCollectionRecord",
-      "start": 838548,
-      "end": 838596,
-      "source": "src/save_collection.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountSaveCollectionRecords",
-      "start": 838596,
-      "end": 838652,
-      "source": "src/save_collection.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "IncrementSaveCounterBelow99",
-      "start": 838652,
-      "end": 838684,
-      "source": "src/save_collection.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "HasSelectedPoolUnit",
-      "start": 838684,
-      "end": 838762,
-      "source": "src/unit_pool_predicate.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CalculateUnitByteAmount",
-      "start": 838764,
-      "end": 838816,
-      "source": "src/unit_byte_amount.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ProcessSelectedPoolUnits",
-      "start": 838816,
-      "end": 838896,
-      "source": "src/unit_pool_process.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ProcessSelectedPoolUnit",
-      "start": 837212,
-      "end": 837360,
-      "source": "src/unit_pool_action.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "SetSelectedPoolUnitState",
-      "start": 837360,
-      "end": 837512,
-      "source": "src/unit_pool_set.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "NextRandom15",
-      "start": 10244,
-      "end": 10276,
-      "source": "src/random.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "SetRandomState",
-      "start": 10276,
-      "end": 10288,
-      "source": "src/random.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "GetRandomStateAddress",
-      "start": 10288,
-      "end": 10296,
-      "source": "src/random.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountLinkedNodes",
-      "start": 817928,
-      "end": 817950,
-      "source": "src/list_count.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "GetListOwnerWord0",
-      "start": 818036,
-      "end": 818040,
-      "source": "src/list_accessors.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CopyListOwnerWords",
-      "start": 818040,
-      "end": 818050,
-      "source": "src/list_accessors.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CopyListNodes",
-      "start": 818052,
-      "end": 818074,
-      "source": "src/list_accessors.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "FindListNodeByWord",
-      "start": 818164,
-      "end": 818194,
-      "source": "src/list_find_word.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "SetListWords",
-      "start": 818240,
-      "end": 818246,
-      "source": "src/list_set_words.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "VisitLinkedNodes",
-      "start": 818368,
-      "end": 818402,
-      "source": "src/list_visit.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "TraverseTreeInOrder",
-      "start": 818456,
-      "end": 818542,
-      "status": "matching_c",
-      "source": "src/list_traversal.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "TraverseTreeReverseInOrder",
-      "start": 818544,
-      "end": 818630,
-      "status": "matching_c",
-      "source": "src/tree_reverse_visit.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "ListSearchCallback",
-      "start": 818744,
-      "end": 818792,
-      "source": "src/list_search_callback.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ListCallbackAppend",
-      "start": 818792,
-      "end": 818808,
-      "source": "src/list_callbacks.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ListCallbackSelectClear",
-      "start": 818808,
-      "end": 818836,
-      "source": "src/list_callbacks.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "ListCallbackClearFlag0",
-      "start": 818836,
-      "end": 818850,
-      "source": "src/list_callbacks.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountRandomItemSlots",
-      "start": 837580,
-      "end": 837624,
-      "source": "src/random_item_count.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "IsItemInRange1To252",
-      "start": 831988,
-      "end": 832016,
-      "status": "matching_c",
-      "source": "src/inventory_partition.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "GetInventoryPartition",
-      "start": 832016,
-      "end": 832076,
-      "status": "matching_c",
-      "source": "src/inventory_partition.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "GetInventoryItemClass",
-      "start": 834868,
-      "end": 835008,
-      "status": "matching_c",
-      "source": "src/inventory_class.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "CopyInventoryClass",
-      "start": 837624,
-      "end": 837738,
-      "status": "matching_c",
-      "source": "src/inventory_filter.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "FindInventoryItemIndex",
-      "start": 837740,
-      "end": 837812,
-      "status": "matching_c",
-      "source": "src/inventory_filter.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "ClassifyValueByTens",
-      "start": 837812,
-      "end": 837840,
-      "status": "matching_c",
-      "source": "src/inventory_filter.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "GetInventoryQuantityDifference",
-      "start": 832180,
-      "end": 832288,
-      "status": "matching_c",
-      "source": "src/inventory_lookup.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "HasInventoryItem",
-      "start": 832288,
-      "end": 832392,
-      "status": "matching_c",
-      "source": "src/inventory_lookup.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "MapSpecialItemIndex",
-      "start": 832392,
-      "end": 832590,
-      "status": "matching_c",
-      "source": "src/special_item_mapping.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "UnitItemCategoryAllowed",
-      "start": 832592,
-      "end": 832652,
-      "status": "matching_c",
-      "source": "src/unit_equipment_mask.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "InspectEquipmentMode0",
-      "start": 832652,
-      "end": 832676,
-      "status": "matching_c",
-      "source": "src/unit_equipment_mask.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "InspectEquipment",
-      "start": 831020,
-      "end": 831350,
-      "status": "matching_c",
-      "source": "src/equipment_inspect.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "AdjustInventoryEntryByte3",
-      "start": 830244,
-      "end": 830374,
-      "status": "matching_c",
-      "source": "src/inventory_entry_byte3.c",
-      "mode": "thumb"
-    },
-    {
-      "name": "CountContextListAt10",
-      "start": 629944,
-      "end": 629956,
-      "source": "src/list_count_wrappers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountContextListAt14",
-      "start": 629956,
-      "end": 629968,
-      "source": "src/list_count_wrappers.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
-      "name": "CountContextListAt18",
-      "start": 629968,
-      "end": 629980,
-      "source": "src/list_count_wrappers.c",
-      "mode": "thumb",
-      "status": "matching_c"
     }
   ],
   "regions": [
@@ -2177,10 +2225,24 @@
     },
     {
       "start": 10296,
+      "end": 28984,
+      "kind": "copied",
+      "source": "asm/rom_content_prefix_prefix.s",
+      "note": "Unrecovered original code/data before allocator wrappers"
+    },
+    {
+      "start": 28984,
+      "end": 29068,
+      "kind": "decompiled_c",
+      "source": "src/allocator_wrappers.c",
+      "note": "Three matching allocator wrapper functions including required end alignment"
+    },
+    {
+      "start": 29068,
       "end": 40892,
       "kind": "copied",
-      "source": "asm/rom_content_prefix.s",
-      "note": "Unrecovered original code/data before content flag accessors"
+      "source": "asm/rom_content_prefix_suffix.s",
+      "note": "Unrecovered original code/data after allocator wrappers and before content flag accessors"
     },
     {
       "start": 40892,
@@ -2219,10 +2281,24 @@
     },
     {
       "start": 629980,
+      "end": 817564,
+      "kind": "copied",
+      "source": "asm/rom_list_count_wrappers_suffix_prefix.s",
+      "note": "Unrecovered original code/data before container creation"
+    },
+    {
+      "start": 817564,
+      "end": 817588,
+      "kind": "decompiled_c",
+      "source": "src/container_create.c",
+      "note": "Container constructor stores allocator owner and clears list/tree roots"
+    },
+    {
+      "start": 817588,
       "end": 817928,
       "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix.s",
-      "note": "Unrecovered original code/data after list-count wrappers"
+      "source": "asm/rom_list_count_wrappers_suffix_suffix.s",
+      "note": "Unrecovered original code/data after container creation"
     },
     {
       "start": 817928,
@@ -2248,9 +2324,9 @@
     {
       "start": 818076,
       "end": 818164,
-      "kind": "copied",
-      "source": "asm/rom_list_find_prefix.s",
-      "note": "Unrecovered original code/data after list accessors and before FindListNodeByWord"
+      "kind": "decompiled_c",
+      "source": "src/tree_collect.c",
+      "note": "In-order and reverse in-order tree collection wrappers"
     },
     {
       "start": 818164,

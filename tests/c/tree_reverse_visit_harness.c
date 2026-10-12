@@ -8,7 +8,7 @@
 
 static struct TreeCountNode nodes[NODE_COUNT];
 static struct TreeCountNode decoys[2];
-static struct TreeCountOwner owner;
+static struct Container owner;
 
 struct Trace {
     unsigned values[16];
@@ -28,7 +28,7 @@ static void reset(void)
         nodes[i].child_a = 0;
         nodes[i].child_b = 0;
     }
-    owner.root = 0;
+    owner.tree_root = 0;
 }
 
 static void link_a(unsigned p, unsigned c)
@@ -43,9 +43,10 @@ static void link_b(unsigned p, unsigned c)
     nodes[c].parent = &nodes[p];
 }
 
-static int trace_callback(struct TreeCountNode *node, void *opaque)
+static int trace_callback(void *value, void *opaque)
 {
     struct Trace *trace = (struct Trace *)opaque;
+    struct TreeCountNode *node = (struct TreeCountNode *)value;
     unsigned index = (unsigned)(node - nodes);
     unsigned position = trace->length++;
     trace->values[position] = index;
@@ -66,11 +67,11 @@ static void run_fixed_trace(void)
     static const unsigned expected[] = { 7, 3, 8, 1, 9, 4, 0, 5, 10, 2, 11, 6 };
     struct TreeCountNode nodes_before[NODE_COUNT];
     struct TreeCountNode decoys_before[2];
-    struct TreeCountOwner owner_before;
+    struct Container owner_before;
     struct Trace trace;
 
     reset();
-    owner.root = &nodes[0];
+    owner.tree_root = &nodes[0];
     link_b(0, 1); link_a(0, 2);
     link_b(1, 3); link_a(1, 4);
     link_b(2, 5); link_a(2, 6);
@@ -98,11 +99,11 @@ static void run_stop_positions(void)
     for (stop = 0; stop < sizeof(expected) / sizeof(expected[0]); stop++) {
         struct TreeCountNode nodes_before[NODE_COUNT];
         struct TreeCountNode decoys_before[2];
-        struct TreeCountOwner owner_before;
+        struct Container owner_before;
         struct Trace trace;
 
         reset();
-        owner.root = &nodes[0];
+        owner.tree_root = &nodes[0];
         link_b(0, 1); link_a(0, 2);
         link_b(1, 3); link_a(1, 4);
         link_b(2, 5); link_a(2, 6);
@@ -128,9 +129,10 @@ struct MutationTrace {
     unsigned length;
 };
 
-static int mutate_successor(struct TreeCountNode *node, void *opaque)
+static int mutate_successor(void *value, void *opaque)
 {
     struct MutationTrace *trace = (struct MutationTrace *)opaque;
+    struct TreeCountNode *node = (struct TreeCountNode *)value;
     trace->values[trace->length++] = (unsigned)(node - nodes);
     if (node == &nodes[1])
         node->child_a = &nodes[5];
@@ -142,11 +144,11 @@ static void run_successor_mutation(void)
     static const unsigned actual_expected[] = { 3, 1, 5, 0, 2 };
     struct TreeCountNode expected_nodes[NODE_COUNT];
     struct TreeCountNode decoys_before[2];
-    struct TreeCountOwner owner_before;
+    struct Container owner_before;
     struct MutationTrace trace;
 
     reset();
-    owner.root = &nodes[0];
+    owner.tree_root = &nodes[0];
     link_b(0, 1); link_a(0, 2);
     link_b(1, 3); link_a(1, 4);
     nodes[5].parent = &nodes[1];
@@ -165,10 +167,10 @@ static void run_successor_mutation(void)
 
 struct ConstantTrace { unsigned calls; };
 
-static int nonzero_callback(struct TreeCountNode *node, void *opaque)
+static int nonzero_callback(void *value, void *opaque)
 {
     struct ConstantTrace *trace = (struct ConstantTrace *)opaque;
-    (void)node;
+    (void)value;
     trace->calls++;
     return 2;
 }
@@ -178,18 +180,18 @@ static void run_null_and_subtree(void)
     static const unsigned subtree_expected[] = { 3, 1, 4 };
     struct TreeCountNode nodes_before[NODE_COUNT];
     struct TreeCountNode decoys_before[2];
-    struct TreeCountOwner owner_before;
+    struct Container owner_before;
     struct ConstantTrace null_trace;
     struct Trace subtree_trace;
 
     reset();
-    owner.root = 0;
+    owner.tree_root = 0;
     null_trace.calls = 0;
     TraverseTreeReverseInOrder(&owner, nonzero_callback, &null_trace);
     assert(null_trace.calls == 0);
 
     reset();
-    owner.root = &nodes[1];
+    owner.tree_root = &nodes[1];
     link_b(0, 1); link_a(0, 2);
     link_b(1, 3); link_a(1, 4);
     link_b(2, 5); link_a(2, 6);

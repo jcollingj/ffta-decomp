@@ -70,8 +70,8 @@ static void TestWordCopyAliases(void)
 
 static void TestListCopy(unsigned length)
 {
-    struct ListCountOwner owner;
-    struct ListCountOwner owner_before;
+    struct Container owner;
+    struct Container owner_before;
     struct ListCountNode nodes[300];
     struct ListCountNode nodes_before[300];
     struct ListCountNode guard;
@@ -84,8 +84,8 @@ static void TestListCopy(unsigned length)
     memset(nodes, 0x5A, sizeof(nodes));
     for (i = 0; i < length; i++)
         nodes[i].next = i + 1 < length ? &nodes[i + 1] : 0;
-    owner.unknown00 = 0xD00DFEED;
-    owner.head = length ? &nodes[0] : 0;
+    owner.allocator_owner = (void *)0xD00DFEED;
+    owner.list_head = length ? &nodes[0] : 0;
     for (i = 0; i < 302; i++)
         output[i] = &guard;
 

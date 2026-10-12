@@ -15,8 +15,8 @@ int main(void)
 {
     struct GuardedContext guarded;
     struct GuardedContext guarded_before;
-    struct ListCountOwner owners[3];
-    struct ListCountOwner owners_before[3];
+    struct Container owners[3];
+    struct Container owners_before[3];
     struct ListCountNode nodes[303];
     struct ListCountNode nodes_before[303];
     unsigned i;
@@ -30,12 +30,12 @@ int main(void)
     memset(&guarded, 0xA5, sizeof(guarded));
     memset(owners, 0x3C, sizeof(owners));
     memset(nodes, 0x69, sizeof(nodes));
-    owners[0].unknown00 = 0x10203040;
-    owners[0].head = 0;
-    owners[1].unknown00 = 0x50607080;
-    owners[1].head = &nodes[0];
-    owners[2].unknown00 = 0x90ABCDEF;
-    owners[2].head = &nodes[3];
+    owners[0].allocator_owner = (void *)0x10203040;
+    owners[0].list_head = 0;
+    owners[1].allocator_owner = (void *)0x50607080;
+    owners[1].list_head = &nodes[0];
+    owners[2].allocator_owner = (void *)0x90ABCDEF;
+    owners[2].list_head = &nodes[3];
     for (i = 0; i < 3; i++)
         nodes[i].next = i == 2 ? 0 : &nodes[i + 1];
     for (i = 3; i < 303; i++)
