@@ -1,20 +1,20 @@
 {
   "rom_bytes": 16777216,
   "bytes_by_kind": {
-    "copied": 16737072,
-    "decompiled_c": 14724,
+    "copied": 16736820,
+    "decompiled_c": 14976,
     "generated": 1,
     "recovered_asm": 0,
     "source_data": 25419
   },
-  "source_or_generated_bytes": 40144,
-  "source_or_generated_percent": 0.23927688598632812,
-  "matching_c_functions": 261,
-  "inventoried_functions": 261,
+  "source_or_generated_bytes": 40396,
+  "source_or_generated_percent": 0.24077892303466797,
+  "matching_c_functions": 266,
+  "inventoried_functions": 266,
   "total_functions": null,
   "code_completion_percent": null,
   "code_inventory_complete": false,
-  "verified_utc": "2026-10-12T01:04:48.926732+00:00",
+  "verified_utc": "2026-10-12T01:16:54.786115+00:00",
   "rom_sha1": "4ac05441f4de70a4ec3dd932116346c61b8783d9",
   "matching_build_verified": true,
   "method": "Reviewed region manifest; contiguous coverage, matching ROM hash, and build-source incbin audit. Function inventory incomplete."

@@ -24,7 +24,16 @@ OBJS    := \
 	build/list_count.o \
 	build/rom_list_accessors_prefix.o \
 	build/list_accessors.o \
-	build/rom_random_tail_suffix.o \
+	build/rom_list_find_prefix.o \
+	build/list_find_word.o \
+	build/rom_list_find_gap.o \
+	build/list_set_words.o \
+	build/rom_list_set_suffix.o \
+	build/list_visit.o \
+	build/rom_list_visit_suffix.o \
+	build/list_traversal.o \
+	build/tree_reverse_visit.o \
+	build/rom_list_traversal_suffix.o \
 	build/list_search_callback.o \
 	build/list_callbacks.o \
 	build/unit_fields.o \

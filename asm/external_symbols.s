@@ -15,6 +15,15 @@
 .global _call_via_r3
 .type _call_via_r3, %function
 .thumb_set _call_via_r3, 0x08142251
+.global _call_via_r6
+.type _call_via_r6, %function
+.thumb_set _call_via_r6, 0x0814225D
+.global _call_via_r7
+.type _call_via_r7, %function
+.thumb_set _call_via_r7, 0x08142261
+.global _call_via_r8
+.type _call_via_r8, %function
+.thumb_set _call_via_r8, 0x08142265
 
 
 .global ReplaceEquipment
@@ -44,3 +53,10 @@
 .global CheckEquipmentSet
 .type CheckEquipmentSet, %function
 .thumb_set CheckEquipmentSet, 0x080CABA9
+
+.global AllocatorInternalAllocate
+.type AllocatorInternalAllocate, %function
+.thumb_set AllocatorInternalAllocate, 0x08006EC1
+.global AllocatorInternalRelease
+.type AllocatorInternalRelease, %function
+.thumb_set AllocatorInternalRelease, 0x08006FCD

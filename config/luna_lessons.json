@@ -125,6 +125,24 @@
       "parent_failure": "Compiler-shape prompt lacked an explicit bounded hypothesis budget and reusable results artifact.",
       "rule": "For a dedicated compiler-shape research session, record roughly 8\u201312 distinct natural-source hypotheses, source hashes and symbol/block deltas, retaining the best semantically tested source. Derive branch targets from disassembly rather than manually transcribing addresses.",
       "evidence": "Session26 first stopped after two no-effect variants; parent revised prompt, same agent tested12 variants and reduced root-candidate differences12to6. Parent caught documentation target typo, agent decoded original branch to correct it."
+    },
+    {
+      "id": "L022",
+      "parent_failure": "Parent used the vague requirement guards instead of an explicit whole-state mutation contract.",
+      "rule": "For callback traversals, test every stop position on a fixed expected trace, a non-one nonzero continuation, and callback successor mutation. Snapshot whole owner/node fixtures for read-only cases; build mutation expected state on separate storage and compare all bytes, not selected links alone.",
+      "evidence": "Sessions27and29 exactsource needed stronger whole-state tests; bothauthorsrevised theirown harnesses."
+    },
+    {
+      "id": "L023",
+      "parent_failure": "Tool prompt did not make whole-ledger validity, action semantics, and filesystem immutability tests explicit.",
+      "rule": "Planning tools must validate the whole input partition, distinguish create/edit/retire actions, and reject wrong source kinds. Test read-only behavior by comparing actual fixture paths and bytes before/after, not a returned flag; test real CLI JSON/error exit. Run planners on stable leased working trees and regenerate stale plans.",
+      "evidence": "Session30 sameagent fixed fullpartitionvalidation, remainderextensions, oldsourcepaths and explicit retirement after parentreview; added15focusedtests."
+    },
+    {
+      "id": "L024",
+      "parent_failure": "Arithmetic test prompt requested boundary coverage without forbidding a duplicated implementation formula as its oracle.",
+      "rule": "Use fixed expected boundary values or an independently derived wider arithmetic oracle for truncation, rounding, wrap, and saturation. Pair callback argument checks with whole initialized caller-owned state comparisons where the wrapper itself should not mutate it.",
+      "evidence": "Session32 parent returned duplicate roundingexpression in expectedunits and missingallocation/free callerstate guards."
     }
   ]
 }

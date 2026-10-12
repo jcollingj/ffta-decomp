@@ -1924,6 +1924,46 @@
       "status": "matching_c"
     },
     {
+      "name": "FindListNodeByWord",
+      "start": 818164,
+      "end": 818194,
+      "source": "src/list_find_word.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "SetListWords",
+      "start": 818240,
+      "end": 818246,
+      "source": "src/list_set_words.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitLinkedNodes",
+      "start": 818368,
+      "end": 818402,
+      "source": "src/list_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "TraverseTreeInOrder",
+      "start": 818456,
+      "end": 818542,
+      "status": "matching_c",
+      "source": "src/list_traversal.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "TraverseTreeReverseInOrder",
+      "start": 818544,
+      "end": 818630,
+      "status": "matching_c",
+      "source": "src/tree_reverse_visit.c",
+      "mode": "thumb"
+    },
+    {
       "name": "ListSearchCallback",
       "start": 818744,
       "end": 818792,
@@ -2207,10 +2247,73 @@
     },
     {
       "start": 818076,
+      "end": 818164,
+      "kind": "copied",
+      "source": "asm/rom_list_find_prefix.s",
+      "note": "Unrecovered original code/data after list accessors and before FindListNodeByWord"
+    },
+    {
+      "start": 818164,
+      "end": 818196,
+      "kind": "decompiled_c",
+      "source": "src/list_find_word.c",
+      "note": "First matching linked-list node by word, including two zero alignment bytes"
+    },
+    {
+      "start": 818196,
+      "end": 818240,
+      "kind": "copied",
+      "source": "asm/rom_list_find_gap.s",
+      "note": "Unrecovered original code/data between list search and word setter"
+    },
+    {
+      "start": 818240,
+      "end": 818248,
+      "kind": "decompiled_c",
+      "source": "src/list_set_words.c",
+      "note": "Two owner-word stores including two zero alignment bytes"
+    },
+    {
+      "start": 818248,
+      "end": 818368,
+      "kind": "copied",
+      "source": "asm/rom_list_set_suffix.s",
+      "note": "Unrecovered original code/data after word setter and before list visitor"
+    },
+    {
+      "start": 818368,
+      "end": 818404,
+      "kind": "decompiled_c",
+      "source": "src/list_visit.c",
+      "note": "Linked-list callback visitor including two zero alignment bytes"
+    },
+    {
+      "start": 818404,
+      "end": 818456,
+      "kind": "copied",
+      "source": "asm/rom_list_visit_suffix.s",
+      "note": "Unrecovered original code/data after list visitor and before tree traversal"
+    },
+    {
+      "start": 818456,
+      "end": 818544,
+      "kind": "decompiled_c",
+      "source": "src/list_traversal.c",
+      "note": "In-order tree traversal callback routine with two zero alignment bytes"
+    },
+    {
+      "start": 818544,
+      "end": 818632,
+      "kind": "decompiled_c",
+      "source": "src/tree_reverse_visit.c",
+      "note": "Reverse in-order tree traversal callback routine with two zero alignment bytes"
+    },
+    {
+      "start": 818632,
       "end": 818744,
       "kind": "copied",
-      "source": "asm/rom_random_tail_suffix.s",
-      "note": "Unrecovered original code/data after list accessors and before ListSearchCallback"
+      "source": "asm/rom_list_traversal_suffix.s",
+      "note": "Unrecovered original code/data after tree traversal and before ListSearchCallback"
     },
     {
       "start": 818744,
