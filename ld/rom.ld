@@ -291,4 +291,5 @@ SECTIONS
     ASSERT(UnitItemCategoryAllowed == 0x080CB450, "UnitItemCategoryAllowed moved")
     ASSERT(InspectEquipmentMode0 == 0x080CB48C, "InspectEquipmentMode0 moved")
     ASSERT(InspectEquipment == 0x080CAE2C, "InspectEquipment moved")
+    ASSERT(AdjustInventoryEntryByte3 == 0x080CAB24, "AdjustInventoryEntryByte3 moved")
 }

@@ -12,4 +12,5 @@ u8 ClassifyValueByTens(u16 value);
 u8 GetInventoryQuantityDifference(u16 item);
 u8 HasInventoryItem(u16 item);
 u16 MapSpecialItemIndex(u8 index);
+void AdjustInventoryEntryByte3(u16 item, u8 increase);
 #endif

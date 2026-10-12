@@ -84,6 +84,27 @@
       "end": 840388,
       "source": "src/nonmatching/equipment_provider.c",
       "mode": "thumb"
+    },
+    {
+      "name": "CheckEquipmentSet",
+      "start": 830376,
+      "end": 831018,
+      "source": "src/nonmatching/equipment_set.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReplaceEquipment",
+      "start": 831352,
+      "end": 831702,
+      "source": "src/nonmatching/equipment_replace.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReplaceEquipmentDirect",
+      "start": 831704,
+      "end": 831986,
+      "source": "src/nonmatching/equipment_replace_direct.c",
+      "mode": "thumb"
     }
   ]
 }

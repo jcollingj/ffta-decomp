@@ -128,3 +128,11 @@ Incremental C compilation uses compiler-generated transitive header dependencies
 `probe.py` now compares known functions at their actual candidate symbol locations as well as checking the complete original-address byte interval. Each function reports size, address shift, differing bytes, and a strict MATCH/DIFF status. Identical bytes at the wrong address remain DIFF. Optional `--disassemble` saves original and candidate instruction listings at comparable ROM offsets beneath the probe directory. JSON reports include both raw block equality and the stricter `accepted` result; a layout failure cannot produce a successful exit.
 
 Known matching references come from the recovery ledger. `config/decomp_candidates.json` separately records reviewed research bounds for unfinished routines. It is diagnostic input only: its entries do not contribute recovered bytes/functions, do not complete the function inventory, and are never automatically promoted by a successful probe. Integration still requires source review, linker assertions, the full-ROM comparison, and `make check`.
+
+## Parallel recovery pilot
+
+At the user's request, run three `gpt-6-luna` coding agents with the parent as reviewer/integrator. Assign separate candidate source files and tests; agents may read shared sources but must not edit each other's files. Give each task original ROM bounds, a specific isolated probe command, and explicit completion evidence. The current probe directory is keyed by source filename stem, so concurrent tasks must use distinct stems.
+
+Agents do not change the main build, region/function manifests, linker symbols, shared headers, published progress, or Git history. They return their best source, focused test results, exact byte/address/size differences, and remaining uncertainties. The parent independently reviews semantics and tests, reruns isolated probes after agents stop editing, integrates only exact matches, then runs `make -j4 check progress` and the viewer build before committing/pushing. Research and useful tests may be preserved without admitting a candidate to recovered coverage. Never equate three agents with a promised threefold recovery rate; track accepted output and review cost from the pilot.
+
+Gameplay remains a separate single-controller activity. Coding agents do not operate the emulator or touch protected baselines.
