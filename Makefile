@@ -37,7 +37,8 @@ OBJS    := \
 	build/rom_list_visit_suffix.o \
 	build/list_traversal.o \
 	build/tree_reverse_visit.o \
-	build/rom_list_traversal_suffix.o \
+	build/list_free.o \
+	build/rom_list_free_suffix.o \
 	build/list_search_callback.o \
 	build/list_callbacks.o \
 	build/unit_fields.o \

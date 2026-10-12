@@ -33,14 +33,14 @@
     {
       "id": "L006",
       "parent_failure": "Parent provided weak acceptance criteria for tests",
-      "rule": "Test distinguishing cases, no-op callback counts, whole-state collateral writes, and signed/narrowing boundaries. Prefer real recovered dependencies; explicitly label stubs and uncounted candidates.",
-      "evidence": "Support7 single-item test did not distinguish the exception from ordinary acceptance; fake paired-state helper duplicated recovered code."
+      "rule": "Test distinguishing cases, no-op callback counts, whole-state collateral writes, and signed/narrowing boundaries. Prefer real recovered dependencies; explicitly label stubs and uncounted candidates. For destructive traversals, verify the owner root at every dependency call and compare the whole expected state after callback mutations; a final null root and call trace alone miss premature owner writes.",
+      "evidence": "Support7 single-item test did not distinguish the exception from ordinary acceptance; fake paired-state helper duplicated recovered code. Session44 omitted requested call-time state assertions; parent made the concrete premature-root-clear counterexample explicit."
     },
     {
       "id": "L007",
-      "parent_failure": "Parent did not require explicit loop back-edge evidence",
-      "rule": "Map each back-edge and every index/pointer update before coding a loop. Use a distinguishing independent fixture for paths that skip increments.",
-      "evidence": "Session 5 incremented after holes even though caaf6 branches past cab08/cab0a/cab0c; mirrored harness passed."
+      "parent_failure": "Parent did not require explicit loop entry and back-edge evidence",
+      "rule": "Map the initial branch target, each back-edge, fallthrough, and every index/pointer update before coding a loop. Trace zero, one and two iterations independently from original instructions; do not derive the only test oracle from the proposed C. Verify documentation branch addresses and polarity against raw disassembly.",
+      "evidence": "Session 5 incremented after holes even though caaf6 branches past cab08/cab0a/cab0c; mirrored harness passed. Session39 source and harness both followed one link too early because the initial branch bypassed the load. Parent prompt cited loops but failed to require entry-target evidence. Session38 research table also transcribed branch addresses/polarity incorrectly."
     },
     {
       "id": "L008",
@@ -123,8 +123,8 @@
     {
       "id": "L021",
       "parent_failure": "Compiler-shape prompt lacked an explicit bounded hypothesis budget and reusable results artifact.",
-      "rule": "For a dedicated compiler-shape research session, record roughly 8\u201312 distinct natural-source hypotheses, source hashes and symbol/block deltas, retaining the best semantically tested source. Derive branch targets from disassembly rather than manually transcribing addresses.",
-      "evidence": "Session26 first stopped after two no-effect variants; parent revised prompt, same agent tested12 variants and reduced root-candidate differences12to6. Parent caught documentation target typo, agent decoded original branch to correct it."
+      "rule": "For a dedicated compiler-shape research session, record roughly 8\u201312 distinct natural-source hypotheses, source hashes and symbol/block deltas, retaining the best semantically tested source. Derive branch targets from disassembly rather than manually transcribing addresses. Preserve exact source or executable transformations in tracked research; hashes and ignored temporary paths alone cannot reproduce a compiler trial.",
+      "evidence": "Session26 first stopped after two no-effect variants; parent revised prompt, same agent tested12 variants and reduced root-candidate differences12to6. Parent caught documentation target typo, agent decoded original branch to correct it. Sessions38\u201340 initially stored hypotheses mainly as prose/hash tables or temporary generators; parent strengthened the persisted-artifact contract."
     },
     {
       "id": "L022",
@@ -159,8 +159,8 @@
     {
       "id": "L027",
       "parent_failure": "Parent creation prompt requested native pointer fields without naming known node types or requiring composition with existing owner views.",
-      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts.",
-      "evidence": "Session36 corrected Container head types; session37 assigned demonstrated partial-owner/native-layout incompatibility for source-first type unification."
+      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts. For output-pointer APIs, use exactly compatible pointer-to-pointer types; receive void* outputs in void* temporaries before converting the values.",
+      "evidence": "Session36 corrected Container head types; session37 assigned demonstrated partial-owner/native-layout incompatibility for source-first type unification. Session42 initially cast u8** output slots to void**; parent prompt should have required compatible output storage."
     },
     {
       "id": "L028",
@@ -173,6 +173,18 @@
       "parent_failure": "Parent excluded an entire mixed-purpose file when only two raw-word APIs should remain outside owner-type migration.",
       "rule": "Map ownership at function granularity when a file contains multiple representations. Migrate proven owner-pointer functions consistently; leave raw record APIs unchanged. Do not replace known members with byte-offset casts merely to avoid a type decision.",
       "evidence": "Session37 identified CopyListNodes still used ListCountOwner after parent blanketexcludedaccessors; parent correctedscope and agent migrated only that function, preserving all targetbytes."
+    },
+    {
+      "id": "L030",
+      "parent_failure": "Parent specified bounded CPU execution without a complete machine and comparison contract",
+      "rule": "Before implementing differential execution, specify supported ISA and CPU model, reject unsupported state changes/instructions and memory maps, require observable comparisons, distinguish volatile registers from preserved state, and make CLI mismatches fail. Test unsupported cases with independent instruction fixtures.",
+      "evidence": "Session41 initial runner used default Unicorn CPU and allowed overly broad mappings and vacuous comparisons; parent review strengthened these constraints before acceptance."
+    },
+    {
+      "id": "L031",
+      "parent_failure": "Parent compressed task packets until important acceptance details were hard to scan",
+      "rule": "Use ordinary spacing and short paragraphs for task packets. Separate ownership, original evidence, semantic tests, matching constraints and integration authorization. Give concrete distinguishing examples without burying them in compressed prose.",
+      "evidence": "Session43 reported the initial packet was too compressed; a readable follow-up clarified native pointers, retained storage and the callback mutation fixture."
     }
   ]
 }

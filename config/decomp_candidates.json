@@ -133,6 +133,27 @@
       "end": 818454,
       "source": "src/nonmatching/list_circular_visit.c",
       "mode": "thumb"
+    },
+    {
+      "name": "AllocatorFindNeighbors",
+      "start": 27784,
+      "end": 27958,
+      "source": "src/nonmatching/allocator_search.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "AllocatorRecenter",
+      "start": 27960,
+      "end": 28062,
+      "source": "src/nonmatching/allocator_recenter.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "AllocatorUnlinkFreeBlock",
+      "start": 28064,
+      "end": 28198,
+      "source": "src/nonmatching/allocator_unlink.c",
+      "mode": "thumb"
     }
   ]
 }

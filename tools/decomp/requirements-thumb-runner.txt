@@ -1,0 +1,2 @@
+# Unicorn Engine's official Python binding; verified against upstream v2.1.4.
+unicorn==2.1.4

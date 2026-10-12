@@ -204,6 +204,14 @@
       "mode": "thumb"
     },
     {
+      "name": "FreeListNodes",
+      "start": 818632,
+      "end": 818666,
+      "status": "matching_c",
+      "source": "src/list_free.c",
+      "mode": "thumb"
+    },
+    {
       "name": "ListSearchCallback",
       "start": 818744,
       "end": 818792,
@@ -2386,10 +2394,17 @@
     },
     {
       "start": 818632,
+      "end": 818668,
+      "kind": "decompiled_c",
+      "source": "src/list_free.c",
+      "note": "Recursive forward-list free helper with two zero alignment bytes"
+    },
+    {
+      "start": 818668,
       "end": 818744,
       "kind": "copied",
-      "source": "asm/rom_list_traversal_suffix.s",
-      "note": "Unrecovered original code/data after tree traversal and before ListSearchCallback"
+      "source": "asm/rom_list_free_suffix.s",
+      "note": "Unrecovered original code/data before ListSearchCallback"
     },
     {
       "start": 818744,

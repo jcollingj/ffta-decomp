@@ -15,6 +15,34 @@ session. JSON retains the same `reviewed_batches_of_10` structure, including
 empty batches. Planned entries are placeholders and do not count as started.
 Reviewed counts require review evidence.
 
+## Continual-learning experiment
+
+The current target is 100 distinct Luna sessions, including the original three
+pilot sessions. The parent manages three workers, reviews their evidence, and
+returns corrections to the original author. The desired long-term split is
+roughly 90% agent implementation with minimal parent correction; that is an
+aspiration, not a measured result.
+
+For every review correction, record both the defect and what the parent could
+have supplied earlier: clearer bounds, original branch evidence, compatible
+types, an independent fixture, a dependency snapshot, or a better tool. Update
+`config/luna_lessons.json`, then include the relevant lesson in later task
+packets. Follow-up revisions do not create additional sessions. Parent reviews
+must distinguish implementation correctness, matching bytes, and honest
+research that remains uncounted.
+
+Before writing loop code, require a raw-address map of entry branches,
+fallthroughs, back-edges and updates. Trace zero, one and two iterations from
+the original instructions independently of the proposed source. Preserve
+compiler experiments as reproducible transformations or source, not only
+hashes of temporary files. Execute actual recovered dependencies where
+possible; otherwise assert complete state at dependency call time.
+
+At each integration point, freeze tested files, run the full matching gate,
+and record accepted functions/code/data separately. Review ten-session batches
+for recurring prompt failures and useful tools. Do not infer speedup from
+concurrency or treat wall-clock lifecycle timestamps as implementation effort.
+
 ## Lifecycle recording
 
 After an agent has successfully spawned, register that distinct agent once:

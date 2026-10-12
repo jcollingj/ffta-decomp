@@ -60,3 +60,9 @@
 .global AllocatorInternalRelease
 .type AllocatorInternalRelease, %function
 .thumb_set AllocatorInternalRelease, 0x08006FCD
+.global AllocatorRecenter
+.type AllocatorRecenter, %function
+.thumb_set AllocatorRecenter, 0x08006D39
+.global AllocatorFindNeighbors
+.type AllocatorFindNeighbors, %function
+.thumb_set AllocatorFindNeighbors, 0x08006C89

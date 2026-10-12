@@ -64,6 +64,7 @@ SECTIONS
     ASSERT(VisitLinkedNodes == 0x080C7CC0, "VisitLinkedNodes moved")
     ASSERT(TraverseTreeInOrder == 0x080C7D18, "TraverseTreeInOrder moved")
     ASSERT(TraverseTreeReverseInOrder == 0x080C7D70, "TraverseTreeReverseInOrder moved")
+    ASSERT(FreeListNodes == 0x080C7DC8, "FreeListNodes moved")
     ASSERT(ListSearchCallback == 0x080C7E38, "ListSearchCallback moved")
     ASSERT(ListCallbackAppend == 0x080C7E68, "ListCallbackAppend moved")
     ASSERT(ListCallbackSelectClear == 0x080C7E78, "ListCallbackSelectClear moved")
