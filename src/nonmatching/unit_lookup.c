@@ -1,11 +1,10 @@
 /* Research candidate, not linked or counted. Original interval 0xC8364..0xC8570. */
 #include "unit.h"
 #include "unit_pool.h"
+#include "content_record.h"
 extern u8 ReadJobMappingValue(u8);
 extern u8 GetGameFlag(u16);
 extern u16 ReadCurrentContentIndex(void);
-struct ContentRecord { u8 unknown00[28]; const u8 *values; u8 unknown20[8]; };
-extern const struct ContentRecord gContentRecords[];
 extern u8 gContentState[];
 
 u8 UnitField27HasBit8(const struct UnitFieldView *unit)

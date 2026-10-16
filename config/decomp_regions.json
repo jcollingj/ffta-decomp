@@ -84,6 +84,14 @@
       "mode": "thumb"
     },
     {
+      "name": "ConsumeContentRecord",
+      "start": 178752,
+      "end": 178934,
+      "source": "src/content_consumer.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountContextListAt10",
       "start": 629944,
       "end": 629956,
@@ -136,6 +144,14 @@
       "start": 817716,
       "end": 817756,
       "source": "src/list_unlink.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "DetachAndFreeTreeNode",
+      "start": 817756,
+      "end": 817780,
+      "source": "src/tree_remove.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2315,10 +2331,24 @@
     },
     {
       "start": 41024,
+      "end": 178752,
+      "kind": "copied",
+      "source": "asm/rom_random_prefix.s",
+      "note": "Unrecovered original code/data before the generic content consumer"
+    },
+    {
+      "start": 178752,
+      "end": 178936,
+      "kind": "decompiled_c",
+      "source": "src/content_consumer.c",
+      "note": "Generic content-record consumer plus two alignment bytes"
+    },
+    {
+      "start": 178936,
       "end": 629944,
       "kind": "copied",
-      "source": "asm/rom_random_tail.s",
-      "note": "Unrecovered original code/data before list-count wrappers"
+      "source": "asm/rom_content_consumer_suffix.s",
+      "note": "Unrecovered original code/data after the generic content consumer"
     },
     {
       "start": 629944,
@@ -2365,9 +2395,9 @@
     {
       "start": 817756,
       "end": 817780,
-      "kind": "copied",
-      "source": "asm/rom_list_append_prefix.s",
-      "note": "Unrecovered original code/data before AppendListNode"
+      "kind": "decompiled_c",
+      "source": "src/tree_remove.c",
+      "note": "DetachAndFreeTreeNode; exact 24-byte wrapper calls copied DetachTreeNode"
     },
     {
       "start": 817780,

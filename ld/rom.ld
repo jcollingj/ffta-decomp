@@ -45,9 +45,14 @@ SECTIONS
     .text : {
         *(.text)
     }
+    rom_list_unlink_suffix_start = DetachAndFreeTreeNode;
     ASSERT(ReadCurrentContentIndex == 0x0800A018, "ReadCurrentContentIndex moved")
     ASSERT(ReadContentIndexOrFallback == 0x0800A024, "ReadContentIndexOrFallback moved")
     ASSERT(ReadContentIndexOrFallback - ReadCurrentContentIndex == 12, "content-index function boundary changed")
+    ASSERT(rom_random_prefix_start == 0x0800A040, "random/content prefix moved")
+    ASSERT(ConsumeContentRecord == 0x0802BA40, "ConsumeContentRecord moved")
+    ASSERT(rom_content_consumer_suffix_start == 0x0802BAF8, "content consumer end moved")
+    ASSERT(rom_content_consumer_suffix_start - ConsumeContentRecord == 184, "content consumer block size changed")
     ASSERT(CountContextListAt10 == 0x08099CB8, "CountContextListAt10 moved")
     ASSERT(CountContextListAt14 == 0x08099CC4, "CountContextListAt14 moved")
     ASSERT(CountContextListAt18 == 0x08099CD0, "CountContextListAt18 moved")
@@ -57,6 +62,9 @@ SECTIONS
     ASSERT(UnlinkAndFreeListNode == 0x080C7A34, "UnlinkAndFreeListNode moved")
     ASSERT(rom_list_unlink_suffix_start == 0x080C7A5C, "UnlinkAndFreeListNode end moved")
     ASSERT(rom_list_unlink_suffix_start - UnlinkAndFreeListNode == 40, "UnlinkAndFreeListNode size changed")
+    ASSERT(DetachAndFreeTreeNode == 0x080C7A5C, "DetachAndFreeTreeNode moved")
+    ASSERT(rom_list_unlink_suffix_start == DetachAndFreeTreeNode, "tree remove boundary alias changed")
+    ASSERT(AppendListNode - DetachAndFreeTreeNode == 24, "DetachAndFreeTreeNode size changed")
     ASSERT(AppendListNode == 0x080C7A74, "AppendListNode moved")
     ASSERT(CountLinkedNodes == 0x080C7B08, "CountLinkedNodes moved")
     ASSERT(GetListOwnerWord0 == 0x080C7B74, "GetListOwnerWord0 moved")

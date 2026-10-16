@@ -1,9 +1,8 @@
 #include "types.h"
+#include "content_record.h"
 /* Record extent and field roles remain provisional. */
 extern u8 GetGameFlag(u16);
 extern u16 ReadCurrentContentIndex(void);
-struct ContentRecord { u8 unknown00[28]; const u8 *values; u8 unknown20[8]; };
-extern const struct ContentRecord gContentRecords[];
 extern u8 gContentState[];
 
 u8 ReadContentValue0(void)

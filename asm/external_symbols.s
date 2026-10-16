@@ -66,3 +66,21 @@
 .global AllocatorFindNeighbors
 .type AllocatorFindNeighbors, %function
 .thumb_set AllocatorFindNeighbors, 0x08006C89
+
+.global DetachTreeNode
+.type DetachTreeNode, %function
+.thumb_set DetachTreeNode, 0x080C7859
+
+@ Provisional names from direct BL sites in the bounded content consumer.
+.global GetContentConsumerContext
+.type GetContentConsumerContext, %function
+.thumb_set GetContentConsumerContext, 0x08096D7D
+.global FillContentConsumerEntries
+.type FillContentConsumerEntries, %function
+.thumb_set FillContentConsumerEntries, 0x08099D09
+.global ResolveContentConsumerSelection
+.type ResolveContentConsumerSelection, %function
+.thumb_set ResolveContentConsumerSelection, 0x08099561
+.global HasContentConsumerSelection
+.type HasContentConsumerSelection, %function
+.thumb_set HasContentConsumerSelection, 0x08099545

@@ -215,6 +215,12 @@
       "parent_failure": "Parent natural-source constraint did not explicitly distinguish volatility from register-allocation experiments or require observable return-after-callback tests",
       "rule": "Do not introduce volatile locals/parameters solely to manipulate compiler allocation without original evidence. Record such trials as rejected and retain ordinary source. Test return values as well as memory effects; a final callback mutation can distinguish captured return values from rereads.",
       "evidence": "Session59 retained a volatile owner parameter because byte differences improved and its harness omitted all return assertions. Parent returned both to the same author."
+    },
+    {
+      "id": "L037",
+      "parent_failure": "Parent allowed private record views before checking shared declarations and complete accessed extents.",
+      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels.",
+      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views."
     }
   ]
 }

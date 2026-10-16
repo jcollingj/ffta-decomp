@@ -20,14 +20,16 @@ OBJS    := \
 	build/content_flags.o \
 	build/rom_content_flag_clear.o \
 	build/content_index.o \
-	build/rom_random_tail.o \
+	build/rom_random_prefix.o \
+	build/content_consumer.o \
+	build/rom_content_consumer_suffix.o \
 	build/list_count_wrappers.o \
 	build/rom_list_count_wrappers_suffix_prefix.o \
 	build/container_create.o \
 	build/list_clear.o \
 	build/tree_clear.o \
 	build/list_unlink.o \
-	build/rom_list_append_prefix.o \
+	build/tree_remove.o \
 	build/list_append.o \
 	build/rom_list_append_suffix.o \
 	build/list_count.o \
