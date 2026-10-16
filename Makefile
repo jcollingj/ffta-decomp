@@ -139,7 +139,7 @@ BASEROM_SHA1 := 4ac05441f4de70a4ec3dd932116346c61b8783d9
 # COMPARE=0 skips the byte-match check (for modified builds)
 COMPARE ?= 1
 
-.PHONY: all clean mod-ability-name mod-field-aid check progress compiler compare
+.PHONY: all clean mod-ability-name mod-field-aid check check-wrappers progress compiler compare
 
 compiler: $(AGBCC)
 
@@ -152,9 +152,12 @@ compare: $(ROM)
 progress: all compare
 	python3 tools/decomp/progress.py
 
-check: all compare
+check: all compare check-wrappers
 	python3 -m unittest discover -s tests -v
 	python3 tools/decomp/progress.py --output build/check-progress.json
+
+check-wrappers:
+	python3 tools/decomp/wrapper_audit.py
 
 mod-ability-name: all
 	python3 tools/mods/rename_ability.py

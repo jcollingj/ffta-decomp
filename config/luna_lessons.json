@@ -203,6 +203,18 @@
       "parent_failure": "Parent trusted representation labels without requiring compiler evidence of packing",
       "rule": "Verify representation experiments in preprocessed declarations and emitted field accesses. A type named Packed is not packed without the compiler attribute; require expected size/offsets and byte-vs-halfword access evidence before running variants. Never weaken a size assertion to hide a missing attribute.",
       "evidence": "Session46 ordinary structs emitted ldrh/strh and size8 owner but were labeled packed; parent inspected candidate.i/.s and returned the actual packed experiment to the same author."
+    },
+    {
+      "id": "L035",
+      "parent_failure": "Parent repeated long acceptance packets without requiring a concrete test-oracle design before coding",
+      "rule": "For new pointer-heavy recovery, ask for a short pre-implementation plan naming separate translation units and fixed expected before/after link images, including a distinguishing multi-iteration case. Review that plan before code. Reading lessons alone is not evidence that the test design applies them.",
+      "evidence": "Sessions56/57 initially included production .c files and omitted whole-node images or duplicated the candidate algorithm despite packet wording. Same authors revised; central AGENTS now encodes the shared rule."
+    },
+    {
+      "id": "L036",
+      "parent_failure": "Parent natural-source constraint did not explicitly distinguish volatility from register-allocation experiments or require observable return-after-callback tests",
+      "rule": "Do not introduce volatile locals/parameters solely to manipulate compiler allocation without original evidence. Record such trials as rejected and retain ordinary source. Test return values as well as memory effects; a final callback mutation can distinguish captured return values from rereads.",
+      "evidence": "Session59 retained a volatile owner parameter because byte differences improved and its harness omitted all return assertions. Parent returned both to the same author."
     }
   ]
 }

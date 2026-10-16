@@ -161,6 +161,27 @@
       "end": 28350,
       "source": "src/nonmatching/allocator_insert.c",
       "mode": "thumb"
+    },
+    {
+      "name": "InsertTreeNode",
+      "start": 817844,
+      "end": 817928,
+      "source": "src/nonmatching/tree_insert.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "DetachTreeNode",
+      "start": 817240,
+      "end": 817414,
+      "source": "src/nonmatching/tree_detach.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "DestroyContainer",
+      "start": 817416,
+      "end": 817564,
+      "source": "src/nonmatching/container_destroy.c",
+      "mode": "thumb"
     }
   ]
 }
