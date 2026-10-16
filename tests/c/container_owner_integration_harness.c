@@ -73,6 +73,9 @@ int main(void)
     list[0].unknown00 = 10;
     list[1].unknown00 = 20;
     list[2].unknown00 = 30;
+    list[0].previous = 0;
+    list[1].previous = &list[0];
+    list[2].previous = &list[1];
     list[0].next = &list[1];
     list[1].next = &list[2];
     container->list_head = &list[0];

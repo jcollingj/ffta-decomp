@@ -1,57 +1,70 @@
 #include <assert.h>
-#include <stdint.h>
+#include <stddef.h>
 #include <string.h>
 #include "../../include/list_search_callback.h"
-#include "../../src/list_search_callback.c"
+#include "../../include/tree_count.h"
 
-static u32 HostOwnerWord(const u32 *owner_words)
+typedef char host_result_offset_matches_pointer_alignment[
+    offsetof(struct TreeSearchContext, result) == sizeof(void *) ? 1 : -1];
+typedef char host_context_contains_key_and_pointer[
+    sizeof(struct TreeSearchContext) == 2 * sizeof(void *) ? 1 : -1];
+
+static void TestMismatchLeavesNativeContextUnchanged(void)
 {
-    return (u32)(uintptr_t)owner_words;
+    struct TreeCountNode node = {0xA1B2C3D4, 0x13579BDF, 0, 0, 0, 0};
+    struct TreeSearchContext context = {0x2468ACE0, 0};
+    const struct TreeSearchContext before = context;
+
+    assert(ListSearchCallback(&node, &context) == 1);
+    assert(memcmp(&context, &before, sizeof(context)) == 0);
 }
 
-static void TestMismatchLeavesContextUnchanged(void)
+static void TestMatchStoresNativeNodePointer(void)
 {
-    static const u32 owner[2] = {0xA1B2C3D4, 0x13579BDF};
-    u32 context[3] = {0x2468ACE0, 0xDEADBEEF, 0xCAFEBABE};
-    const u32 before[3] = {0x2468ACE0, 0xDEADBEEF, 0xCAFEBABE};
+    struct TreeCountNode node = {0x01020304, 0x89ABCDEF, 0, 0, 0, 0};
+    struct TreeSearchContext context = {0x89ABCDEF, 0};
 
-    assert(ListSearchCallback(owner, context) == 1);
-    assert(memcmp(context, before, sizeof(context)) == 0);
+    assert(ListSearchCallback(&node, &context) == 0);
+    assert(context.key == 0x89ABCDEF);
+    assert(context.result == &node);
 }
 
-static void TestMatchStoresOwnerAddress(void)
+static void TestSameBaseAliasUsesNativeFields(void)
 {
-    static const u32 owner[2] = {0x01020304, 0x89ABCDEF};
-    u32 context[3] = {0x89ABCDEF, 0xDEADBEEF, 0x76543210};
+    union {
+        struct TreeCountNode node;
+        struct TreeSearchContext context;
+    } aliased;
+    union {
+        struct TreeCountNode node;
+        struct TreeSearchContext context;
+    } expected;
+    struct TreeCountNode *expected_result = &aliased.node;
 
-    assert(ListSearchCallback(owner, context) == 0);
-    assert(context[0] == 0x89ABCDEF);
-    assert(context[1] == HostOwnerWord(owner));
-    assert(context[2] == 0x76543210);
-}
+    memset(&aliased, 0, sizeof(aliased));
+    aliased.node.unknown00 = 0xCAFEBABE;
+    aliased.node.unknown04 = 0xCAFEBABE;
+    memset(&expected, 0, sizeof(expected));
+    expected.node.unknown00 = 0xCAFEBABE;
+    expected.node.unknown04 = 0xCAFEBABE;
+    memcpy((unsigned char *)&expected +
+               offsetof(struct TreeSearchContext, result),
+           &expected_result, sizeof(expected_result));
 
-static void TestAliasedOwnerAndContext(void)
-{
-    u32 words[3] = {0xCAFEBABE, 0xCAFEBABE, 0xDEADBEEF};
-    u32 mismatch[3] = {0x13572468, 0x11223344, 0x55667788};
-    const u32 mismatch_before[3] = {0x13572468, 0x11223344, 0x55667788};
-
-    /* The compare is against owner word 1 copied before context word 1 is
-     * overwritten; same-base aliasing therefore succeeds. */
-    assert(ListSearchCallback(words, words) == 0);
-    assert(words[0] == 0xCAFEBABE);
-    assert(words[1] == HostOwnerWord(words));
-    assert(words[2] == 0xDEADBEEF);
-
-    /* Mismatch remains a no-write path even when owner and context alias. */
-    assert(ListSearchCallback(mismatch, mismatch) == 1);
-    assert(memcmp(mismatch, mismatch_before, sizeof(mismatch)) == 0);
+    /* Both views begin at the same native address. The result pointer write
+     * overlaps bytes at the native result-field offset after the comparison.
+     * On target these are the node's second word; on this 64-bit host they
+     * occupy the parent field. Compare the complete native storage image. */
+    assert(ListSearchCallback(&aliased.node, &aliased.context) == 0);
+    assert(aliased.context.key == 0xCAFEBABE);
+    assert(aliased.context.result == &aliased.node);
+    assert(memcmp(&aliased, &expected, sizeof(aliased)) == 0);
 }
 
 int main(void)
 {
-    TestMismatchLeavesContextUnchanged();
-    TestMatchStoresOwnerAddress();
-    TestAliasedOwnerAndContext();
+    TestMismatchLeavesNativeContextUnchanged();
+    TestMatchStoresNativeNodePointer();
+    TestSameBaseAliasUsesNativeFields();
     return 0;
 }

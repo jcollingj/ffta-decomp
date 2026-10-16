@@ -48,14 +48,15 @@ static void make_fixture(struct Fixture *fixture, unsigned length)
     fixture->owner.list_head = length == 0 ? 0 : &fixture->nodes[0];
     for (i = 0; i < 6; i++) {
         fixture->nodes[i].unknown00 = 0x11110000 + i;
-        fixture->nodes[i].unknown04 = 0x22220000 + i;
+        fixture->nodes[i].previous = i > 0 && i < length ?
+                                     &fixture->nodes[i - 1] : 0;
         fixture->nodes[i].next = i + 1 < length ? &fixture->nodes[i + 1] : 0;
     }
     fixture->guards[0].unknown00 = 0x33334444;
-    fixture->guards[0].unknown04 = 0x55556666;
+    fixture->guards[0].previous = 0;
     fixture->guards[0].next = &fixture->guards[1];
     fixture->guards[1].unknown00 = 0x77778888;
-    fixture->guards[1].unknown04 = 0x9999AAAA;
+    fixture->guards[1].previous = &fixture->guards[0];
     fixture->guards[1].next = 0;
 }
 
@@ -103,7 +104,10 @@ int main(void)
 
     assert(offsetof(struct Container, list_head) ==
            (sizeof(void *) == 8 ? 8 : 4));
-    assert(offsetof(struct ListCountNode, next) == 8);
+    assert(offsetof(struct ListCountNode, previous) ==
+           (sizeof(void *) == 8 ? 8 : 4));
+    assert(offsetof(struct ListCountNode, next) ==
+           (sizeof(void *) == 8 ? 16 : 8));
 
     /* Head, middle, and tail starts for one, three, and six nodes. */
     check_start(1, 0);

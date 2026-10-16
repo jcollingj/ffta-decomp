@@ -38,7 +38,7 @@ static void InitNodes(struct ListCountNode *nodes, unsigned count)
     memset(nodes, 0, sizeof(*nodes) * count);
     for (i = 0; i < count; i++) {
         nodes[i].unknown00 = 0xA5000000u + i;
-        nodes[i].unknown04 = 0x5A000000u + i;
+        nodes[i].previous = i ? &nodes[i - 1] : 0;
         nodes[i].next = i + 1 < count ? &nodes[i + 1] : 0;
     }
 }

@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <string.h>
 #include "../../include/list_callbacks.h"
-#include "../../src/list_callbacks.c"
+#include "../../include/tree_count.h"
 
 static void TestAppendOrderAndWrap(void)
 {
@@ -44,50 +44,46 @@ static void TestAppendOrderAndWrap(void)
 
 static void TestSelectAllLowFlags(void)
 {
-    u32 node[8];
-    u32 before[8];
-    const u32 *output;
+    struct TreeCountNode node;
+    struct TreeCountNode before;
+    void *output;
     unsigned flag;
 
     for (flag = 0; flag <= 0xFFFF; flag++) {
-        unsigned i;
-        for (i = 0; i < 8; i++)
-            node[i] = 0xA5000000u + i * 0x10101u;
-        node[5] = 0xA5A50000u | flag;
-        memcpy(before, node, sizeof(node));
-        output = (const u32 *)(uintptr_t)0x1234;
+        memset(&node, 0xA5, sizeof(node));
+        node.flags = 0xA5A50000u | flag;
+        before = node;
+        output = (void *)(uintptr_t)0x1234;
         if (flag & 1) {
-            assert(ListCallbackSelectClear(node, &output) == 1);
-            assert(output == (const u32 *)(uintptr_t)0x1234);
+            assert(ListCallbackSelectClear(&node, &output) == 1);
+            assert(output == (void *)(uintptr_t)0x1234);
         } else {
-            assert(ListCallbackSelectClear(node, &output) == 0);
-            assert(output == node);
+            assert(ListCallbackSelectClear(&node, &output) == 0);
+            assert(output == &node);
         }
-        assert(memcmp(node, before, sizeof(node)) == 0);
+        assert(memcmp(&node, &before, sizeof(node)) == 0);
     }
 
     /* A nonzero upper pattern cannot make a clear low bit look set. */
-    node[5] = 0xFFFFFFFEu;
-    output = (const u32 *)(uintptr_t)0x4321;
-    assert(ListCallbackSelectClear(node, &output) == 0);
-    assert(output == node);
+    node.flags = 0xFFFFFFFEu;
+    output = (void *)(uintptr_t)0x4321;
+    assert(ListCallbackSelectClear(&node, &output) == 0);
+    assert(output == &node);
 }
 
 static void TestClearOnlyBitZero(void)
 {
-    u32 node[8];
-    u32 before[8];
+    struct TreeCountNode node;
+    struct TreeCountNode before;
     u32 value;
 
     for (value = 0; value <= 0xFFFF; value++) {
-        unsigned i;
-        for (i = 0; i < 8; i++)
-            node[i] = 0x5A000000u + i * 0x12345u;
-        node[5] = 0xA5A50000u | value;
-        memcpy(before, node, sizeof(node));
-        assert(ListCallbackClearFlag0(node) == 1);
-        before[5] &= ~1u;
-        assert(memcmp(node, before, sizeof(node)) == 0);
+        memset(&node, 0x5A, sizeof(node));
+        node.flags = 0xA5A50000u | value;
+        before = node;
+        assert(ListCallbackClearFlag0(&node, 0) == 1);
+        before.flags &= ~1u;
+        assert(memcmp(&node, &before, sizeof(node)) == 0);
     }
 }
 

@@ -116,6 +116,38 @@
       "status": "matching_c"
     },
     {
+      "name": "ClearContainerList",
+      "start": 817588,
+      "end": 817630,
+      "source": "src/list_clear.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "FreeTreeNodes",
+      "start": 817632,
+      "end": 817714,
+      "source": "src/tree_clear.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "UnlinkAndFreeListNode",
+      "start": 817716,
+      "end": 817756,
+      "source": "src/list_unlink.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AppendListNode",
+      "start": 817780,
+      "end": 817842,
+      "source": "src/list_append.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountLinkedNodes",
       "start": 817928,
       "end": 817950,
@@ -168,6 +200,14 @@
       "start": 818164,
       "end": 818194,
       "source": "src/list_find_word.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "TreeSearchByWord1",
+      "start": 818196,
+      "end": 818240,
+      "source": "src/tree_search.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2303,10 +2343,45 @@
     },
     {
       "start": 817588,
+      "end": 817632,
+      "kind": "decompiled_c",
+      "source": "src/list_clear.c",
+      "note": "Container list clear; 42-byte function and two zero alignment bytes"
+    },
+    {
+      "start": 817632,
+      "end": 817716,
+      "kind": "decompiled_c",
+      "source": "src/tree_clear.c",
+      "note": "FreeTreeNodes; 82-byte function and two zero alignment bytes"
+    },
+    {
+      "start": 817716,
+      "end": 817756,
+      "kind": "decompiled_c",
+      "source": "src/list_unlink.c",
+      "note": "UnlinkAndFreeListNode; exact 40-byte function"
+    },
+    {
+      "start": 817756,
+      "end": 817780,
+      "kind": "copied",
+      "source": "asm/rom_list_append_prefix.s",
+      "note": "Unrecovered original code/data before AppendListNode"
+    },
+    {
+      "start": 817780,
+      "end": 817844,
+      "kind": "decompiled_c",
+      "source": "src/list_append.c",
+      "note": "AppendListNode; 62-byte function and two zero alignment bytes"
+    },
+    {
+      "start": 817844,
       "end": 817928,
       "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix_suffix.s",
-      "note": "Unrecovered original code/data after container creation"
+      "source": "asm/rom_list_append_suffix.s",
+      "note": "Unrecovered original code/data after AppendListNode"
     },
     {
       "start": 817928,
@@ -2346,9 +2421,9 @@
     {
       "start": 818196,
       "end": 818240,
-      "kind": "copied",
-      "source": "asm/rom_list_find_gap.s",
-      "note": "Unrecovered original code/data between list search and word setter"
+      "kind": "decompiled_c",
+      "source": "src/tree_search.c",
+      "note": "Tree search wrapper including callback pointer literal"
     },
     {
       "start": 818240,
@@ -2996,10 +3071,24 @@
     },
     {
       "start": 5415230,
+      "end": 5576828,
+      "kind": "copied",
+      "source": "asm/rom_counted_ids_tail_prefix.s",
+      "note": "Unclassified bytes before authored ability definitions"
+    },
+    {
+      "start": 5576828,
+      "end": 5578984,
+      "kind": "source_data",
+      "source": "data/ability_prefix.s",
+      "note": "Ability definitions 0..76; extent beyond this prefix unknown"
+    },
+    {
+      "start": 5578984,
       "end": 9798104,
       "kind": "copied",
-      "source": "asm/rom_counted_ids_tail.s",
-      "note": "Unclassified code and data"
+      "source": "asm/rom_counted_ids_tail_suffix.s",
+      "note": "Unclassified code and data after authored ability prefix"
     },
     {
       "start": 9798104,

@@ -11,17 +11,25 @@ int ListCallbackAppend(void *value, void *context)
     return 1;
 }
 
-int ListCallbackSelectClear(const u32 *node_words, const u32 **output)
+#include "tree_count.h"
+
+int ListCallbackSelectClear(void *value, void *context)
 {
-    if (node_words[5] & 1)
+    struct TreeCountNode *node = value;
+    void **output = context;
+
+    if (node->flags & 1)
         return 1;
-    *output = node_words;
+    *output = value;
     return 0;
 }
 
-int ListCallbackClearFlag0(u32 *node_words)
+int ListCallbackClearFlag0(void *value, void *context)
 {
-    node_words[5] &= ~1u;
+    struct TreeCountNode *node = value;
+
+    (void)context;
+    node->flags &= ~1u;
     return 1;
 }
 

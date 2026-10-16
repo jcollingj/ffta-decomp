@@ -26,7 +26,7 @@ struct Ability {
 
 typedef char AbilitySizeMustBe28[(sizeof(struct Ability) == 28) ? 1 : -1];
 
-extern const struct Ability gAbilities[346];
+extern const struct Ability gAbilities[];
 u32 GetAbilityProperty(u16 ability_id, u8 property);
 
 #endif

@@ -29,26 +29,28 @@ static void TestFind(void)
 
     memset(&owner, 0xA5, sizeof(owner));
     memset(nodes, 0x5A, sizeof(nodes));
+    for (i = 0; i < 520; i++)
+        nodes[i].previous = 0;
     owner.allocator_owner = (void *)0xD00DFEED;
     owner.list_head = 0;
     CheckSearch(&owner, 0, 0, &owner, nodes, 520);
 
     owner.list_head = &nodes[0];
     nodes[0].unknown00 = 0;
-    nodes[0].unknown04 = 0xAAAAAAAA;
+    nodes[0].previous = 0;
     nodes[0].next = &nodes[1];
     nodes[1].unknown00 = 0;
-    nodes[1].unknown04 = 0xBBBBBBBB;
+    nodes[1].previous = &nodes[0];
     nodes[1].next = 0;
     CheckSearch(&owner, 0, &nodes[0], &owner, nodes, 520);
 
     for (i = 0; i < 519; i++) {
         nodes[i].unknown00 = 0x10000000u + i;
-        nodes[i].unknown04 = 0xABC00000u ^ i;
+        nodes[i].previous = i ? &nodes[i - 1] : 0;
         nodes[i].next = &nodes[i + 1];
     }
     nodes[519].unknown00 = 0xF1234567u;
-    nodes[519].unknown04 = 0x87654321u;
+    nodes[519].previous = &nodes[518];
     nodes[519].next = 0;
     owner.list_head = &nodes[0];
     CheckSearch(&owner, 0xF1234567u, &nodes[519], &owner, nodes, 520);

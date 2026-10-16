@@ -58,3 +58,50 @@ Focused tests use disposable temporary repository layouts:
 ```sh
 python3 -m unittest tests.test_carve_plan -v
 ```
+
+## Render an exact review patch
+
+`tools/decomp/carve_patch.py` reruns the planner against the current repository
+inputs and writes a unified patch to stdout. It accepts the same interval and
+source choices; the optional remainder names must be paths such as
+`asm/rom_x_prefix.s`:
+
+```sh
+python3 tools/decomp/carve_patch.py \
+  --start 0x40 --end 0x50 \
+  --source src/carve_example.c > /tmp/carve.patch
+
+git apply --check /tmp/carve.patch
+```
+
+The patch adds each nonempty remainder wrapper with the planner's exact incbin
+offset and length, removes the superseded copied wrapper, and replaces its OBJS
+entry in place with prefix, replacement, and suffix objects in layout order.
+Unrelated Makefile text and object order remain intact. Generated object entries
+use one object per line. The renderer currently requires the old object to be
+alone on its OBJS line; the existing planner rejects unsupported OBJS tokens
+(such as inline comments within the assignment) before rendering. The unified
+patch uses Git-compatible file creation/deletion metadata and can be checked
+from the repository root with `git apply --check`.
+
+The command is read-only and emits only patch text on stdout. It recomputes the
+plan each time, so render from a stable tree and rerun it after any ledger,
+source, or Makefile change. Applying the patch is a separate, deliberate step.
+Patch boundary tests include both a retired wrapper and a Makefile without a
+final newline; Git's `\\ No newline at end of file` marker is required to keep
+those diffs applicable and preserve their bytes correctly. Marker placement
+tracks the EOF line's hunk position, since earlier lines can repeat its text.
+
+This patch does not create or promote the proposed C source. Manual integration
+still must review and add the recovered source, update
+`config/decomp_regions.json` with the new decompiled interval and copied
+remainders, add and review `ld/rom.ld` layout assertions, check for other
+consumers of the retired wrapper, and run the matching build and provenance
+checks. The patch is evidence for wrapper geometry and OBJS sequencing only; it
+does not claim the proposed C matches the original ROM.
+
+Focused disposable-fixture tests:
+
+```sh
+python3 -m unittest tests.test_carve_patch -v
+```

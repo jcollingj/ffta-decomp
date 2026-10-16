@@ -32,7 +32,7 @@ SECTIONS
     gRandomState = 0x030034B0;
     gRandomItemSlots = 0x02001F30;
     gRecords70 = 0x0855AE4C;
-    gAbilities = 0x0855187C;
+    gAbilities = gAbilityPrefix;
     ASSERT(GetContentFlag21F == 0x08009FBC, "GetContentFlag21F moved")
     ASSERT(AllocatorAllocate == 0x08007138, "AllocatorAllocate moved")
     ASSERT(AllocatorFree == 0x08007170, "AllocatorFree moved")
@@ -52,6 +52,12 @@ SECTIONS
     ASSERT(CountContextListAt14 == 0x08099CC4, "CountContextListAt14 moved")
     ASSERT(CountContextListAt18 == 0x08099CD0, "CountContextListAt18 moved")
     ASSERT(ContainerCreate == 0x080C799C, "ContainerCreate moved")
+    ASSERT(ClearContainerList == 0x080C79B4, "ClearContainerList moved")
+    ASSERT(FreeTreeNodes == 0x080C79E0, "FreeTreeNodes moved")
+    ASSERT(UnlinkAndFreeListNode == 0x080C7A34, "UnlinkAndFreeListNode moved")
+    ASSERT(rom_list_unlink_suffix_start == 0x080C7A5C, "UnlinkAndFreeListNode end moved")
+    ASSERT(rom_list_unlink_suffix_start - UnlinkAndFreeListNode == 40, "UnlinkAndFreeListNode size changed")
+    ASSERT(AppendListNode == 0x080C7A74, "AppendListNode moved")
     ASSERT(CountLinkedNodes == 0x080C7B08, "CountLinkedNodes moved")
     ASSERT(GetListOwnerWord0 == 0x080C7B74, "GetListOwnerWord0 moved")
     ASSERT(CopyListOwnerWords == 0x080C7B78, "CopyListOwnerWords moved")
@@ -60,6 +66,7 @@ SECTIONS
     ASSERT(TreeCollectReverseInOrder == 0x080C7BC8, "TreeCollectReverseInOrder moved")
     ASSERT(TreeCollectReverseInOrder - TreeCollectInOrder == 44, "tree collection wrapper boundary changed")
     ASSERT(FindListNodeByWord == 0x080C7BF4, "FindListNodeByWord moved")
+    ASSERT(TreeSearchByWord1 == 0x080C7C14, "TreeSearchByWord1 moved")
     ASSERT(SetListWords == 0x080C7C40, "SetListWords moved")
     ASSERT(VisitLinkedNodes == 0x080C7CC0, "VisitLinkedNodes moved")
     ASSERT(TraverseTreeInOrder == 0x080C7D18, "TraverseTreeInOrder moved")
@@ -118,6 +125,9 @@ SECTIONS
     ASSERT(AddInventoryItem == 0x080CA900, "AddInventoryItem moved")
     ASSERT(RemoveInventoryItem == 0x080CA9E8, "RemoveInventoryItem moved")
     ASSERT(GetAbilityProperty == 0x080CCD50, "GetAbilityProperty moved")
+    ASSERT(gAbilityPrefix == 0x0855187C, "ability prefix moved")
+    ASSERT(gAbilityPrefixEnd == 0x085520E8, "ability prefix end moved")
+    ASSERT(gAbilityPrefixEnd - gAbilityPrefix == 2156, "ability prefix size changed")
     ASSERT(SelectUnitAbilityList == 0x080CCE60, "SelectUnitAbilityList moved")
     ASSERT(ApplyItemAbilityFlags == 0x80ccf44, "ApplyItemAbilityFlags moved")
     ASSERT(SetAbilityAvailable == 0x80cd544, "SetAbilityAvailable moved")

@@ -3,17 +3,18 @@
 #include "types.h"
 #include "container.h"
 
-/* Node pointer offset is established; the two leading node words remain unknown. */
+/* Original append/unlink routines establish target fields at offsets 0/4/8. */
 struct ListCountNode {
     u32 unknown00;
-    u32 unknown04;
+    struct ListCountNode *previous;
     struct ListCountNode *next;
 };
 
 u32 CountLinkedNodes(const struct Container *owner);
 
-/* On target the pointer field offsets are checked by the matching build. */
-typedef char ListCountTargetNodeNextOffset[
+/* GCC2.9-compatible target size check; the field declaration order above
+ * gives target offsets 0, 4, and 8 when pointers are four bytes. */
+typedef char ListCountTargetNodeSize[
     sizeof(void *) != 4 || sizeof(struct ListCountNode) == 12 ? 1 : -1];
 
 #endif

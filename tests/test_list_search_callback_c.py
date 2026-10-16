@@ -14,9 +14,10 @@ class ListSearchCallbackCandidateTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             program = Path(directory) / 'list-search-callback-test'
             subprocess.run([
-                'cc', '-std=gnu89', '-Wall', '-Wextra', '-Werror',
-                '-Wno-pointer-to-int-cast', '-I', str(ROOT / 'include'),
+                'cc', '-std=gnu11', '-Wall', '-Wextra', '-Werror',
+                '-I', str(ROOT / 'include'),
                 str(ROOT / 'tests/c/list_search_callback_harness.c'),
+                str(ROOT / 'src/list_search_callback.c'),
                 str(ROOT / 'src/list_accessors.c'), '-o', str(program),
             ], check=True, capture_output=True, text=True)
             subprocess.run([str(program)], check=True, capture_output=True, text=True)

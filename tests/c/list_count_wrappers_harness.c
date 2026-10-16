@@ -36,10 +36,14 @@ int main(void)
     owners[1].list_head = &nodes[0];
     owners[2].allocator_owner = (void *)0x90ABCDEF;
     owners[2].list_head = &nodes[3];
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++) {
+        nodes[i].previous = i ? &nodes[i - 1] : 0;
         nodes[i].next = i == 2 ? 0 : &nodes[i + 1];
-    for (i = 3; i < 303; i++)
+    }
+    for (i = 3; i < 303; i++) {
+        nodes[i].previous = i > 3 ? &nodes[i - 1] : 0;
         nodes[i].next = i == 302 ? 0 : &nodes[i + 1];
+    }
 
     guarded.value.unknown10 = &owners[0];
     guarded.value.unknown14 = &owners[1];

@@ -1,9 +1,18 @@
 #include "allocator_recenter.h"
+#include "allocator_packed.h"
 
 #include <assert.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+
+#define HOST_ASSERT(name, condition) typedef char name[(condition) ? 1 : -1]
+HOST_ASSERT(owner_size, sizeof(AllocatorOwnerPacked) == 6);
+HOST_ASSERT(owner_head, offsetof(AllocatorOwnerPacked, head) == 0);
+HOST_ASSERT(owner_selection, offsetof(AllocatorOwnerPacked, selection) == 2);
+HOST_ASSERT(owner_count, offsetof(AllocatorOwnerPacked, count) == 4);
+HOST_ASSERT(node_size, sizeof(AllocatorNodePacked) == 12);
+HOST_ASSERT(node_next, offsetof(AllocatorNodePacked, next) == 10);
 
 #define WORDS 4096
 #define NODE_BASE 8

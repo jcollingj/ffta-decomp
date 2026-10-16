@@ -24,13 +24,18 @@ OBJS    := \
 	build/list_count_wrappers.o \
 	build/rom_list_count_wrappers_suffix_prefix.o \
 	build/container_create.o \
-	build/rom_list_count_wrappers_suffix_suffix.o \
+	build/list_clear.o \
+	build/tree_clear.o \
+	build/list_unlink.o \
+	build/rom_list_append_prefix.o \
+	build/list_append.o \
+	build/rom_list_append_suffix.o \
 	build/list_count.o \
 	build/rom_list_accessors_prefix.o \
 	build/list_accessors.o \
 	build/tree_collect.o \
 	build/list_find_word.o \
-	build/rom_list_find_gap.o \
+	build/tree_search.o \
 	build/list_set_words.o \
 	build/rom_list_set_suffix.o \
 	build/list_visit.o \
@@ -123,7 +128,9 @@ OBJS    := \
 	build/class_records16.o \
 	build/rom_mapping_tail.o \
 	build/counted_record_ids.o \
-	build/rom_counted_ids_tail.o \
+	build/rom_counted_ids_tail_prefix.o \
+	build/ability_prefix.o \
+	build/rom_counted_ids_tail_suffix.o \
 	build/title_palette.o \
 	build/rom2.o
 

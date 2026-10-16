@@ -17,7 +17,12 @@ int main(void)
 
     /* Host fixtures use host pointer alignment and native pointer width. */
     assert(sizeof(void *) != 8 || offsetof(struct Container, list_head) == 8);
-    assert(offsetof(struct ListCountNode, next) == 8);
+    assert(offsetof(struct ListCountNode, unknown00) == 0);
+    assert(offsetof(struct ListCountNode, previous) ==
+           (sizeof(void *) == 8 ? 8 : 4));
+    assert(offsetof(struct ListCountNode, next) ==
+           (sizeof(void *) == 8 ? 16 : 8));
+    assert(sizeof(void *) != 8 || sizeof(struct ListCountNode) == 24);
 
     for (test = 0; test < sizeof(lengths) / sizeof(lengths[0]); test++) {
         unsigned i;
@@ -27,9 +32,16 @@ int main(void)
         memset(decoys, 0xC3, sizeof(decoys));
         owner.allocator_owner = (void *)0xD00DFEED;
         owner.list_head = length ? &nodes[0] : 0;
-        for (i = 0; i < length; i++)
+        for (i = 0; i < 1000; i++)
+            nodes[i].previous = 0;
+        for (i = 0; i < length; i++) {
+            nodes[i].previous = i ? &nodes[i - 1] : 0;
             nodes[i].next = i + 1 < length ? &nodes[i + 1] : 0;
+        }
         /* These nodes are valid but unlinked; they must not affect the count. */
+        decoys[0].previous = 0;
+        decoys[1].previous = &decoys[0];
+        decoys[2].previous = &decoys[1];
         decoys[0].next = &decoys[1];
         decoys[1].next = &decoys[2];
         decoys[2].next = 0;

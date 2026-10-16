@@ -1,4 +1,4 @@
-"""Behavior checks for the three unintegrated list callback candidates."""
+"""Behavior checks for matching list callback functions."""
 from pathlib import Path
 import shutil
 import subprocess
@@ -16,6 +16,7 @@ class ListCallbackCandidateTests(unittest.TestCase):
             subprocess.run([
                 'cc', '-std=gnu89', '-Wall', '-Wextra', '-Werror',
                 '-I', str(ROOT / 'include'),
-                str(ROOT / 'tests/c/list_callbacks_harness.c'), '-o', str(program),
+                str(ROOT / 'tests/c/list_callbacks_harness.c'),
+                str(ROOT / 'src/list_callbacks.c'), '-o', str(program),
             ], check=True, capture_output=True, text=True)
             subprocess.run([str(program)], check=True, capture_output=True, text=True)

@@ -2,6 +2,7 @@
 #define FFTA_LIST_CALLBACKS_H
 
 #include "types.h"
+#include "list_traversal.h"
 
 /* This callback state has the two words observed in the original routine. */
 struct ListCallbackState {
@@ -16,7 +17,7 @@ typedef char ListCallbackStateHostSize[
     sizeof(void *) != 8 || sizeof(struct ListCallbackState) == 16 ? 1 : -1];
 
 int ListCallbackAppend(void *value, void *context);
-int ListCallbackSelectClear(const u32 *node_words, const u32 **output);
-int ListCallbackClearFlag0(u32 *node_words);
+int ListCallbackSelectClear(void *value, void *context);
+int ListCallbackClearFlag0(void *value, void *context);
 
 #endif

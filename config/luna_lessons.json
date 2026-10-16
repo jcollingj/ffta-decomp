@@ -82,7 +82,7 @@
       "id": "L014",
       "parent_failure": "Parent ran full discovery while workers were editing test/source files",
       "rule": "Before a full integration gate, request a short write freeze from all active coding agents, not only a shared ELF lease. Focused immutable artifacts can be checked during work; full discovery waits for stable owned files.",
-      "evidence": "Class/fullbatch gates saw transient registry and content-index test failures during activeagentwrites."
+      "evidence": "Class/fullbatch gates saw transient registry and content-index test failures during activeagentwrites. Session51 full discovery lacked a coordinated freeze; parent centralized the rule in AGENTS rather than relying on packet reminders."
     },
     {
       "id": "L015",
@@ -93,7 +93,7 @@
     {
       "id": "L016",
       "parent_failure": "Parent did not give old-compiler-compatible layout assertion patterns",
-      "rule": "Pinned agbcc GCC2.9 does not support newer builtins such as __builtin_offsetof. Use supported target layout assertions plus original load offsets. Function equality is not full-block equality: emit required end alignment with .align 2,0 and verify padding.",
+      "rule": "Pinned agbcc GCC2.9 does not support newer builtins such as __builtin_offsetof. Use supported target layout assertions plus original load offsets. Function equality is not full-block equality: emit required end alignment with .align 2,0 and verify padding. Avoid importing modern host stddef macros into target preprocessed C; put native offsetof checks in host harnesses or verify the expanded old-compiler-compatible expression.",
       "evidence": "Session18 headerbuiltinfailedtargetcompile; matching22bytefunction stilldifferedin2bytealignmentuntilzero-filldirective."
     },
     {
@@ -117,7 +117,7 @@
     {
       "id": "L020",
       "parent_failure": "Parent integration prompt allowed only one new object although an interior ROM carve requires a suffix too.",
-      "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order.",
+      "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order. Derive every interval subtraction mechanically in the plan, including large data suffixes.",
       "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing."
     },
     {
@@ -135,8 +135,8 @@
     {
       "id": "L023",
       "parent_failure": "Tool prompt did not make whole-ledger validity, action semantics, and filesystem immutability tests explicit.",
-      "rule": "Planning tools must validate the whole input partition, distinguish create/edit/retire actions, and reject wrong source kinds. Test read-only behavior by comparing actual fixture paths and bytes before/after, not a returned flag; test real CLI JSON/error exit. Run planners on stable leased working trees and regenerate stale plans.",
-      "evidence": "Session30 sameagent fixed fullpartitionvalidation, remainderextensions, oldsourcepaths and explicit retirement after parentreview; added15focusedtests."
+      "rule": "Planning tools must validate the whole input partition, distinguish create/edit/retire actions, and reject wrong source kinds. Test read-only behavior by comparing actual fixture paths and bytes before/after, not a returned flag; test real CLI JSON/error exit. Run planners on stable leased working trees and regenerate stale plans. The integration lease must explicitly require retiring superseded incbin wrappers and checking remaining consumers; a matching build alone does not catch orphan files.",
+      "evidence": "Session30 sameagent fixed fullpartitionvalidation, remainderextensions, oldsourcepaths and explicit retirement after parentreview; added15focusedtests. Session45 integrated a matching list clear but left the previous copied wrapper on disk; parent returned retirement to the same agent."
     },
     {
       "id": "L024",
@@ -147,7 +147,7 @@
     {
       "id": "L025",
       "parent_failure": "Parent explicitly allowed host callback stubs without resolving incompatible production callback function types.",
-      "rule": "Recovered callback APIs must use compatible C function-pointer signatures end to end, not just target ABI-compatible casts. Prefer generic void-pointer callback arguments when evidence shows generic containers. Recheck every existing matching function after header changes and test real callback/traversal composition. Never retain or inspect a pointer to expired stack state; capture live values or assert outputs.",
+      "rule": "Recovered callback APIs must use compatible C function-pointer signatures end to end, not just target ABI-compatible casts. Prefer generic void-pointer callback arguments when evidence shows generic containers. Recheck every existing matching function after header changes and test real callback/traversal composition. Never retain or inspect a pointer to expired stack state; capture live values or assert outputs. Inventory and migrate existing test callsites as well as production callers; compile composition harness dependencies as separate translation units.",
       "evidence": "Session34 parentreviewidentified incompatibleTreeTraversalCallback/ListCallbackAppend call; sameauthor assigned genericcompatibleAPI plus realintegrationharness."
     },
     {
@@ -159,7 +159,7 @@
     {
       "id": "L027",
       "parent_failure": "Parent creation prompt requested native pointer fields without naming known node types or requiring composition with existing owner views.",
-      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts. For output-pointer APIs, use exactly compatible pointer-to-pointer types; receive void* outputs in void* temporaries before converting the values.",
+      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts. For output-pointer APIs, use exactly compatible pointer-to-pointer types; receive void* outputs in void* temporaries before converting the values. Alias fixtures must derive overlap from native offsetof and pointer width rather than assuming the 64-bit host overlap also holds on target.",
       "evidence": "Session36 corrected Container head types; session37 assigned demonstrated partial-owner/native-layout incompatibility for source-first type unification. Session42 initially cast u8** output slots to void**; parent prompt should have required compatible output storage."
     },
     {
@@ -185,6 +185,24 @@
       "parent_failure": "Parent compressed task packets until important acceptance details were hard to scan",
       "rule": "Use ordinary spacing and short paragraphs for task packets. Separate ownership, original evidence, semantic tests, matching constraints and integration authorization. Give concrete distinguishing examples without burying them in compressed prose.",
       "evidence": "Session43 reported the initial packet was too compressed; a readable follow-up clarified native pointers, retained storage and the callback mutation fixture."
+    },
+    {
+      "id": "L032",
+      "parent_failure": "Parent did not require an explicit comparison scope for every reported byte metric",
+      "rule": "Report symbol-aligned differences separately from whole-block differences including alignment/extra bytes. Read each count from its named JSON field and label original versus candidate extents; do not infer block metrics from the function summary.",
+      "evidence": "Session46 reported68 symbol differences as block differences; comparison.json recorded70 block differences. Parent requested corrected research and reproduction."
+    },
+    {
+      "id": "L033",
+      "parent_failure": "Parent patch-renderer prompt omitted text boundary cases",
+      "rule": "Test generated patches by applying them to independent copies with and without final newlines; emit valid no-newline markers or reject unsupported text explicitly. Rendering plausible diff text alone is not verification. Determine EOF by source line position, not row-text equality; include repeated final-line content in fixtures.",
+      "evidence": "Session47 patch deleted a copied wrapper without a final newline incorrectly; parent disposable fixture reproduced git apply failure."
+    },
+    {
+      "id": "L034",
+      "parent_failure": "Parent trusted representation labels without requiring compiler evidence of packing",
+      "rule": "Verify representation experiments in preprocessed declarations and emitted field accesses. A type named Packed is not packed without the compiler attribute; require expected size/offsets and byte-vs-halfword access evidence before running variants. Never weaken a size assertion to hide a missing attribute.",
+      "evidence": "Session46 ordinary structs emitted ldrh/strh and size8 owner but were labeled packed; parent inspected candidate.i/.s and returned the actual packed experiment to the same author."
     }
   ]
 }

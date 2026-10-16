@@ -19,3 +19,6 @@ Read `docs/ROADMAP.md` and `docs/WORK_LOG.md` for scope and verified progress.
 - Update `config/decomp_regions.json` when replacing copied ROM regions, and run `make progress`. Report code recovery separately from ROM/data provenance; unknown code/function totals must remain unknown.
 
 - Luna learning experiment: target 100 unique spawned Luna coding sessions, counting the first three. Follow the continuous-learning section of `docs/ROADMAP.md`; read `config/luna_lessons.json` before assigning or implementing a task. Track actual sessions in `config/luna_sessions.json`. Review errors are feedback to the same agent for revision and a reusable system improvement, not a reason to silently take over. Report unknown effort/cost metrics as unknown and count only independently verified recovery.
+
+- Parallel verification: run focused tests on owned stable files during iteration. Before full test discovery or `make check`, the parent obtains a write-freeze acknowledgement from every active source/test writer. Release the freeze after the gate. Agent-run uncoordinated full discovery is not acceptance evidence.
+- Host C recovery tests compile production sources as separate translation units. Use independent fixed expected whole-state images, including node arrays and callback-visible state; do not use a reimplementation of the candidate as the sole oracle.

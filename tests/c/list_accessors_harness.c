@@ -82,8 +82,12 @@ static void TestListCopy(unsigned length)
     assert(length <= 300);
     memset(&owner, 0xA5, sizeof(owner));
     memset(nodes, 0x5A, sizeof(nodes));
-    for (i = 0; i < length; i++)
+    for (i = 0; i < 300; i++)
+        nodes[i].previous = 0;
+    for (i = 0; i < length; i++) {
+        nodes[i].previous = i ? &nodes[i - 1] : 0;
         nodes[i].next = i + 1 < length ? &nodes[i + 1] : 0;
+    }
     owner.allocator_owner = (void *)0xD00DFEED;
     owner.list_head = length ? &nodes[0] : 0;
     for (i = 0; i < 302; i++)

@@ -3,8 +3,17 @@
 
 #include "types.h"
 
-/* Compares context word 0 with owner word 1; on equality stores the owner
- * address in context word 1. The observed context fields remain unnamed. */
-u32 ListSearchCallback(const u32 *owner_words, u32 *context_words);
+struct TreeCountNode;
+
+struct TreeSearchContext {
+    u32 key;
+    struct TreeCountNode *result;
+};
+
+typedef char TreeSearchContextTargetSize[
+    sizeof(void *) != 4 || sizeof(struct TreeSearchContext) == 8 ? 1 : -1];
+
+/* Compare a tree node's second word with key; stop and retain the first match. */
+int ListSearchCallback(void *value, void *context);
 
 #endif

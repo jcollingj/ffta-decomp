@@ -1,36 +1,22 @@
 #include "allocator_recenter.h"
-
-#include "types.h"
-
+#include "allocator_packed.h"
 void AllocatorRecenter(void *owner)
 {
-    u8 *base = (u8 *)owner;
-    u8 *node;
+    AllocatorOwnerPacked *fields = (AllocatorOwnerPacked *)owner;
+    AllocatorNodePacked *node;
     u16 offset;
     int remaining;
-
-    offset = (u16)((u16)base[0] | ((u16)base[1] << 8));
-    node = offset ? base + ((u32)offset << 2) : 0;
+    offset = fields->head;
+    node = offset ? (AllocatorNodePacked *)((u8 *)owner + (u32)offset * 4) : 0;
     if (node == 0) {
-        base[2] = 0;
-        base[3] = 0;
+        fields->selection = 0;
     } else {
-        offset = (u16)((u16)base[4] | ((u16)base[5] << 8));
-        remaining = (int)(offset >> 1);
-        while (remaining > 1) {
-            offset = (u16)((u16)node[10] | ((u16)node[11] << 8));
-            node = offset ? base + ((u32)offset << 2) : 0;
-            remaining--;
+        remaining = (int)(fields->count >> 1);
+        while (--remaining > 0) {
+            offset = node->next;
+            node = offset ? (AllocatorNodePacked *)((u8 *)owner + (u32)offset * 4) : 0;
         }
-
-        if (node == 0) {
-            offset = 0;
-        } else {
-            offset = (u16)(((u8 *)node - base) / 4);
-        }
-        base[2] = (u8)offset;
-        base[3] = (u8)(offset >> 8);
+        fields->selection = node ? (u16)((u32)((u8 *)node - (u8 *)owner) >> 2) : 0;
     }
 }
-
 asm(".align 2,0");

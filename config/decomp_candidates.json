@@ -154,6 +154,13 @@
       "end": 28198,
       "source": "src/nonmatching/allocator_unlink.c",
       "mode": "thumb"
+    },
+    {
+      "name": "AllocatorInsertFreeBlock",
+      "start": 28200,
+      "end": 28350,
+      "source": "src/nonmatching/allocator_insert.c",
+      "mode": "thumb"
     }
   ]
 }
