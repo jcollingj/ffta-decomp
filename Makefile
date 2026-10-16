@@ -22,9 +22,13 @@ OBJS    := \
 	build/content_index.o \
 	build/rom_random_prefix.o \
 	build/content_consumer.o \
-	build/rom_content_consumer_suffix.o \
+	build/rom_content_globals_prefix.o \
+	build/content_globals.o \
+	build/rom_content_globals_suffix.o \
 	build/list_count_wrappers.o \
-	build/rom_list_count_wrappers_suffix_prefix.o \
+	build/rom_list_count_wrappers_suffix_prefix_prefix.o \
+	build/content_append.o \
+	build/rom_list_count_wrappers_suffix_prefix_suffix.o \
 	build/container_create.o \
 	build/list_clear.o \
 	build/tree_clear.o \

@@ -2,10 +2,10 @@
 #include "unit.h"
 #include "unit_pool.h"
 #include "content_record.h"
+#include "content_state.h"
 extern u8 ReadJobMappingValue(u8);
 extern u8 GetGameFlag(u16);
 extern u16 ReadCurrentContentIndex(void);
-extern u8 gContentState[];
 
 u8 UnitField27HasBit8(const struct UnitFieldView *unit)
 {
@@ -76,7 +76,7 @@ u8 UnitField01InSpecialSet(const struct UnitFieldView *unit)
 u8 ReadContentValue0(void)
 {
     if (GetGameFlag(0x253)) {
-        return gContentState[0xa6];
+        return gContentState.value0;
     } else {
         u16 index = ReadCurrentContentIndex();
         const struct ContentRecord *record = &gContentRecords[index];
@@ -86,7 +86,7 @@ u8 ReadContentValue0(void)
 u8 ReadContentValue1(void)
 {
     if (GetGameFlag(0x253)) {
-        return gContentState[0xa7];
+        return gContentState.value1;
     } else {
         u16 index = ReadCurrentContentIndex();
         const struct ContentRecord *record = &gContentRecords[index];

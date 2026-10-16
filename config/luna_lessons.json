@@ -221,6 +221,18 @@
       "parent_failure": "Parent allowed private record views before checking shared declarations and complete accessed extents.",
       "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels.",
       "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views."
+    },
+    {
+      "id": "L038",
+      "parent_failure": "Parent inferred callback signature from the outer traversal before inspecting the intervening payload adapter.",
+      "rule": "Trace actual callback callers and adapters before selecting a shared function signature. Distinguish the traversal node from the payload passed by an adapter. For pointer getters, distinguish a null member result from a null owner that original code dereferences. Test branch selectors with values that distinguish neighboring accessors and non-one truthy flags.",
+      "evidence": "Session66 parent corrected the proposed direct VisitLinkedNodes contract after inspecting 9ABE8 and bridge14224C; session65 corrected null-owner and host-offset plan assumptions; session64 needed current0/fallback1 and flag2 discriminator fixtures."
+    },
+    {
+      "id": "L039",
+      "parent_failure": "Parent integration packet relied on carve planning without explicitly verifying both region and function inventories.",
+      "rule": "Integrating matching C requires a same-source matching function entry as well as the source region. Independently reconcile expected new function counts and inspect strict symbol comparison output. Reject decompiled C regions with no matching function entries; preserve allowance for literal pools and alignment within regions.",
+      "evidence": "Session66 added the16-byte source region but omitted its function entry; parent observed282 instead of283 functions. Same author corrected entry. Session69 assigned reusable validator guard."
     }
   ]
 }

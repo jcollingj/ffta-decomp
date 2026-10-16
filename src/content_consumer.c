@@ -1,9 +1,8 @@
 #include "content_consumer.h"
 #include "content_record.h"
+#include "content_globals.h"
 #include "list_count_wrappers.h"
 
-extern struct ListCountContext *GetContentConsumerContext(
-    struct ContentConsumerContext *input);
 extern signed int FillContentConsumerEntries(
     struct ListCountContext *context,
     struct ContentConsumerEntry **entries);

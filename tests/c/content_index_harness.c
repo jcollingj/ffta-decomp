@@ -3,8 +3,10 @@
 #include <string.h>
 
 #include "types.h"
+#include "content_state.h"
 
-#include "../../src/content_index.c"
+extern u16 ReadCurrentContentIndex(void);
+extern u16 ReadContentIndexOrFallback(void);
 
 /* The routines access aligned halfwords at byte offsets 0xa0 and 0xa2. */
 struct ContentIndexState gContentState __attribute__((aligned(4)));

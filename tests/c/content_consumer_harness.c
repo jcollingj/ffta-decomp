@@ -4,7 +4,9 @@
 
 #include "container.h"
 #include "content_consumer.h"
+#include "content_globals.h"
 #include "content_record.h"
+#include "content_state.h"
 #include "list_count.h"
 #include "list_count_wrappers.h"
 
@@ -31,28 +33,18 @@ struct StubState {
 };
 
 static struct StubState gStub;
+struct ListCountContext *gContentConsumerContext;
+struct ContentGlobalPointerOwner *gContentGlobalPointerOwner;
 const struct ContentRecord gContentRecords[2] = {
     { {0}, 0, {0x39, 0, 0, 0, 0, 0, 0, 0} },
     { {0}, 0, {0xa7, 0, 0, 0, 0, 0, 0, 0} }
 };
-struct ContentIndexState {
-    u8 unknown00[0xa0];
-    u16 currentIndex;
-    u16 fallbackIndex;
-} __attribute__((aligned(4))) gContentState;
+struct ContentIndexState gContentState __attribute__((aligned(4)));
 
 static void trace(unsigned event)
 {
     assert(gStub.trace_count < sizeof(gStub.trace) / sizeof(gStub.trace[0]));
     gStub.trace[gStub.trace_count++] = event;
-}
-
-struct ListCountContext *GetContentConsumerContext(
-    struct ContentConsumerContext *input)
-{
-    assert(input == &gStub.fixture->input);
-    trace(1);
-    return &gStub.fixture->context;
 }
 
 signed int FillContentConsumerEntries(struct ListCountContext *context,
@@ -91,6 +83,7 @@ static void reset_fixture(struct Fixture *fixture)
     fixture->first_output = 0xbeef;
     fixture->second_output = 0xdead;
     gStub.fixture = fixture;
+    gContentConsumerContext = &fixture->context;
     fixture->context.unknown14 = &fixture->owner14;
     fixture->context.unknown18 = &fixture->owner18;
     for (i = 0; i < 3; i++) {
@@ -119,7 +112,7 @@ static void test_content_list_counts(void)
 {
     static const signed int counts[] = {-1, 0, 1, 12, 13, 14};
     static const u16 expected_qualifying[] = {0, 0, 0, 6, 6, 6};
-    static const unsigned trace_true[] = {1, 3};
+    static const unsigned trace_true[] = {3};
     unsigned n;
 
     for (n = 0; n < sizeof(counts) / sizeof(counts[0]); n++) {
@@ -158,7 +151,7 @@ static void test_content_list_counts(void)
 static void test_content_order_and_flags(void)
 {
     struct Fixture fixture, expected;
-    static const unsigned trace_true[] = {1, 3};
+    static const unsigned trace_true[] = {3};
     unsigned i;
 
     reset_fixture(&fixture);
@@ -192,7 +185,7 @@ static void test_content_order_and_flags(void)
 static void test_alternate_branch_wrap_and_counts(void)
 {
     struct Fixture fixture, expected;
-    static const unsigned trace_false[] = {1, 4, 7};
+    static const unsigned trace_false[] = {4, 7};
 
     reset_fixture(&fixture);
     fixture.input.flags = 0;

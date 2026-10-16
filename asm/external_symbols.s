@@ -71,10 +71,15 @@
 .type DetachTreeNode, %function
 .thumb_set DetachTreeNode, 0x080C7859
 
+@ RAM globals read by the recovered content context getters.
+.global gContentConsumerContext
+.type gContentConsumerContext, %object
+.set gContentConsumerContext, 0x0200F4B0
+.global gContentGlobalPointerOwner
+.type gContentGlobalPointerOwner, %object
+.set gContentGlobalPointerOwner, 0x0200F4A8
+
 @ Provisional names from direct BL sites in the bounded content consumer.
-.global GetContentConsumerContext
-.type GetContentConsumerContext, %function
-.thumb_set GetContentConsumerContext, 0x08096D7D
 .global FillContentConsumerEntries
 .type FillContentConsumerEntries, %function
 .thumb_set FillContentConsumerEntries, 0x08099D09

@@ -1,14 +1,7 @@
 /* Matching recovery for the generic content-index RAM accessors.
  * Original bounds: 0x0800A018..0x0800A024 and 0x0800A024..0x0800A040.
  * Both literal words resolve independently to 0x020020D0. */
-#include "types.h"
-
-struct ContentIndexState {
-    u8 unknown00[0xa0];
-    u16 currentIndex;
-    u16 fallbackIndex;
-};
-extern struct ContentIndexState gContentState;
+#include "content_state.h"
 
 u16 ReadCurrentContentIndex(void)
 {

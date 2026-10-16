@@ -19,6 +19,7 @@ class ContentConsumerCTests(unittest.TestCase):
                 '-I', str(ROOT / 'include'),
                 str(ROOT / 'tests/c/content_consumer_harness.c'),
                 str(ROOT / 'src/content_consumer.c'),
+                str(ROOT / 'src/content_globals.c'),
                 str(ROOT / 'src/content_index.c'),
                 str(ROOT / 'src/list_count_wrappers.c'),
                 str(ROOT / 'src/list_count.c'),
