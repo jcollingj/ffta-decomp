@@ -132,6 +132,14 @@
       "status": "matching_c"
     },
     {
+      "name": "UpdateContentGlobalFlag2000",
+      "start": 617956,
+      "end": 618006,
+      "source": "src/content_flag_toggle.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountContextListAt10",
       "start": 629944,
       "end": 629956,
@@ -152,6 +160,22 @@
       "start": 629968,
       "end": 629980,
       "source": "src/list_count_wrappers.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentUnitSelectCallback",
+      "start": 633660,
+      "end": 633692,
+      "source": "src/content_unit_select.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentPayloadCallbackAdapter",
+      "start": 633832,
+      "end": 633854,
+      "source": "src/content_payload_callback.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2414,10 +2438,17 @@
     },
     {
       "start": 617956,
+      "end": 618008,
+      "kind": "decompiled_c",
+      "source": "src/content_flag_toggle.c",
+      "note": "Matching global content flag toggle and two required zero alignment bytes"
+    },
+    {
+      "start": 618008,
       "end": 629944,
       "kind": "copied",
-      "source": "asm/rom_content_global_flags_suffix.s",
-      "note": "Unrecovered original code/data after the global content flag modifiers"
+      "source": "asm/rom_content_flag_toggle_suffix.s",
+      "note": "Unrecovered original code/data after the content flag toggle"
     },
     {
       "start": 629944,
@@ -2428,9 +2459,37 @@
     },
     {
       "start": 629980,
+      "end": 633660,
+      "kind": "copied",
+      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_prefix.s",
+      "note": "Unrecovered original code/data before content unit selection callback"
+    },
+    {
+      "start": 633660,
+      "end": 633692,
+      "kind": "decompiled_c",
+      "source": "src/content_unit_select.c",
+      "note": "Content unit selection callback; exact 32-byte matching function"
+    },
+    {
+      "start": 633692,
+      "end": 633832,
+      "kind": "copied",
+      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_suffix.s",
+      "note": "Unrecovered original code/data between unit selection and payload callbacks"
+    },
+    {
+      "start": 633832,
+      "end": 633856,
+      "kind": "decompiled_c",
+      "source": "src/content_payload_callback.c",
+      "note": "Content payload callback adapter including required two-byte end padding"
+    },
+    {
+      "start": 633856,
       "end": 633888,
       "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix.s",
+      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix_callback_suffix.s",
       "note": "Unrecovered original code/data before content append callback"
     },
     {

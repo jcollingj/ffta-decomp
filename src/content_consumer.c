@@ -31,8 +31,8 @@ void ConsumeContentRecord(struct ContentConsumerContext *input,
             count = 13;
         qualifying = 0;
         for (i = 0; i < count; i++) {
-            struct ContentConsumerFlagObject *object = entries[i]->object;
-            if (object != 0 && (object->flags & 1))
+            struct UnitFieldView *object = entries[i]->object;
+            if (object != 0 && (object->half18[8] & 1))
                 qualifying++;
         }
         *first_output = qualifying;

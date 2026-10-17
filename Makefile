@@ -25,9 +25,14 @@ OBJS    := \
 	build/rom_content_globals_prefix.o \
 	build/content_globals.o \
 	build/content_global_flags.o \
-	build/rom_content_global_flags_suffix.o \
+	build/content_flag_toggle.o \
+	build/rom_content_flag_toggle_suffix.o \
 	build/list_count_wrappers.o \
-	build/rom_list_count_wrappers_suffix_prefix_prefix.o \
+	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_prefix.o \
+	build/content_unit_select.o \
+	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_suffix.o \
+	build/content_payload_callback.o \
+	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_suffix.o \
 	build/content_append.o \
 	build/rom_list_count_wrappers_suffix_prefix_suffix.o \
 	build/container_create.o \

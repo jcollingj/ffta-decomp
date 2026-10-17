@@ -15,7 +15,7 @@ struct Fixture {
     struct ListCountContext context;
     struct ContentConsumerSelection selection;
     struct ContentConsumerEntry entries[13];
-    struct ContentConsumerFlagObject objects[13];
+    struct UnitFieldView objects[13];
     struct Container owner14;
     struct Container owner18;
     struct ListCountNode nodes14[3];
@@ -124,7 +124,7 @@ static void test_content_list_counts(void)
         gContentState.currentIndex = 1;
         for (i = 0; i < 13; i++) {
             fixture.entries[i].object = &fixture.objects[i];
-            fixture.objects[i].flags = (i & 1) ? 1 : 2;
+            fixture.objects[i].half18[8] = (i & 1) ? 1 : 2;
         }
         if (counts[n] == 1)
             fixture.entries[0].object = 0;
@@ -160,7 +160,8 @@ static void test_content_order_and_flags(void)
     gContentState.currentIndex = 0;
     for (i = 0; i < 13; i++) {
         fixture.entries[i].object = &fixture.objects[i];
-        fixture.objects[i].flags = (i == 1 || i == 4 || i == 12) ? 1 : 0x8000;
+        fixture.objects[i].half18[8] =
+            (i == 1 || i == 4 || i == 12) ? 1 : 0x8000;
     }
     fixture.entries[2].object = 0; /* Null is skipped; entry 4 still counts. */
     memcpy(&expected, &fixture, sizeof(expected));
@@ -227,7 +228,7 @@ int main(void)
         assert(offsetof(struct ContentRecord, unknown20) == 40);
         assert(sizeof(struct ContentRecord) == 48);
     }
-    assert(offsetof(struct ContentConsumerFlagObject, flags) == 40);
+    assert(offsetof(struct UnitFieldView, half18) + 8 * sizeof(u16) == 40);
     assert(offsetof(struct ContentConsumerContext, flags) == 16);
     test_content_list_counts();
     test_content_order_and_flags();

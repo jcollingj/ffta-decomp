@@ -1,16 +1,11 @@
 #ifndef FFTA_CONTENT_CONSUMER_H
 #define FFTA_CONTENT_CONSUMER_H
 
-#include "types.h"
+#include "unit.h"
 
-/* The disassembly establishes these pointer layers, not their field meanings. */
-struct ContentConsumerFlagObject {
-    u8 unknown00[40];
-    u16 flags;
-};
-
+/* The entry payload contains a pointer to a unit view. */
 struct ContentConsumerEntry {
-    struct ContentConsumerFlagObject *object;
+    struct UnitFieldView *object;
 };
 
 struct ContentConsumerContext {

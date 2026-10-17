@@ -1,3 +1,3 @@
 @ Unrecovered original code/data retained around a source carve.
 .section .text
-.incbin "baserom.gba", 0x99cdc, 0xf44
+.incbin "baserom.gba", 0x9ab5c, 0x8c
