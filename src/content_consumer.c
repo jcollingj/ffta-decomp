@@ -1,11 +1,12 @@
 #include "content_consumer.h"
 #include "content_fill.h"
+#include "content_find_flagged.h"
 #include "content_record.h"
 #include "content_globals.h"
 #include "content_selection_lookup.h"
 #include "list_count_wrappers.h"
+#include "list_payload.h"
 
-extern u32 HasContentConsumerSelection(struct ListCountContext *context);
 extern u16 ReadCurrentContentIndex(void);
 void ConsumeContentRecord(struct ContentConsumerContext *input,
                           const void *selector,
@@ -39,14 +40,17 @@ void ConsumeContentRecord(struct ContentConsumerContext *input,
     } else {
         struct ContentConsumerEntry *selection;
         u32 additional_count;
-        u32 helper_result;
-        u32 has_selection;
+        ListPayload helper_result;
+        ListPayload has_selection;
 
         selection = ResolveContentConsumerSelection(context, selector);
         *first_output = (u16)(selection->value5c + 1);
-        helper_result = HasContentConsumerSelection(context);
-        has_selection = (0u - helper_result) | helper_result;
-        has_selection >>= 31;
+        selection = FindContentEntryWithUnitFlag12(context);
+        /* ListPayload is pointer-width here; fold its native representation
+         * without narrowing the returned pointer to u32. */
+        helper_result = (unsigned long)selection;
+        has_selection = (0UL - helper_result) | helper_result;
+        has_selection >>= sizeof(ListPayload) * 8 - 1;
         additional_count = CountContextListAt14(context);
         additional_count += CountContextListAt18(context);
         additional_count += has_selection;

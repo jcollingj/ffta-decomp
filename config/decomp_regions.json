@@ -140,10 +140,34 @@
       "status": "matching_c"
     },
     {
+      "name": "FindContentEntryWithUnitFlag12",
+      "start": 628036,
+      "end": 628064,
+      "source": "src/content_find_flagged.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "ResolveContentConsumerSelection",
       "start": 628064,
       "end": 628096,
       "source": "src/content_selection_lookup.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "FindContentEntryByPosition",
+      "start": 628252,
+      "end": 628292,
+      "source": "src/content_coordinate_lookup.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "FindContentEntryByUnitCoordinates",
+      "start": 628292,
+      "end": 628332,
+      "source": "src/content_coordinate_lookup.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -216,6 +240,22 @@
       "start": 633692,
       "end": 633724,
       "source": "src/content_selection_predicate.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentCoordinateSelectCallback",
+      "start": 633724,
+      "end": 633776,
+      "source": "src/content_coordinate_select.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentUnitCoordinateSelectCallback",
+      "start": 633776,
+      "end": 633830,
+      "source": "src/content_unit_coordinate_select.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2493,10 +2533,17 @@
     },
     {
       "start": 618008,
-      "end": 628064,
+      "end": 628036,
       "kind": "copied",
-      "source": "asm/rom_context_visit_prefix.s",
+      "source": "asm/rom_ctxvisit_prefix.s",
       "note": "Unrecovered original code/data before the content selection lookup wrapper"
+    },
+    {
+      "start": 628036,
+      "end": 628064,
+      "kind": "decompiled_c",
+      "source": "src/content_find_flagged.c",
+      "note": "Content entry unit-flag search wrapper; exact 28-byte matching function"
     },
     {
       "start": 628064,
@@ -2507,10 +2554,31 @@
     },
     {
       "start": 628096,
+      "end": 628252,
+      "kind": "copied",
+      "source": "asm/rom_context_lookup_suffix_prefix.s",
+      "note": "Unrecovered original code/data before coordinate lookup wrappers"
+    },
+    {
+      "start": 628252,
+      "end": 628292,
+      "kind": "decompiled_c",
+      "source": "src/content_coordinate_lookup.c",
+      "note": "Position coordinate lookup wrapper; exact 40-byte matching function"
+    },
+    {
+      "start": 628292,
+      "end": 628332,
+      "kind": "decompiled_c",
+      "source": "src/content_coordinate_lookup.c",
+      "note": "Unit coordinate lookup wrapper; exact 40-byte matching function"
+    },
+    {
+      "start": 628332,
       "end": 628800,
       "kind": "copied",
-      "source": "asm/rom_context_lookup_suffix.s",
-      "note": "Unrecovered original code/data after the selection lookup wrapper and before context payload visitors"
+      "source": "asm/rom_context_lookup_suffix_suffix.s",
+      "note": "Unrecovered original code/data after coordinate lookup wrappers and before context payload visitors"
     },
     {
       "start": 628800,
@@ -2570,10 +2638,17 @@
     },
     {
       "start": 633724,
+      "end": 633776,
+      "kind": "decompiled_c",
+      "source": "src/content_coordinate_select.c",
+      "note": "Coordinate-selection list callback; exact 52-byte matching function"
+    },
+    {
+      "start": 633776,
       "end": 633832,
-      "kind": "copied",
-      "source": "asm/rom_selection_lookup_suffix.s",
-      "note": "Unrecovered original code/data after the object-equality callback and before payload callbacks"
+      "kind": "decompiled_c",
+      "source": "src/content_unit_coordinate_select.c",
+      "note": "Content unit-coordinate list callback; 54-byte matching function plus two alignment bytes"
     },
     {
       "start": 633832,

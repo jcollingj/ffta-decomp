@@ -1,0 +1,34 @@
+"""Composition checks for the context unit-flag entry finder."""
+from pathlib import Path
+import shutil
+import subprocess
+import tempfile
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+@unittest.skipUnless(shutil.which("cc"), "requires a host C compiler")
+class ContentFindFlaggedTests(unittest.TestCase):
+    def test_real_wrapper_visitor_adapter_selector_and_unit_helper(self):
+        with tempfile.TemporaryDirectory() as directory:
+            program = Path(directory) / "content-find-flagged-test"
+            subprocess.run([
+                "cc", "-std=gnu89", "-Wall", "-Wextra", "-Werror",
+                "-Wno-pointer-to-int-cast", "-I", str(ROOT / "include"),
+                str(ROOT / "tests/c/content_find_flagged_harness.c"),
+                str(ROOT / "src/content_find_flagged.c"),
+                str(ROOT / "src/content_context_visit.c"),
+                str(ROOT / "src/content_payload_callback.c"),
+                str(ROOT / "src/content_unit_select.c"),
+                str(ROOT / "src/unit_fields.c"),
+                str(ROOT / "src/list_accessors.c"),
+                str(ROOT / "src/list_visit.c"),
+                "-o", str(program),
+            ], check=True, capture_output=True, text=True)
+            subprocess.run([str(program)], check=True,
+                           capture_output=True, text=True)
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -5,6 +5,7 @@
 #include "container.h"
 #include "content_consumer.h"
 #include "content_fill.h"
+#include "content_find_flagged.h"
 #include "content_globals.h"
 #include "content_record.h"
 #include "content_selection_lookup.h"
@@ -30,6 +31,7 @@ struct StubState {
     struct Fixture *fixture;
     signed int list_count;
     u32 selection_present;
+    struct ContentConsumerEntry *find_result;
     unsigned trace[8];
     unsigned trace_count;
 };
@@ -69,11 +71,14 @@ struct ContentConsumerEntry *ResolveContentConsumerSelection(
     return &gStub.fixture->selection;
 }
 
-u32 HasContentConsumerSelection(struct ListCountContext *context)
+struct ContentConsumerEntry *FindContentEntryWithUnitFlag12(
+    struct ListCountContext *context)
 {
     assert(context == &gStub.fixture->context);
     trace(7);
-    return gStub.selection_present;
+    if (gStub.find_result != 0)
+        return gStub.find_result;
+    return gStub.selection_present ? &gStub.fixture->selection : 0;
 }
 
 static void reset_fixture(struct Fixture *fixture)
@@ -219,6 +224,30 @@ static void test_alternate_branch_wrap_and_counts(void)
     assert_trace(trace_false, sizeof(trace_false) / sizeof(trace_false[0]));
 }
 
+static void test_alternate_branch_native_pointer_low32_zero(void)
+{
+    struct Fixture fixture, expected;
+    static const unsigned trace_false[] = {4, 7};
+
+    if (sizeof(void *) != 8 || sizeof(unsigned long) != 8)
+        return;
+
+    reset_fixture(&fixture);
+    fixture.input.flags = 0;
+    fixture.owner14.list_head = 0;
+    fixture.owner18.list_head = 0;
+    /* Opaque pointer value is never dereferenced; its low 32 bits are zero. */
+    gStub.find_result = (struct ContentConsumerEntry *)(1UL << 32);
+    memcpy(&expected, &fixture, sizeof(expected));
+    expected.first_output = 1; /* selection.value5c defaults to zero. */
+    expected.second_output = 1;
+
+    ConsumeContentRecord(&fixture.input, &fixture.input,
+                         &fixture.first_output, &fixture.second_output);
+    assert_full_fixture(&fixture, &expected);
+    assert_trace(trace_false, sizeof(trace_false) / sizeof(trace_false[0]));
+}
+
 int main(void)
 {
     if (sizeof(void *) == 4) {
@@ -235,5 +264,6 @@ int main(void)
     test_content_list_counts();
     test_content_order_and_flags();
     test_alternate_branch_wrap_and_counts();
+    test_alternate_branch_native_pointer_low32_zero();
     return 0;
 }

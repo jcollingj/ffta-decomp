@@ -3,8 +3,8 @@
     {
       "id": "L001",
       "parent_failure": "Parent gave insufficient branch evidence",
-      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry.",
-      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch."
+      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry. Signed/unsigned comparison fixtures must use the same bit pattern on opposite sides (for example signed -1 versus unsigned255), not merely any unequal negative/positive values.",
+      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch. Session80 initial -1 versus7 fixture could not detect unsigned-query comparison; author added128/255 collisions."
     },
     {
       "id": "L002",
@@ -219,8 +219,8 @@
     {
       "id": "L037",
       "parent_failure": "Parent allowed private record views before checking shared declarations and complete accessed extents.",
-      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels. Keep unused target words numeric/opaque unless pointer evidence exists; do not invent pointer semantics. Pointer-equality predicates should explicitly test NULL==NULL when original code allows it.",
-      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views. Session75 replaced an invented unused pointer with u32 and added NULL equality fixtures."
+      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels. Keep unused target words numeric/opaque unless pointer evidence exists; do not invent pointer semantics. Pointer-equality predicates should explicitly test NULL==NULL when original code allows it. Apply the evidence rule to parent-proposed types too: a similar neighboring context layout does not prove an unused word is a pointer. List each field with its observed load/store before drafting the structure.",
+      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views. Session75 replaced an invented unused pointer with u32 and added NULL equality fixtures. Parent repeated this mistake in77 coordinate-query word0; corrected to u32 and notified78 before integration."
     },
     {
       "id": "L038",
@@ -233,6 +233,24 @@
       "parent_failure": "Parent integration packet relied on carve planning without explicitly verifying both region and function inventories.",
       "rule": "Integrating matching C requires a same-source matching function entry as well as the source region. Independently reconcile expected new function counts and inspect strict symbol comparison output. Reject decompiled C regions with no matching function entries; preserve allowance for literal pools and alignment within regions.",
       "evidence": "Session66 added the16-byte source region but omitted its function entry; parent observed282 instead of283 functions. Same author corrected entry. Session69 assigned reusable validator guard."
+    },
+    {
+      "id": "L040",
+      "parent_failure": "Parent migration packet specified native pointers but did not trace the complete boolean normalization expression for narrowing.",
+      "rule": "When replacing an integer-returning copied alias with a native pointer contract, inspect every intermediate conversion and shift. Keep pointer representation arithmetic native-width on supported ABIs. Add a distinguishing opaque non-dereferenced LP64 pointer with low32 bits zero when testing a boolean fold, and verify a scratch narrowing mutant fails. Describe compiler trials as measured alternatives, not proof that only one source shape can match.",
+      "evidence": "Session76 initially narrowed a pointer fold to u32 before shifting31. Same author corrected to ListPayload width, preserved184 original bytes, and demonstrated the narrowing mutant fails the new fixture."
+    },
+    {
+      "id": "L041",
+      "parent_failure": "Parallel callback packets shared a context header but did not explicitly reserve distinct exported symbol names.",
+      "rule": "Reserve each new exported function name in the task packet; inspect existing declarations and peer-owned candidates before implementation. Shared data layout does not imply shared callback identity. Compile/link related callbacks together or audit their symbols before integration.",
+      "evidence": "Session78 reused session77 ContentCoordinateSelectCallback name; peer77 caught the collision and author78 renamed it ContentUnitCoordinateSelectCallback while preserving56 original bytes."
+    },
+    {
+      "id": "L042",
+      "parent_failure": "Parent stated owned paths but did not require an explicit final changed-path reconciliation.",
+      "rule": "Before reporting frozen, compare actual edited paths with the assignment ownership list. Put independent test runners in their reserved files; do not silently append to a neighboring existing runner. Report any necessary out-of-scope path before editing it.",
+      "evidence": "Session79 added its composition test to existing consumer runner despite owning a new composition runner. Parent returned relocation to same author and requested clearer referenced-unit fixtures."
     }
   ]
 }

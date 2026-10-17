@@ -78,8 +78,3 @@
 .global gContentGlobalPointerOwner
 .type gContentGlobalPointerOwner, %object
 .set gContentGlobalPointerOwner, 0x0200F4A8
-
-@ Provisional name from a direct BL site in the bounded content consumer.
-.global HasContentConsumerSelection
-.type HasContentConsumerSelection, %function
-.thumb_set HasContentConsumerSelection, 0x08099545

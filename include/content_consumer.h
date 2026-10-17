@@ -3,11 +3,16 @@
 
 #include "unit.h"
 
-/* Target entry: object pointer at +0, value5c at +0x5C. The intervening
- * bytes are opaque; native host offsets expand with pointer width. */
+/* Target entry: object pointer at +0; signed positions at +8 and +12;
+ * value5c at +0x5C. The remaining fields are opaque. Native host offsets
+ * expand with pointer width. */
 struct ContentConsumerEntry {
     struct UnitFieldView *object;
-    u8 unknown04[0x58];
+    u32 unknown04;
+    signed short position08;
+    u8 unknown0A[2];
+    signed short position0C;
+    u8 unknown0E[0x4E];
     u16 value5c;
 };
 
