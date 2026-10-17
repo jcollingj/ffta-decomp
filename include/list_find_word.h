@@ -5,6 +5,6 @@
 
 /* Returns the first node whose word at offset zero equals word. */
 struct ListCountNode *FindListNodeByWord(const struct Container *owner,
-                                        u32 word);
+                                         ListPayload word);
 
 #endif

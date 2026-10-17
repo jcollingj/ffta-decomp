@@ -34,16 +34,46 @@ def measure(manifest):
     functions = manifest['functions']
     addresses = set()
     recovered = 0
+    c_regions = [region for region in manifest['regions']
+                 if region['kind'] == 'decompiled_c']
+
     for function in functions:
         start, end = function['start'], function['end']
         if start in addresses or not 0 <= start < end <= cursor:
             raise ValueError('duplicate or invalid function')
         addresses.add(start)
         if function['status'] == 'matching_c':
-            if not any(r['kind'] == 'decompiled_c' and r['start'] <= start < end <= r['end']
-                       for r in manifest['regions']):
-                raise ValueError('matching function must belong to a decompiled C region')
+            source = function.get('source')
+            if not isinstance(source, str) or not source.strip():
+                raise ValueError(
+                    f'matching C function at {start:#x}..{end:#x} must declare a source')
+            containing = [region for region in c_regions
+                          if region['start'] <= start < end <= region['end']]
+            if not containing:
+                raise ValueError(
+                    f'matching C function at {start:#x}..{end:#x} must be wholly within '
+                    'a decompiled C region')
+            if containing[0].get('source') != source:
+                raise ValueError(
+                    f'matching C function at {start:#x}..{end:#x} source {source!r} '
+                    f'does not match decompiled C region source '
+                    f'{containing[0].get("source")!r}')
             recovered += 1
+
+    for region in c_regions:
+        source = region.get('source')
+        if not isinstance(source, str) or not source.strip():
+            raise ValueError(
+                f'decompiled C region {region["start"]:#x}..{region["end"]:#x} '
+                'must declare a source')
+        matching = [function for function in functions
+                    if function.get('status') == 'matching_c'
+                    and region['start'] <= function['start'] < function['end'] <= region['end']
+                    and function.get('source') == source]
+        if not matching:
+            raise ValueError(
+                f'decompiled C region {region["start"]:#x}..{region["end"]:#x} '
+                f'({source}) must contain at least one same-source matching C function')
     return {
         'rom_bytes': cursor, 'bytes_by_kind': dict(sorted(totals.items())),
         'source_or_generated_bytes': cursor - totals['copied'],

@@ -24,7 +24,8 @@ OBJS    := \
 	build/content_consumer.o \
 	build/rom_content_globals_prefix.o \
 	build/content_globals.o \
-	build/rom_content_globals_suffix.o \
+	build/content_global_flags.o \
+	build/rom_content_global_flags_suffix.o \
 	build/list_count_wrappers.o \
 	build/rom_list_count_wrappers_suffix_prefix_prefix.o \
 	build/content_append.o \

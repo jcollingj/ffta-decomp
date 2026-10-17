@@ -108,6 +108,30 @@
       "status": "matching_c"
     },
     {
+      "name": "ClearContentGlobalFlag800AndSet1000",
+      "start": 617876,
+      "end": 617908,
+      "source": "src/content_global_flags.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "AddContentGlobalFlags8800",
+      "start": 617908,
+      "end": 617932,
+      "source": "src/content_global_flags.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ClearContentGlobalFlags8800",
+      "start": 617932,
+      "end": 617956,
+      "source": "src/content_global_flags.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountContextListAt10",
       "start": 629944,
       "end": 629956,
@@ -2383,10 +2407,17 @@
     },
     {
       "start": 617876,
+      "end": 617956,
+      "kind": "decompiled_c",
+      "source": "src/content_global_flags.c",
+      "note": "Three matching global content flag modifiers and their literal pools"
+    },
+    {
+      "start": 617956,
       "end": 629944,
       "kind": "copied",
-      "source": "asm/rom_content_globals_suffix.s",
-      "note": "Unrecovered original code/data after the adjacent content global-pointer getters"
+      "source": "asm/rom_content_global_flags_suffix.s",
+      "note": "Unrecovered original code/data after the global content flag modifiers"
     },
     {
       "start": 629944,

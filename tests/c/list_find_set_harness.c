@@ -6,7 +6,7 @@
 #include "../../src/list_find_word.c"
 #include "../../src/list_set_words.c"
 
-static void CheckSearch(const struct Container *owner, u32 word,
+static void CheckSearch(const struct Container *owner, ListPayload word,
                         struct ListCountNode *expected,
                         struct Container *owner_storage,
                         struct ListCountNode *nodes, unsigned node_count)

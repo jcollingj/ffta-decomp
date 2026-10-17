@@ -15,7 +15,7 @@ static struct ListCountNode expected_allocation;
 static struct ListCountNode alternate[2];
 static struct ListCountNode expected_alternate[2];
 static void *expected_allocator;
-static u32 expected_payload;
+static ListPayload expected_payload;
 static struct ListCountNode *head_during_allocation;
 static unsigned allocation_calls;
 
@@ -29,7 +29,7 @@ void *AllocatorAllocate(void *allocator_owner, u32 size)
     return &allocation;
 }
 
-static void run_case(unsigned initial_count, u32 payload,
+static void run_case(unsigned initial_count, ListPayload payload,
                      struct ListCountNode *callback_head,
                      unsigned selected_count, unsigned append_at)
 {

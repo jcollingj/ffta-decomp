@@ -68,6 +68,53 @@ class ProgressTests(unittest.TestCase):
             progress.audit(self.manifest, self.root, self.rom)
 
     def test_function_must_be_in_recovered_code_region(self):
-        self.manifest['functions'] = [dict(start=0, end=4, status='matching_c')]
+        self.manifest['functions'] = [dict(
+            start=0, end=4, status='matching_c', source='src/recovered.c')]
         with self.assertRaisesRegex(ValueError, 'decompiled C'):
             progress.measure(self.manifest)
+
+    def test_decompiled_c_region_requires_a_matching_function(self):
+        self.manifest['regions'][1] = dict(
+            start=6, end=8, kind='decompiled_c', source='src/recovered.c')
+        with self.assertRaisesRegex(ValueError, 'at least one same-source matching C function'):
+            progress.measure(self.manifest)
+
+    def test_matching_function_and_region_require_sources(self):
+        self.manifest['regions'][1] = dict(start=6, end=8, kind='decompiled_c')
+        with self.assertRaisesRegex(ValueError, 'region .* must declare a source'):
+            progress.measure(self.manifest)
+
+        self.manifest['regions'][1]['source'] = 'src/recovered.c'
+        self.manifest['functions'] = [dict(start=6, end=8, status='matching_c')]
+        with self.assertRaisesRegex(ValueError, 'function .* must declare a source'):
+            progress.measure(self.manifest)
+
+    def test_matching_function_must_match_region_source(self):
+        self.manifest['regions'][1] = dict(
+            start=6, end=8, kind='decompiled_c', source='src/recovered.c')
+        self.manifest['functions'] = [dict(
+            start=6, end=8, status='matching_c', source='src/other.c')]
+        with self.assertRaisesRegex(ValueError, 'does not match decompiled C region source'):
+            progress.measure(self.manifest)
+
+    def test_matching_function_must_be_wholly_within_c_region(self):
+        self.manifest['regions'][1] = dict(
+            start=6, end=8, kind='decompiled_c', source='src/recovered.c')
+        self.manifest['functions'] = [dict(
+            start=5, end=7, status='matching_c', source='src/recovered.c')]
+        with self.assertRaisesRegex(ValueError, 'must be wholly within'):
+            progress.measure(self.manifest)
+
+    def test_multiple_functions_may_share_region_with_unattributed_padding(self):
+        self.manifest['rom_size'] = 12
+        self.manifest['regions'][1] = dict(
+            start=6, end=12, kind='decompiled_c', source='src/recovered.c')
+        self.manifest['functions'] = [
+            dict(start=6, end=8, status='matching_c', source='src/recovered.c'),
+            dict(start=10, end=12, status='matching_c', source='src/recovered.c'),
+        ]
+        result = progress.measure(self.manifest)
+        self.assertEqual(result['bytes_by_kind']['decompiled_c'], 6)
+        self.assertEqual(result['matching_c_functions'], 2)
+        self.assertIsNone(result['total_functions'])
+        self.assertIsNone(result['code_completion_percent'])

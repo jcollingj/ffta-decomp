@@ -21,7 +21,10 @@ class CarvePatchTests(unittest.TestCase):
         self.regions = {
             "rom_size": 0x1000,
             "code_inventory_complete": False,
-            "functions": [],
+            "functions": [{
+                "name": "ExistingFixtureFunction", "start": 0x100, "end": 0x104,
+                "status": "matching_c", "source": "src/old.c",
+            }],
             "regions": [
                 {"start": 0, "end": 0x100, "kind": "copied", "source": "asm/rom_a.s"},
                 {"start": 0x100, "end": 0x180, "kind": "decompiled_c", "source": "src/old.c"},
@@ -32,7 +35,8 @@ class CarvePatchTests(unittest.TestCase):
         (self.root / "asm/rom_a.s").write_text('.incbin "baserom.gba", 0x0, 0x100\n')
         (self.root / "asm/rom_b.s").write_text(
             '@ old wrapper comment\n.section .text\n.incbin "baserom.gba", 0x180, 0xE80\n')
-        (self.root / "src/old.c").write_text("/* existing object */\n")
+        (self.root / "src/old.c").write_text(
+            "void ExistingFixtureFunction(void) {}\n")
         (self.root / "src/first.c").write_text("")
         (self.root / "src/last.c").write_text("")
         (self.root / "Makefile").write_text(

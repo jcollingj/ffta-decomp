@@ -1,7 +1,8 @@
 #include "list_append.h"
 #include "allocator_wrappers.h"
 
-struct ListCountNode *AppendListNode(struct Container *owner, u32 payload)
+struct ListCountNode *AppendListNode(struct Container *owner,
+                                     ListPayload payload)
 {
     struct ListCountNode *node;
     struct ListCountNode *head;

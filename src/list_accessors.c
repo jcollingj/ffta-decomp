@@ -1,9 +1,9 @@
 #include "list_accessors.h"
 
-/* The two leading list words are intentionally kept opaque. */
-u32 GetListOwnerWord0(const u32 *owner_words)
+/* The payload is an opaque native-width word shared by list clients. */
+ListPayload GetListOwnerWord0(const struct ListCountNode *node)
 {
-    return owner_words[0];
+    return node->unknown00;
 }
 
 void CopyListOwnerWords(const u32 *owner_words, u32 *out_word4, u32 *out_word0)

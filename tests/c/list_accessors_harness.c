@@ -6,12 +6,14 @@
 
 static void TestWord0Getter(void)
 {
-    u32 words[2] = {0x13579BDF, 0x2468ACE0};
-    u32 before[2];
+    struct ListCountNode node;
+    struct ListCountNode before;
 
-    memcpy(before, words, sizeof(words));
-    assert(GetListOwnerWord0(words) == 0x13579BDF);
-    assert(memcmp(before, words, sizeof(words)) == 0);
+    memset(&node, 0x5A, sizeof(node));
+    node.unknown00 = 0x13579BDFUL;
+    before = node;
+    assert(GetListOwnerWord0(&node) == 0x13579BDFUL);
+    assert(memcmp(&before, &node, sizeof(node)) == 0);
 }
 
 static void TestWordCopyAliases(void)
