@@ -117,7 +117,7 @@
     {
       "id": "L020",
       "parent_failure": "Parent integration prompt allowed only one new object although an interior ROM carve requires a suffix too.",
-      "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order. Derive every interval subtraction mechanically in the plan, including large data suffixes.",
+      "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order. Derive every interval subtraction mechanically in the plan, including large data suffixes. Use explicit short semantic --prefix/--suffix names for repeated carves rather than recursively lengthening existing wrapper basenames.",
       "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing."
     },
     {
@@ -219,8 +219,8 @@
     {
       "id": "L037",
       "parent_failure": "Parent allowed private record views before checking shared declarations and complete accessed extents.",
-      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels.",
-      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views."
+      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels. Keep unused target words numeric/opaque unless pointer evidence exists; do not invent pointer semantics. Pointer-equality predicates should explicitly test NULL==NULL when original code allows it.",
+      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views. Session75 replaced an invented unused pointer with u32 and added NULL equality fixtures."
     },
     {
       "id": "L038",

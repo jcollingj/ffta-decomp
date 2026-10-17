@@ -4,8 +4,10 @@
 
 #include "container.h"
 #include "content_consumer.h"
+#include "content_fill.h"
 #include "content_globals.h"
 #include "content_record.h"
+#include "content_selection_lookup.h"
 #include "content_state.h"
 #include "list_count.h"
 #include "list_count_wrappers.h"
@@ -13,7 +15,7 @@
 struct Fixture {
     struct ContentConsumerContext input;
     struct ListCountContext context;
-    struct ContentConsumerSelection selection;
+    struct ContentConsumerEntry selection;
     struct ContentConsumerEntry entries[13];
     struct UnitFieldView objects[13];
     struct Container owner14;
@@ -47,18 +49,18 @@ static void trace(unsigned event)
     gStub.trace[gStub.trace_count++] = event;
 }
 
-signed int FillContentConsumerEntries(struct ListCountContext *context,
-                                      struct ContentConsumerEntry **entries)
+int FillContentConsumerEntries(struct ListCountContext *context,
+                               void **entries)
 {
     unsigned i;
     assert(context == &gStub.fixture->context);
     trace(3);
     for (i = 0; i < 13; i++)
-        entries[i] = &gStub.fixture->entries[i];
+        entries[i] = (void *)&gStub.fixture->entries[i];
     return gStub.list_count;
 }
 
-struct ContentConsumerSelection *ResolveContentConsumerSelection(
+struct ContentConsumerEntry *ResolveContentConsumerSelection(
     struct ListCountContext *context, const void *selector)
 {
     assert(context == &gStub.fixture->context);

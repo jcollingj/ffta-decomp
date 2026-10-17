@@ -1,13 +1,10 @@
 #include "content_consumer.h"
+#include "content_fill.h"
 #include "content_record.h"
 #include "content_globals.h"
+#include "content_selection_lookup.h"
 #include "list_count_wrappers.h"
 
-extern signed int FillContentConsumerEntries(
-    struct ListCountContext *context,
-    struct ContentConsumerEntry **entries);
-extern struct ContentConsumerSelection *ResolveContentConsumerSelection(
-    struct ListCountContext *context, const void *selector);
 extern u32 HasContentConsumerSelection(struct ListCountContext *context);
 extern u16 ReadCurrentContentIndex(void);
 void ConsumeContentRecord(struct ContentConsumerContext *input,
@@ -19,7 +16,7 @@ void ConsumeContentRecord(struct ContentConsumerContext *input,
 
     context = GetContentConsumerContext(input);
     if (input->flags & 0x10) {
-        struct ContentConsumerEntry *entries[13];
+        void *entries[13];
         signed int count;
         signed int i;
         unsigned int qualifying;
@@ -31,14 +28,16 @@ void ConsumeContentRecord(struct ContentConsumerContext *input,
             count = 13;
         qualifying = 0;
         for (i = 0; i < count; i++) {
-            struct UnitFieldView *object = entries[i]->object;
+            struct ContentConsumerEntry *entry =
+                (struct ContentConsumerEntry *)entries[i];
+            struct UnitFieldView *object = entry->object;
             if (object != 0 && (object->half18[8] & 1))
                 qualifying++;
         }
         *first_output = qualifying;
         *second_output = record->unknown20[0];
     } else {
-        struct ContentConsumerSelection *selection;
+        struct ContentConsumerEntry *selection;
         u32 additional_count;
         u32 helper_result;
         u32 has_selection;

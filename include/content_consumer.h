@@ -3,21 +3,17 @@
 
 #include "unit.h"
 
-/* The entry payload contains a pointer to a unit view. */
+/* Target entry: object pointer at +0, value5c at +0x5C. The intervening
+ * bytes are opaque; native host offsets expand with pointer width. */
 struct ContentConsumerEntry {
     struct UnitFieldView *object;
+    u8 unknown04[0x58];
+    u16 value5c;
 };
 
 struct ContentConsumerContext {
     u8 unknown00[16];
     u16 flags;
-};
-
-/* Return object from the alternate selection helper; only halfword +0x5c is
- * observed by this consumer. */
-struct ContentConsumerSelection {
-    u8 unknown00[0x5c];
-    u16 value5c;
 };
 
 /* Generic name: the routine's relationship to maps or missions is unknown. */

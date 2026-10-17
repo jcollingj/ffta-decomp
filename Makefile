@@ -26,11 +26,18 @@ OBJS    := \
 	build/content_globals.o \
 	build/content_global_flags.o \
 	build/content_flag_toggle.o \
-	build/rom_content_flag_toggle_suffix.o \
+	build/rom_context_visit_prefix.o \
+	build/content_selection_lookup.o \
+	build/rom_context_lookup_suffix.o \
+	build/content_context_visit.o \
+	build/rom_context_visit_suffix.o \
 	build/list_count_wrappers.o \
-	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_prefix.o \
+	build/rom_content_fill_prefix.o \
+	build/content_fill.o \
+	build/rom_content_fill_suffix.o \
 	build/content_unit_select.o \
-	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_suffix.o \
+	build/content_selection_predicate.o \
+	build/rom_selection_lookup_suffix.o \
 	build/content_payload_callback.o \
 	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_suffix.o \
 	build/content_append.o \

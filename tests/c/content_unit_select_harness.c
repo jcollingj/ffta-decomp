@@ -20,7 +20,8 @@ typedef int (*ContentEntryCallback)(void *entry, void *context);
 typedef char EntryObjectAtZero[
     offsetof(struct ContentConsumerEntry, object) == 0 ? 1 : -1];
 typedef char EntryContainsNativePointer[
-    sizeof(struct ContentConsumerEntry) == sizeof(void *) ? 1 : -1];
+    offsetof(struct ContentConsumerEntry, value5c) ==
+        0x5c + sizeof(void *) - 4 ? 1 : -1];
 typedef char UnitFlagAtExpectedOffset[
     offsetof(struct UnitFieldView, half18) + 8 * sizeof(u16) == 0x28 ? 1 : -1];
 typedef char UnitFlagExtentIsSufficient[

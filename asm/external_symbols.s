@@ -79,13 +79,7 @@
 .type gContentGlobalPointerOwner, %object
 .set gContentGlobalPointerOwner, 0x0200F4A8
 
-@ Provisional names from direct BL sites in the bounded content consumer.
-.global FillContentConsumerEntries
-.type FillContentConsumerEntries, %function
-.thumb_set FillContentConsumerEntries, 0x08099D09
-.global ResolveContentConsumerSelection
-.type ResolveContentConsumerSelection, %function
-.thumb_set ResolveContentConsumerSelection, 0x08099561
+@ Provisional name from a direct BL site in the bounded content consumer.
 .global HasContentConsumerSelection
 .type HasContentConsumerSelection, %function
 .thumb_set HasContentConsumerSelection, 0x08099545

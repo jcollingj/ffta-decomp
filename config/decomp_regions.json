@@ -140,6 +140,38 @@
       "status": "matching_c"
     },
     {
+      "name": "ResolveContentConsumerSelection",
+      "start": 628064,
+      "end": 628096,
+      "source": "src/content_selection_lookup.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextPayloadsAt10",
+      "start": 628800,
+      "end": 628828,
+      "source": "src/content_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextPayloadsAt14",
+      "start": 628828,
+      "end": 628856,
+      "source": "src/content_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextPayloadsAt18",
+      "start": 628856,
+      "end": 628884,
+      "source": "src/content_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountContextListAt10",
       "start": 629944,
       "end": 629956,
@@ -164,10 +196,26 @@
       "status": "matching_c"
     },
     {
+      "name": "FillContentConsumerEntries",
+      "start": 630024,
+      "end": 630068,
+      "source": "src/content_fill.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "ContentUnitSelectCallback",
       "start": 633660,
       "end": 633692,
       "source": "src/content_unit_select.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentSelectionEqualsObject",
+      "start": 633692,
+      "end": 633724,
+      "source": "src/content_selection_predicate.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2445,10 +2493,38 @@
     },
     {
       "start": 618008,
+      "end": 628064,
+      "kind": "copied",
+      "source": "asm/rom_context_visit_prefix.s",
+      "note": "Unrecovered original code/data before the content selection lookup wrapper"
+    },
+    {
+      "start": 628064,
+      "end": 628096,
+      "kind": "decompiled_c",
+      "source": "src/content_selection_lookup.c",
+      "note": "Content selection lookup wrapper; exact 32-byte matching function"
+    },
+    {
+      "start": 628096,
+      "end": 628800,
+      "kind": "copied",
+      "source": "asm/rom_context_lookup_suffix.s",
+      "note": "Unrecovered original code/data after the selection lookup wrapper and before context payload visitors"
+    },
+    {
+      "start": 628800,
+      "end": 628884,
+      "kind": "decompiled_c",
+      "source": "src/content_context_visit.c",
+      "note": "Three matching context-field payload visitor wrappers"
+    },
+    {
+      "start": 628884,
       "end": 629944,
       "kind": "copied",
-      "source": "asm/rom_content_flag_toggle_suffix.s",
-      "note": "Unrecovered original code/data after the content flag toggle"
+      "source": "asm/rom_context_visit_suffix.s",
+      "note": "Unrecovered original code/data after context payload visitors"
     },
     {
       "start": 629944,
@@ -2459,10 +2535,24 @@
     },
     {
       "start": 629980,
+      "end": 630024,
+      "kind": "copied",
+      "source": "asm/rom_content_fill_prefix.s",
+      "note": "Unrecovered original code/data before FillContentConsumerEntries"
+    },
+    {
+      "start": 630024,
+      "end": 630068,
+      "kind": "decompiled_c",
+      "source": "src/content_fill.c",
+      "note": "Content consumer list fill wrapper; exact 44-byte matching function"
+    },
+    {
+      "start": 630068,
       "end": 633660,
       "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_prefix.s",
-      "note": "Unrecovered original code/data before content unit selection callback"
+      "source": "asm/rom_content_fill_suffix.s",
+      "note": "Unrecovered original code/data after FillContentConsumerEntries and before content unit selection callback"
     },
     {
       "start": 633660,
@@ -2473,10 +2563,17 @@
     },
     {
       "start": 633692,
+      "end": 633724,
+      "kind": "decompiled_c",
+      "source": "src/content_selection_predicate.c",
+      "note": "Object-equality list visitor callback; exact 32-byte matching function"
+    },
+    {
+      "start": 633724,
       "end": 633832,
       "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix_callback_prefix_unit_select_suffix.s",
-      "note": "Unrecovered original code/data between unit selection and payload callbacks"
+      "source": "asm/rom_selection_lookup_suffix.s",
+      "note": "Unrecovered original code/data after the object-equality callback and before payload callbacks"
     },
     {
       "start": 633832,
