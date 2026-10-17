@@ -140,6 +140,14 @@
       "status": "matching_c"
     },
     {
+      "name": "LoadAndPrepareContentUnitPool",
+      "start": 618008,
+      "end": 618104,
+      "source": "src/content_pool_setup.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "FindContentEntryWithUnitFlag12",
       "start": 628036,
       "end": 628064,
@@ -152,6 +160,22 @@
       "start": 628064,
       "end": 628096,
       "source": "src/content_selection_lookup.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ResolveContentSelectionAt18",
+      "start": 628096,
+      "end": 628128,
+      "source": "src/content_other_selection.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ResolveContentSelectionAt14",
+      "start": 628128,
+      "end": 628160,
+      "source": "src/content_other_selection.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -785,6 +809,14 @@
       "end": 824900,
       "status": "matching_c",
       "source": "src/save_access.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "LoadContentUnitRecords",
+      "start": 829252,
+      "end": 829348,
+      "status": "matching_c",
+      "source": "src/content_unit_loader.c",
       "mode": "thumb"
     },
     {
@@ -2533,10 +2565,17 @@
     },
     {
       "start": 618008,
+      "end": 618104,
+      "kind": "decompiled_c",
+      "source": "src/content_pool_setup.c",
+      "note": "Matching content pool loader and occupied-entry preparation; resolver remains copied"
+    },
+    {
+      "start": 618104,
       "end": 628036,
       "kind": "copied",
-      "source": "asm/rom_ctxvisit_prefix.s",
-      "note": "Unrecovered original code/data before the content selection lookup wrapper"
+      "source": "asm/rom_ctxvisit_suffix.s",
+      "note": "Unrecovered original code/data after LoadAndPrepareContentUnitPool and before content-entry wrappers"
     },
     {
       "start": 628036,
@@ -2554,10 +2593,17 @@
     },
     {
       "start": 628096,
+      "end": 628160,
+      "kind": "decompiled_c",
+      "source": "src/content_other_selection.c",
+      "note": "Two exact content selection wrappers for context list fields +0x18 and +0x14"
+    },
+    {
+      "start": 628160,
       "end": 628252,
       "kind": "copied",
-      "source": "asm/rom_context_lookup_suffix_prefix.s",
-      "note": "Unrecovered original code/data before coordinate lookup wrappers"
+      "source": "asm/rom_other_selection_suffix.s",
+      "note": "Unrecovered original code/data between selection and coordinate lookup wrappers"
     },
     {
       "start": 628252,
@@ -2925,10 +2971,17 @@
     },
     {
       "start": 824900,
-      "end": 829348,
+      "end": 829252,
       "kind": "copied",
-      "source": "asm/rom_flags_tail.s",
-      "note": "Unclassified code and data"
+      "source": "asm/rom_flags_tail_prefix.s",
+      "note": "Unclassified copied code/data before the content unit loader"
+    },
+    {
+      "start": 829252,
+      "end": 829348,
+      "kind": "decompiled_c",
+      "source": "src/content_unit_loader.c",
+      "note": "Counted content-to-unit loader; copied initializer remains a diagnostic dependency"
     },
     {
       "start": 829348,

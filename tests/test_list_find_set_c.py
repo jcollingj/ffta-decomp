@@ -16,6 +16,8 @@ class ListFindSetCandidateTests(unittest.TestCase):
             subprocess.run([
                 'cc', '-std=gnu89', '-Wall', '-Wextra', '-Werror',
                 '-I', str(ROOT / 'include'),
-                str(ROOT / 'tests/c/list_find_set_harness.c'), '-o', str(program),
+                str(ROOT / 'tests/c/list_find_set_harness.c'),
+                str(ROOT / 'src/list_find_word.c'),
+                str(ROOT / 'src/list_set_words.c'), '-o', str(program),
             ], check=True, capture_output=True, text=True)
             subprocess.run([str(program)], check=True, capture_output=True, text=True)

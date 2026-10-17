@@ -11,8 +11,8 @@ static const u8 sRecordStorage[2][4] = {
 };
 
 const struct ContentRecord gContentRecords[2] = {
-    {{0}, &sRecordStorage[0][1], {0}},
-    {{0}, &sRecordStorage[1][1], {0}}
+    {0, 0, 0, {0}, &sRecordStorage[0][1], {0}},
+    {0, 0, 0, {0}, &sRecordStorage[1][1], {0}}
 };
 
 struct ContentIndexState gContentState __attribute__((aligned(4)));
@@ -142,7 +142,13 @@ int main(void)
     assert(offsetof(struct ContentIndexState, unknownA4) == 0xa4);
     assert(offsetof(struct ContentIndexState, value0) == 0xa6);
     assert(offsetof(struct ContentIndexState, value1) == 0xa7);
-    assert(offsetof(struct ContentRecord, values) >= 28);
+    if (sizeof(void *) == 4) {
+        assert(offsetof(struct ContentRecord, sourceEntries) == 4);
+        assert(offsetof(struct ContentRecord, values) == 28);
+    } else {
+        assert(offsetof(struct ContentRecord, sourceEntries) == 8);
+        assert(offsetof(struct ContentRecord, values) == 40);
+    }
     test_flag_set_uses_ram_bytes();
     test_flag_clear_composes_real_current_index_reader();
     return 0;

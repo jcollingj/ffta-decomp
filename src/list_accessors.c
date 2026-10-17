@@ -6,10 +6,11 @@ ListPayload GetListOwnerWord0(const struct ListCountNode *node)
     return node->unknown00;
 }
 
-void CopyListOwnerWords(const u32 *owner_words, u32 *out_word4, u32 *out_word0)
+void CopyListOwnerWords(const struct TreeCountNode *owner_words,
+                        ListPayload *out_word4, u32 *out_word0)
 {
-    *out_word4 = owner_words[1];
-    *out_word0 = owner_words[0];
+    *out_word4 = owner_words->unknown04;
+    *out_word0 = owner_words->unknown00;
 }
 
 u32 CopyListNodes(const struct Container *owner,

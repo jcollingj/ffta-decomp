@@ -117,11 +117,13 @@ local ROM bytes; it does not identify a gameplay role.
 ## Matching-build integration
 
 The function now lives in `src/content_find_flagged.c` and has both a matching
-function entry and a `decompiled_c` region entry. The copied prefix was shortened
-to `[0x96E18,0x99544)` in `asm/rom_ctxvisit_prefix.s`; the former
-`rom_context_visit_prefix.s` wrapper was retired. `Makefile` places the new C
-object immediately after that prefix. Linker assertions pin the wrapper at
-`0x08099544` and its 28-byte interval ending at `ResolveContentConsumerSelection`.
+function entry and a `decompiled_c` region entry. The earlier copied prefix was
+replaced by the matching 96-byte `LoadAndPrepareContentUnitPool` function at
+`[0x96E18,0x96E78)`, followed by the retained copied suffix `[0x96E78,0x99544)`
+in `asm/rom_ctxvisit_suffix.s`. `Makefile` places those objects before the
+existing content-entry wrappers. Linker assertions pin the suffix boundary,
+the wrapper at `0x08099544`, and its 28-byte interval ending at
+`ResolveContentConsumerSelection`.
 The provisional `HasContentConsumerSelection` alias was removed.
 
 Integration verification passed `make compare`, `make check-wrappers`, focused

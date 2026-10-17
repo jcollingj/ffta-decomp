@@ -2,11 +2,12 @@
 #define FFTA_LIST_SEARCH_CALLBACK_H
 
 #include "types.h"
+#include "list_payload.h"
 
 struct TreeCountNode;
 
 struct TreeSearchContext {
-    u32 key;
+    ListPayload key;
     struct TreeCountNode *result;
 };
 

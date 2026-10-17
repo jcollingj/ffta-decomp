@@ -40,8 +40,8 @@ static struct StubState gStub;
 struct ListCountContext *gContentConsumerContext;
 struct ContentGlobalPointerOwner *gContentGlobalPointerOwner;
 const struct ContentRecord gContentRecords[2] = {
-    { {0}, 0, {0x39, 0, 0, 0, 0, 0, 0, 0} },
-    { {0}, 0, {0xa7, 0, 0, 0, 0, 0, 0, 0} }
+    {0, 0, 0, {0}, 0, {0x39, 0, 0, 0, 0, 0, 0, 0}},
+    {0, 0, 0, {0}, 0, {0xa7, 0, 0, 0, 0, 0, 0, 0}}
 };
 struct ContentIndexState gContentState __attribute__((aligned(4)));
 
@@ -251,13 +251,17 @@ static void test_alternate_branch_native_pointer_low32_zero(void)
 int main(void)
 {
     if (sizeof(void *) == 4) {
+        assert(offsetof(struct ContentRecord, sourceCount) == 0);
+        assert(offsetof(struct ContentRecord, sourceEntries) == 4);
         assert(offsetof(struct ContentRecord, values) == 28);
         assert(offsetof(struct ContentRecord, unknown20) == 32);
         assert(sizeof(struct ContentRecord) == 40);
     } else {
-        assert(offsetof(struct ContentRecord, values) == 32);
-        assert(offsetof(struct ContentRecord, unknown20) == 40);
-        assert(sizeof(struct ContentRecord) == 48);
+        assert(offsetof(struct ContentRecord, sourceCount) == 0);
+        assert(offsetof(struct ContentRecord, sourceEntries) == 8);
+        assert(offsetof(struct ContentRecord, values) == 40);
+        assert(offsetof(struct ContentRecord, unknown20) == 48);
+        assert(sizeof(struct ContentRecord) == 56);
     }
     assert(offsetof(struct UnitFieldView, half18) + 8 * sizeof(u16) == 40);
     assert(offsetof(struct ContentConsumerContext, flags) == 16);

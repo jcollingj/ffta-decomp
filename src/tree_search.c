@@ -1,7 +1,8 @@
 #include "tree_search.h"
 #include "list_traversal.h"
 
-struct TreeCountNode *TreeSearchByWord1(const struct Container *owner, u32 key)
+struct TreeCountNode *TreeSearchByWord1(const struct Container *owner,
+                                        ListPayload key)
 {
     struct TreeSearchContext context;
 

@@ -63,9 +63,12 @@ int main(void)
 
     /* Native host pointers widen the fixture fields; the target offsets are
        parent/child_a/child_b = 8/12/16, host offsets are 8/16/24. */
-    assert(offsetof(struct TreeCountNode, parent) == 8);
-    assert(offsetof(struct TreeCountNode, child_a) == 8 + sizeof(void *));
-    assert(offsetof(struct TreeCountNode, child_b) == 8 + 2 * sizeof(void *));
+    assert(offsetof(struct TreeCountNode, parent) ==
+           (sizeof(void *) == 4 ? 8 : 16));
+    assert(offsetof(struct TreeCountNode, child_a) ==
+           (sizeof(void *) == 4 ? 12 : 24));
+    assert(offsetof(struct TreeCountNode, child_b) ==
+           (sizeof(void *) == 4 ? 16 : 32));
 
     reset_nodes();
     verify(0, 0);

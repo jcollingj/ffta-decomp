@@ -2,8 +2,10 @@
 
 ## Status
 
-The initial investigation produced a proposal only. Implementation began under
-the explicit shared-file lease after parent checkpoint 283.
+The linked-list payload proposal was implemented under the explicit shared-file
+lease after parent checkpoint 283. A later tree payload migration is described
+in `TREE_PAYLOAD_LAYOUT.md`; it supersedes this document's earlier statement
+that `CopyListOwnerWords` and `TreeCountNode` remain numeric and out of scope.
 
 ## Finding
 
@@ -18,9 +20,10 @@ callback at `0x9ABB0` follows the pointer in payload word zero and reads bytes
 at `+0xF6` and `+0xF7`. A host representation that truncates pointers to `u32`
 cannot compose these recovered paths.
 
-`CopyListOwnerWords` is a separate two-numeric-word operation used by tree
-search. Its `u32` input and outputs must remain unchanged. `TreeCountNode` also
-has a separate numeric payload and is outside this proposal.
+At the time of the original list migration, `CopyListOwnerWords` was treated as
+a separate two-numeric-word operation. Raw caller evidence later showed that
+its second output is a tree payload pointer, so the typed tree-node update is
+recorded separately in `TREE_PAYLOAD_LAYOUT.md`.
 
 The complete list-payload inventory found these production declarations and
 operations:

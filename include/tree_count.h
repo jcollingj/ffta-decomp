@@ -3,13 +3,14 @@
 
 #include "types.h"
 #include "container.h"
+#include "list_payload.h"
 
-/* The tree allocator reserves 24 target bytes and initializes four words
-   after the two data words. The final word is also read and cleared by the
-   flag callbacks. */
+/* The tree allocator reserves 24 target bytes. unknown00 is its numeric key;
+   unknown04 is an opaque payload that can hold a native pointer. Four target
+   words follow these data fields; the last is read and cleared by callbacks. */
 struct TreeCountNode {
     u32 unknown00;
-    u32 unknown04;
+    ListPayload unknown04;
     struct TreeCountNode *parent;
     struct TreeCountNode *child_a;
     struct TreeCountNode *child_b;
@@ -19,12 +20,12 @@ struct TreeCountNode {
 /* Initial sequences let the old target compiler assert boundaries with sizeof. */
 struct TreeCountNodeDataPrefix {
     u32 unknown00;
-    u32 unknown04;
+    ListPayload unknown04;
 };
 
 struct TreeCountNodeLinkPrefix {
     u32 unknown00;
-    u32 unknown04;
+    ListPayload unknown04;
     struct TreeCountNode *parent;
     struct TreeCountNode *child_a;
     struct TreeCountNode *child_b;
@@ -40,12 +41,13 @@ typedef char TreeCountNodeTargetFlagsOffset[
     sizeof(struct TreeCountNodeLinkPrefix) == 20 ? 1 : -1];
 typedef char TreeCountNodeHostLayout[
     sizeof(void *) != 8 ||
-    (sizeof(struct TreeCountNodeDataPrefix) == 8 &&
-     sizeof(struct TreeCountNodeLinkPrefix) == 32 &&
-     sizeof(struct TreeCountNode) == 40) ? 1 : -1];
+    (sizeof(struct TreeCountNodeDataPrefix) == 16 &&
+     sizeof(struct TreeCountNodeLinkPrefix) == 40 &&
+     sizeof(struct TreeCountNode) == 48) ? 1 : -1];
 
 u32 CountTreeNodes(const struct Container *owner);
 
-/* With target 32-bit pointers, links are at 8/12/16 and flags at 20. */
+/* Target links are at 8/12/16 and flags at 20. LP64 host links are at
+   16/24/32 and flags at 40 because the second word is native-width. */
 
 #endif

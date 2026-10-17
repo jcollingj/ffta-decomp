@@ -71,6 +71,16 @@
 .type DetachTreeNode, %function
 .thumb_set DetachTreeNode, 0x080C7859
 
+@ Copied content initializer used by LoadContentUnitRecords.
+.global InitializeUnitFromContentEntry
+.type InitializeUnitFromContentEntry, %function
+.thumb_set InitializeUnitFromContentEntry, 0x080C9645
+
+@ Copied content unit-entry resolver called by LoadAndPrepareContentUnitPool.
+.global ResolveOrCreateContentUnitEntry
+.type ResolveOrCreateContentUnitEntry, %function
+.thumb_set ResolveOrCreateContentUnitEntry, 0x08092441
+
 @ RAM globals read by the recovered content context getters.
 .global gContentConsumerContext
 .type gContentConsumerContext, %object

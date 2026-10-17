@@ -16,6 +16,7 @@ class ListAccessorCandidateTests(unittest.TestCase):
             subprocess.run([
                 'cc', '-std=gnu89', '-Wall', '-Wextra', '-Werror',
                 '-I', str(ROOT / 'include'),
-                str(ROOT / 'tests/c/list_accessors_harness.c'), '-o', str(program),
+                str(ROOT / 'tests/c/list_accessors_harness.c'),
+                str(ROOT / 'src/list_accessors.c'), '-o', str(program),
             ], check=True, capture_output=True, text=True)
             subprocess.run([str(program)], check=True, capture_output=True, text=True)

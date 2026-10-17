@@ -1,7 +1,7 @@
 #include "tree_insert.h"
 #include "allocator_wrappers.h"
 
-struct TreeCountNode *InsertTreeNode(struct Container *owner, u32 payload,
+struct TreeCountNode *InsertTreeNode(struct Container *owner, ListPayload payload,
                                      int key)
 {
     struct TreeCountNode *node;

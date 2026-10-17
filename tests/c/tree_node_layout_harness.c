@@ -98,11 +98,13 @@ static void test_clear_callback_composition(void)
 int main(void)
 {
     assert(offsetof(struct TreeCountNode, parent) ==
-           (sizeof(void *) == 4 ? 8 : 8));
+           (sizeof(void *) == 4 ? 8 : 16));
     assert(offsetof(struct TreeCountNode, flags) ==
-           (sizeof(void *) == 4 ? 20 : 32));
+           (sizeof(void *) == 4 ? 20 : 40));
     assert(sizeof(struct TreeCountNode) ==
-           (sizeof(void *) == 4 ? 24 : 40));
+           (sizeof(void *) == 4 ? 24 : 48));
+    assert(offsetof(struct TreeCountNode, unknown04) ==
+           (sizeof(void *) == 4 ? 4 : 8));
     test_select_callback_composition();
     test_clear_callback_composition();
     return 0;

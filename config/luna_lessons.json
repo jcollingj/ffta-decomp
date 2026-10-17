@@ -159,8 +159,8 @@
     {
       "id": "L027",
       "parent_failure": "Parent creation prompt requested native pointer fields without naming known node types or requiring composition with existing owner views.",
-      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts. For output-pointer APIs, use exactly compatible pointer-to-pointer types; receive void* outputs in void* temporaries before converting the values. Alias fixtures must derive overlap from native offsetof and pointer width rather than assuming the 64-bit host overlap also holds on target. Boundary tokens may collide on narrower supported ABIs (ULONG_MAX equals 0xFFFFFFFF on ILP32); first-match fixtures must account for that. Compare full state after the final read-only call, not only before it.",
-      "evidence": "Session36 corrected Container head types; session37 assigned demonstrated partial-owner/native-layout incompatibility for source-first type unification. Session42 initially cast u8** output slots to void**; parent prompt should have required compatible output storage. Session67 revised final-read snapshots and ILP32 token collision expectations."
+      "rule": "Reuse established pointee types; do not make list/tree heads self-pointers to the owner. When a recovered constructor proves full owner layout, reconcile partial views before claiming native end-to-end composition. Verify unchanged target layouts/bytes and test real functions together without incompatible struct casts. For output-pointer APIs, use exactly compatible pointer-to-pointer types; receive void* outputs in void* temporaries before converting the values. Alias fixtures must derive overlap from native offsetof and pointer width rather than assuming the 64-bit host overlap also holds on target. Boundary tokens may collide on narrower supported ABIs (ULONG_MAX equals 0xFFFFFFFF on ILP32); first-match fixtures must account for that. Compare full state after the final read-only call, not only before it. Audit fixed match/miss vectors separately for every ABI branch: a missing-query constant must not equal a payload introduced only on ILP32.",
+      "evidence": "Session36 corrected Container head types; session37 assigned demonstrated partial-owner/native-layout incompatibility for source-first type unification. Session42 initially cast u8** output slots to void**; parent prompt should have required compatible output storage. Session67 revised final-read snapshots and ILP32 token collision expectations. Session83 LP64 test passed while its ILP32 branch both inserted DEADBEEF and asserted it absent; parent returned correction."
     },
     {
       "id": "L028",
@@ -219,8 +219,8 @@
     {
       "id": "L037",
       "parent_failure": "Parent allowed private record views before checking shared declarations and complete accessed extents.",
-      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels. Keep unused target words numeric/opaque unless pointer evidence exists; do not invent pointer semantics. Pointer-equality predicates should explicitly test NULL==NULL when original code allows it. Apply the evidence rule to parent-proposed types too: a similar neighboring context layout does not prove an unused word is a pointer. List each field with its observed load/store before drafting the structure.",
-      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views. Session75 replaced an invented unused pointer with u32 and added NULL equality fixtures. Parent repeated this mistake in77 coordinate-query word0; corrected to u32 and notified78 before integration."
+      "rule": "Inventory every declaration and host fixture for shared globals before introducing a new view. Use compatible native pointer-bearing records across translation units. Derive minimum object extent from the largest original accessed offset, including field width; test with whole fixture guards and output sentinels. Keep unused target words numeric/opaque unless pointer evidence exists; do not invent pointer semantics. Pointer-equality predicates should explicitly test NULL==NULL when original code allows it. Apply the evidence rule to parent-proposed types too: a similar neighboring context layout does not prove an unused word is a pointer. List each field with its observed load/store before drafting the structure. Keep observed opaque byte-array extents fixed across ABIs; native pointer growth should move subsequent host fields, not shrink the unknown data to preserve obsolete host offsets. A representation migration must inventory matching setter APIs as well as getters and query consumers, using original call sites when source callers are still copied.",
+      "evidence": "Session60 corrected a selection fixture that accessed offset 92 in an 18-byte object and centralized ContentRecord instead of retaining incompatible byte-array views. Session75 replaced an invented unused pointer with u32 and added NULL equality fixtures. Parent repeated this mistake in77 coordinate-query word0; corrected to u32 and notified78 before integration. Session81 initially shrank the20-byte unknown gap to16 on LP64; parent returned it to fixed20 with updated host offsets. Session83 inventory initially omitted SetListWords; parent confirmed9AC6C passes an entry pointer to both tree search and setter."
     },
     {
       "id": "L038",
@@ -251,6 +251,24 @@
       "parent_failure": "Parent stated owned paths but did not require an explicit final changed-path reconciliation.",
       "rule": "Before reporting frozen, compare actual edited paths with the assignment ownership list. Put independent test runners in their reserved files; do not silently append to a neighboring existing runner. Report any necessary out-of-scope path before editing it.",
       "evidence": "Session79 added its composition test to existing consumer runner despite owning a new composition runner. Parent returned relocation to same author and requested clearer referenced-unit fixtures."
+    },
+    {
+      "id": "L043",
+      "parent_failure": "Parent task described nested-pointer stores but did not require the plan to explicitly name each destination base.",
+      "rule": "For pointer-chasing code, record each load/store base identity as well as offset. A helper-returned nested object can differ from the input object; use distinct fixture objects and prove which one changes. Repeated pointer loads should be retained where original aliasing may matter.",
+      "evidence": "Session84 precode plan described F9/FA stores as slot writes; parent clarified original returned-entry object base and required a distinct-object fixture."
+    },
+    {
+      "id": "L044",
+      "parent_failure": "Parent requested guarded whole images without explicitly distinguishing live sentinels from expected-image metadata.",
+      "rule": "A guard must reside in actual storage accessible to the production operation; constants synthesized by the snapshot helper cannot detect overwrites. Compare complete live objects/globals and use a sanitizer for global-array bounds when adjacent sentinels cannot be represented safely. Do not claim guard coverage from fields created only in a copied test image.",
+      "evidence": "Session84 initialized guard constants anew in both expected and actual snapshots; parent returned removal and real whole-global/sanitizer verification to the same author."
+    },
+    {
+      "id": "L045",
+      "parent_failure": "Parent codec packet did not explicitly apply strict integer validation to version tags or order path checks before directory creation.",
+      "rule": "Validate every schema integer including version tags without accepting bool or integral floats. Resolve and validate output confinement before any filesystem mutation, including mkdir; test symlinked ancestors with nonexistent child directories and assert rejected requests leave outside storage unchanged. Preserve atomic no-clobber publication.",
+      "evidence": "Session85 version equality accepted True/1.0 and mkdir preceded containment checking. Same author was asked for strict validation and distinguishing rejection tests."
     }
   ]
 }

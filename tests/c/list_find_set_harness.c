@@ -3,8 +3,6 @@
 #include "../../include/list_count.h"
 #include "../../include/list_find_word.h"
 #include "../../include/list_set_words.h"
-#include "../../src/list_find_word.c"
-#include "../../src/list_set_words.c"
 
 static void CheckSearch(const struct Container *owner, ListPayload word,
                         struct ListCountNode *expected,
@@ -63,17 +61,27 @@ static void TestFind(void)
 
 static void TestSetWords(void)
 {
-    u32 words[8] = {
-        0x10203040, 0x11223344, 0x55667788, 0x99AABBCC,
-        0xDDEEFF00, 0x13579BDF, 0x2468ACE0, 0xCAFEBABE
-    };
-    const u32 expected[8] = {
-        0x10203040, 0x11223344, 0x76543210, 0x89ABCDEF,
-        0xDDEEFF00, 0x13579BDF, 0x2468ACE0, 0xCAFEBABE
-    };
+    struct TreeCountNode node;
+    struct TreeCountNode expected;
+    static int retained_payload;
+    ListPayload pointer_payload = (ListPayload)(unsigned long)&retained_payload;
 
-    SetListWords(&words[2], 0x89ABCDEF, 0x76543210);
-    assert(memcmp(words, expected, sizeof(words)) == 0);
+    memset(&node, 0x5A, sizeof(node));
+    expected = node;
+    node.unknown00 = 0x11223344u;
+    node.unknown04 = (ListPayload)0xAABBCCDDEEFF0011ULL;
+    expected.unknown00 = 0x76543210u;
+    expected.unknown04 = (ListPayload)0xAABBCCDDEEFF0011ULL;
+    SetListWords(&node, (ListPayload)0xAABBCCDDEEFF0011ULL, 0x76543210u);
+    assert(memcmp(&node, &expected, sizeof(node)) == 0);
+
+    expected = node;
+    expected.unknown00 = 0x89ABCDEFu;
+    expected.unknown04 = pointer_payload;
+    SetListWords(&node, pointer_payload, 0x89ABCDEFu);
+    assert(memcmp(&node, &expected, sizeof(node)) == 0);
+    assert(node.unknown04 == pointer_payload);
+    assert((void *)(unsigned long)node.unknown04 == &retained_payload);
 }
 
 int main(void)

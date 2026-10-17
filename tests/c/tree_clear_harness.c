@@ -140,9 +140,12 @@ int main(void)
     static const unsigned balanced[] = {3, 4, 1, 5, 6, 2, 0};
     struct Container empty_before;
 
-    assert(offsetof(struct TreeCountNode, parent) == 8);
-    assert(offsetof(struct TreeCountNode, child_a) == 8 + sizeof(void *));
-    assert(offsetof(struct TreeCountNode, child_b) == 8 + 2 * sizeof(void *));
+    assert(offsetof(struct TreeCountNode, parent) ==
+           (sizeof(void *) == 4 ? 8 : 16));
+    assert(offsetof(struct TreeCountNode, child_a) ==
+           (sizeof(void *) == 4 ? 12 : 24));
+    assert(offsetof(struct TreeCountNode, child_b) ==
+           (sizeof(void *) == 4 ? 16 : 32));
     assert(offsetof(struct Container, tree_root) == 2 * sizeof(void *));
 
     reset(0);

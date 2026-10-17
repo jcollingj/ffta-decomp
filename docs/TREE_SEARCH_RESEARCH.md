@@ -31,8 +31,32 @@ Thus the wrapper returns null for an empty tree. Otherwise it traverses in the e
 
 ## Typed callback and host composition
 
-`TreeSearchContext` contains a `u32 key` and a `TreeCountNode *result`. A compiler-compatible typedef assertion requires it to be 8 bytes when pointers are 4 bytes; on a 64-bit host it naturally widens to 16 bytes. The focused host fixture also asserts `offsetof(result) == sizeof(void *)` and `sizeof(context) == 2 * sizeof(void *)`. `ListSearchCallback` now has the exact traversal callback type, `int (void *, void *)`. It still obtains the compared second word through the unchanged `CopyListOwnerWords` API and stores the matching node as a native typed pointer. The callback's target block remains 48 bytes and its bytes match the original exactly.
+`TreeSearchContext` contains a native-width `ListPayload key` and a
+`TreeCountNode *result`. The target context remains 8 bytes; the LP64 host
+context is 16 bytes, with the result at offset 8. `ListSearchCallback` has the
+exact traversal callback type, `int (void *, void *)`. It reads the tree node
+through the typed `CopyListOwnerWords` API: the numeric first word remains
+`u32`, while the second word and search query use `ListPayload`. The callback
+stores the matching node as a native typed pointer. The callback's target
+block remains 48 bytes and its bytes match the original exactly.
 
-The host integration harness links the actual wrapper, callback, in-order traversal, and raw owner-word accessor. It checks empty and nonempty trees, absent keys, duplicate keys in different in-order positions, stop-at-first-match behavior, and complete owner/node state. The focused callback harness also retains a same-base alias case using a union of the native node and context views. It builds the expected whole-union byte image by copying a native pointer at `offsetof(TreeSearchContext, result)`, then compares all storage. On a 32-bit target that write overlaps the node's second word; on a 64-bit host it overlaps the parent pointer. This verifies read-before-write ordering for each actual layout without pretending the layouts have identical alias effects. A 64-bit host pointer cannot be represented by truncating it into a target `u32`; the target callback's unchanged bytes are the evidence for the original 32-bit write behavior.
+The host integration harness links the actual wrapper, callback, in-order
+traversal, and typed owner-word accessor. It checks empty and nonempty trees,
+absent keys, duplicate payloads in different in-order positions,
+stop-at-first-match behavior, distinct LP64 payload values with equal low 32
+bits, and complete owner/node state. The focused callback harness also keeps a
+same-base alias case using a union of the native node and context views. It
+builds the expected whole-union byte image by copying a native pointer at
+`offsetof(TreeSearchContext, result)`, then compares all storage. On target
+this result store overlays the node's second word; on LP64 it overlays the
+native-width second word at offset 8. This checks read-before-write ordering
+for each layout. Cross-width aliases between a target `u32` output and
+`ListPayload` output are not modeled with incompatible host lvalues; the
+unchanged target instruction sequence establishes their target-width store
+order.
 
-The wrapper candidate compiles to a 44-byte symbol at `0x080C7C14`; its full `[C7C14,C7C40)` block matches all 44 original bytes, including the callback literal and return sequence. The dependency ELF used for the probe is `build/verified-273-list-free-ref.elf`, SHA-256 `36f8de2cb35cd5d54bab32be1851db3e9c647e2abacdcca21667da5a87a03eb7`.
+The wrapper candidate compiles to a 44-byte symbol at `0x080C7C14`; its full
+`[C7C14,C7C40)` block matches all 44 original bytes, including the callback
+literal and return sequence. The tree payload migration was checked against
+the immutable `build/verified-300-content-ref.elf`, SHA-256
+`b509bd395e699edb5597f9ce97befea53b2d941efdf41a027995daeaffc88751`.

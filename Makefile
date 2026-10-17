@@ -26,10 +26,12 @@ OBJS    := \
 	build/content_globals.o \
 	build/content_global_flags.o \
 	build/content_flag_toggle.o \
-	build/rom_ctxvisit_prefix.o \
+	build/content_pool_setup.o \
+	build/rom_ctxvisit_suffix.o \
 	build/content_find_flagged.o \
 	build/content_selection_lookup.o \
-	build/rom_context_lookup_suffix_prefix.o \
+	build/content_other_selection.o \
+	build/rom_other_selection_suffix.o \
 	build/content_coordinate_lookup.o \
 	build/rom_context_lookup_suffix_suffix.o \
 	build/content_context_visit.o \
@@ -81,7 +83,8 @@ OBJS    := \
 	build/job_mapping.o \
 	build/game_flags.o \
 	build/save_access.o \
-	build/rom_flags_tail.o \
+	build/rom_flags_tail_prefix.o \
+	build/content_unit_loader.o \
 	build/item.o \
 	build/inventory.o \
 	build/rom_item_tail.o \

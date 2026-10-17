@@ -2,7 +2,6 @@
 #include <stddef.h>
 #include <string.h>
 #include "../../include/list_accessors.h"
-#include "../../src/list_accessors.c"
 
 static void TestWord0Getter(void)
 {
@@ -16,57 +15,61 @@ static void TestWord0Getter(void)
     assert(memcmp(&before, &node, sizeof(node)) == 0);
 }
 
-static void TestWordCopyAliases(void)
+static void TestWordCopyTypedAliases(void)
 {
-    unsigned out1_alias;
-    unsigned out2_alias;
+    {
+        struct TreeCountNode node;
+        ListPayload out_word4 = 0xDEADBEEFUL;
+        u32 out_word0 = 0xCAFEBABEu;
+        struct TreeCountNode before;
 
-    /* 0 means a separate output; 1/2 mean input word 0/word 4. */
-    for (out1_alias = 0; out1_alias <= 2; out1_alias++) {
-        for (out2_alias = 0; out2_alias <= 2; out2_alias++) {
-            u32 words[2] = {0x11223344, 0xA1B2C3D4};
-            u32 expected_words[2] = {0x11223344, 0xA1B2C3D4};
-            u32 separate1 = 0xDEADBEEF;
-            u32 separate2 = 0xCAFEBABE;
-            u32 expected_separate1 = 0xDEADBEEF;
-            u32 expected_separate2 = 0xCAFEBABE;
-            u32 *expected_out1 = out1_alias == 0 ? &expected_separate1 :
-                                 &expected_words[out1_alias - 1];
-            u32 *expected_out2 = out2_alias == 0 ? &expected_separate2 :
-                                 &expected_words[out2_alias - 1];
-            u32 *out1 = out1_alias == 0 ? &separate1 : &words[out1_alias - 1];
-            u32 *out2 = out2_alias == 0 ? &separate2 : &words[out2_alias - 1];
-
-            /* Apply expected stores to an independent copy in target order. */
-            *expected_out1 = expected_words[1];
-            *expected_out2 = expected_words[0];
-
-            CopyListOwnerWords(words, out1, out2);
-
-            assert(memcmp(words, expected_words, sizeof(words)) == 0);
-            assert(separate1 == expected_separate1);
-            assert(separate2 == expected_separate2);
-        }
+        memset(&node, 0x5A, sizeof(node));
+        node.unknown00 = 0x11223344u;
+        node.unknown04 = 0xA1B2C3D4UL;
+        before = node;
+        CopyListOwnerWords(&node, &out_word4, &out_word0);
+        assert(out_word4 == 0xA1B2C3D4UL);
+        assert(out_word0 == 0x11223344u);
+        assert(node.unknown00 == 0x11223344u);
+        assert(node.unknown04 == 0xA1B2C3D4UL);
+        assert(memcmp(&before, &node, sizeof(node)) == 0);
     }
 
-    /* Fixed nonalias oracle ensures both output destinations are exercised. */
     {
-        u32 words[2] = {0x11223344, 0xA1B2C3D4};
-        u32 out1 = 0xDEADBEEF;
-        u32 out2 = 0xCAFEBABE;
-        CopyListOwnerWords(words, &out1, &out2);
-        assert(out1 == 0xA1B2C3D4);
-        assert(out2 == 0x11223344);
-        assert(words[0] == 0x11223344 && words[1] == 0xA1B2C3D4);
+        struct TreeCountNode node;
+        struct TreeCountNode before;
+
+        memset(&node, 0x5A, sizeof(node));
+        node.unknown00 = 0x11223344u;
+        node.unknown04 = 0xA1B2C3D4UL;
+        before = node;
+        CopyListOwnerWords(&node, &node.unknown04, &node.unknown00);
+        assert(node.unknown00 == 0x11223344u);
+        assert(node.unknown04 == 0xA1B2C3D4UL);
+        assert(memcmp(&before, &node, sizeof(node)) == 0);
     }
 
-    /* Both outputs can be the same external word; the second store wins. */
+    /* The output types have different widths on LP64. A union gives the two
+       typed destinations a shared address without casting either pointer. */
     {
-        u32 words[2] = {0x01020304, 0xA0B0C0D0};
-        u32 shared = 0;
-        CopyListOwnerWords(words, &shared, &shared);
-        assert(shared == 0x01020304);
-        assert(words[0] == 0x01020304 && words[1] == 0xA0B0C0D0);
+        union {
+            ListPayload payload;
+            u32 key;
+        } shared;
+        struct TreeCountNode node;
+        struct TreeCountNode before;
+
+        memset(&node, 0x5A, sizeof(node));
+        node.unknown00 = 0xA1B2C3D4u;
+        node.unknown04 = (ListPayload)0x1122334455667788ULL;
+        before = node;
+        shared.payload = (ListPayload)0xFFEEDDCCBBAA0099ULL;
+        CopyListOwnerWords(&node, &shared.payload, &shared.key);
+        if (sizeof(ListPayload) == 8)
+            assert(shared.payload == (ListPayload)0x11223344A1B2C3D4ULL);
+        else
+            assert(shared.key == 0xA1B2C3D4u);
+        assert(memcmp(&before, &node, sizeof(node)) == 0);
     }
 }
 
@@ -112,7 +115,7 @@ static void TestListCopy(unsigned length)
 int main(void)
 {
     TestWord0Getter();
-    TestWordCopyAliases();
+    TestWordCopyTypedAliases();
     TestListCopy(0);
     TestListCopy(1);
     TestListCopy(255);

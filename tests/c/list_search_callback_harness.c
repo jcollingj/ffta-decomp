@@ -43,20 +43,21 @@ static void TestSameBaseAliasUsesNativeFields(void)
 
     memset(&aliased, 0, sizeof(aliased));
     aliased.node.unknown00 = 0xCAFEBABE;
-    aliased.node.unknown04 = 0xCAFEBABE;
+    aliased.node.unknown04 = (ListPayload)0x11223344CAFEBABEUL;
     memset(&expected, 0, sizeof(expected));
     expected.node.unknown00 = 0xCAFEBABE;
-    expected.node.unknown04 = 0xCAFEBABE;
+    expected.node.unknown04 = (ListPayload)0x11223344CAFEBABEUL;
+    aliased.context.key = (ListPayload)0x11223344CAFEBABEUL;
+    expected.context.key = (ListPayload)0x11223344CAFEBABEUL;
     memcpy((unsigned char *)&expected +
                offsetof(struct TreeSearchContext, result),
            &expected_result, sizeof(expected_result));
 
     /* Both views begin at the same native address. The result pointer write
-     * overlaps bytes at the native result-field offset after the comparison.
-     * On target these are the node's second word; on this 64-bit host they
-     * occupy the parent field. Compare the complete native storage image. */
+       overlays the second-word payload at offset 4 on target and offset 8 on
+       LP64. Compare the complete native storage image. */
     assert(ListSearchCallback(&aliased.node, &aliased.context) == 0);
-    assert(aliased.context.key == 0xCAFEBABE);
+    assert(aliased.context.key == (ListPayload)0x11223344CAFEBABEULL);
     assert(aliased.context.result == &aliased.node);
     assert(memcmp(&aliased, &expected, sizeof(aliased)) == 0);
 }

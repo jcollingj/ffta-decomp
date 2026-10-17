@@ -43,7 +43,7 @@ static void assert_all_images(void)
                   sizeof(replacement_root)) == 0);
 }
 
-static struct TreeCountNode *perform_insert(int key, u32 payload,
+static struct TreeCountNode *perform_insert(int key, ListPayload payload,
                                             size_t parent_index,
                                             int child_side, int mutate_root)
 {
@@ -95,7 +95,9 @@ static struct TreeCountNode *perform_insert(int key, u32 payload,
 
 int main(void)
 {
-    struct TreeCountNode *root, *minimum, *maximum, *deep, *equal;
+    struct TreeCountNode *root, *minimum, *maximum, *deep, *equal, *pointer_node;
+    static int retained_payload;
+    ListPayload pointer_payload;
 
     memset(&owner, 0xA5, sizeof(owner));
     memset(&expected_owner, 0xA5, sizeof(expected_owner));
@@ -120,12 +122,17 @@ int main(void)
                              CHILD_RIGHT, 0);
     deep = perform_insert(-7, 0xDEADBEEF, 1, CHILD_RIGHT, 0);
     equal = perform_insert(0, 0xCAFEBABE, 2, CHILD_LEFT, 0);
+    pointer_payload = (ListPayload)(unsigned long)&retained_payload;
+    pointer_node = perform_insert(1, pointer_payload, 4, CHILD_RIGHT, 0);
 
     assert(root == &arena[0]);
     assert(minimum == &arena[1]);
     assert(maximum == &arena[2]);
     assert(deep == &arena[3]);
     assert(equal == &arena[4]);
+    assert(pointer_node == &arena[5]);
+    assert(arena[5].unknown04 == pointer_payload);
+    assert((void *)(unsigned long)arena[5].unknown04 == &retained_payload);
 
     /* Allocation changes the owner root; the routine must use the new root. */
     memset(&owner, 0xA5, sizeof(owner));

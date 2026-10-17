@@ -5,6 +5,7 @@
 #include "tree_count.h"
 
 /* Return the first in-order tree node whose second word equals key. */
-struct TreeCountNode *TreeSearchByWord1(const struct Container *owner, u32 key);
+struct TreeCountNode *TreeSearchByWord1(const struct Container *owner,
+                                        ListPayload key);
 
 #endif
