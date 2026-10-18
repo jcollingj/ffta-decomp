@@ -36,12 +36,17 @@ OBJS    := \
 	build/rom_context_lookup_suffix_suffix.o \
 	build/content_context_visit.o \
 	build/content_tree_context_visit.o \
-	build/rom_context_visit_suffix.o \
+	build/rom_context_visit_prefix.o \
+	build/content_coordinate_value.o \
+	build/rom_context_visit_tail.o \
 	build/list_count_wrappers.o \
 	build/content_collect_at10.o \
 	build/content_fill.o \
 	build/content_collect_remaining.o \
-	build/rom_content_collect_suffix.o \
+	build/content_position.o \
+	build/rom_content_position_tail.o \
+	build/content_key_refresh.o \
+	build/rom_content_collect_suffix_tail.o \
 	build/content_unit_select.o \
 	build/content_selection_predicate.o \
 	build/content_coordinate_select.o \
@@ -49,7 +54,9 @@ OBJS    := \
 	build/content_payload_callback.o \
 	build/content_tree_payload_callback.o \
 	build/content_append.o \
-	build/rom_list_count_wrappers_suffix_prefix_suffix.o \
+	build/rom_key_refresh_callback_prefix.o \
+	build/content_key_refresh_callback.o \
+	build/rom_key_refresh_callback_tail.o \
 	build/container_create.o \
 	build/list_clear.o \
 	build/tree_clear.o \

@@ -268,6 +268,14 @@
       "status": "matching_c"
     },
     {
+      "name": "ReadContentUnitCoordinateValue",
+      "start": 629788,
+      "end": 629808,
+      "source": "src/content_coordinate_value.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountContextListAt10",
       "start": 629944,
       "end": 629956,
@@ -292,18 +300,18 @@
       "status": "matching_c"
     },
     {
-      "name": "FillContentConsumerEntries",
-      "start": 630024,
-      "end": 630068,
-      "source": "src/content_fill.c",
-      "mode": "thumb",
-      "status": "matching_c"
-    },
-    {
       "name": "CollectContextListPayloadsAt10",
       "start": 629980,
       "end": 630024,
       "source": "src/content_collect_at10.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "FillContentConsumerEntries",
+      "start": 630024,
+      "end": 630068,
+      "source": "src/content_fill.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -364,6 +372,38 @@
       "status": "matching_c"
     },
     {
+      "name": "SetContentEntryPosition",
+      "start": 630376,
+      "end": 630432,
+      "source": "src/content_position.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "RefreshContextTreeKeysAt10",
+      "start": 630808,
+      "end": 630852,
+      "source": "src/content_key_refresh.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "RefreshContextTreeKeysAt14",
+      "start": 630852,
+      "end": 630896,
+      "source": "src/content_key_refresh.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "RefreshContextTreeKeysAt18",
+      "start": 630896,
+      "end": 630940,
+      "source": "src/content_key_refresh.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "ContentUnitSelectCallback",
       "start": 633660,
       "end": 633692,
@@ -416,6 +456,14 @@
       "start": 633888,
       "end": 633904,
       "source": "src/content_append.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentRefreshTreeKeyCallback",
+      "start": 633964,
+      "end": 633992,
+      "source": "src/content_key_refresh_callback.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2762,10 +2810,24 @@
     },
     {
       "start": 629052,
+      "end": 629788,
+      "kind": "copied",
+      "source": "asm/rom_context_visit_prefix.s",
+      "note": "Unrecovered bytes before the content coordinate forwarder"
+    },
+    {
+      "start": 629788,
+      "end": 629808,
+      "kind": "decompiled_c",
+      "source": "src/content_coordinate_value.c",
+      "note": "Content unit coordinate forwarder; exact 20-byte matching function"
+    },
+    {
+      "start": 629808,
       "end": 629944,
       "kind": "copied",
-      "source": "asm/rom_context_visit_suffix.s",
-      "note": "Unrecovered original code/data after context-selected tree visitors"
+      "source": "asm/rom_context_visit_tail.s",
+      "note": "Unrecovered bytes after the content coordinate forwarder"
     },
     {
       "start": 629944,
@@ -2797,10 +2859,31 @@
     },
     {
       "start": 630376,
+      "end": 630432,
+      "kind": "decompiled_c",
+      "source": "src/content_position.c",
+      "note": "Content entry position setter; exact 56-byte matching function"
+    },
+    {
+      "start": 630432,
+      "end": 630808,
+      "kind": "copied",
+      "source": "asm/rom_content_position_tail.s",
+      "note": "Unrecovered original bytes after SetContentEntryPosition"
+    },
+    {
+      "start": 630808,
+      "end": 630940,
+      "kind": "decompiled_c",
+      "source": "src/content_key_refresh.c",
+      "note": "Three exact context-selected tree-key refresh wrappers"
+    },
+    {
+      "start": 630940,
       "end": 633660,
       "kind": "copied",
-      "source": "asm/rom_content_collect_suffix.s",
-      "note": "Unrecovered original code/data after context content collectors and before content unit selection callback"
+      "source": "asm/rom_content_collect_suffix_tail.s",
+      "note": "Unrecovered original bytes after the tree-key refresh wrappers"
     },
     {
       "start": 633660,
@@ -2853,10 +2936,24 @@
     },
     {
       "start": 633904,
+      "end": 633964,
+      "kind": "copied",
+      "source": "asm/rom_key_refresh_callback_prefix.s",
+      "note": "Unrecovered original bytes before the content tree-key callback"
+    },
+    {
+      "start": 633964,
+      "end": 633992,
+      "kind": "decompiled_c",
+      "source": "src/content_key_refresh_callback.c",
+      "note": "Exact payload callback that refreshes its tree node key"
+    },
+    {
+      "start": 633992,
       "end": 817564,
       "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix_prefix_suffix.s",
-      "note": "Unrecovered original code/data after content append callback"
+      "source": "asm/rom_key_refresh_callback_tail.s",
+      "note": "Unrecovered original bytes after the content tree-key callback"
     },
     {
       "start": 817564,

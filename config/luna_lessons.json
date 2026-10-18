@@ -118,7 +118,7 @@
       "id": "L020",
       "parent_failure": "Parent integration prompt allowed only one new object although an interior ROM carve requires a suffix too.",
       "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order. Derive every interval subtraction mechanically in the plan, including large data suffixes. Use explicit short semantic --prefix/--suffix names for repeated carves rather than recursively lengthening existing wrapper basenames.",
-      "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing."
+      "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing. Session90 repeated recursive wrapper names after parent omitted explicit short names in the integration lease; returned to same author under serialized lease."
     },
     {
       "id": "L021",
@@ -287,6 +287,30 @@
       "parent_failure": "Parent asked for unsorted-tree tests without requiring a concrete topology and callback-stop trace at plan review.",
       "rule": "For reordering code, show a structurally valid initial graph violating the current ordering keys, a fixed final graph, and actual callback stop traces. Storage-array order does not establish an ordering violation. Identify the exact controlled dependency that injects mutations, and keep that test distinct from real-dependency composition.",
       "evidence": "Session89 initially proposed sorted trees with shuffled storage, then included callbacks after a stopping selector. Session90 proposed a rebuild stub mutating context during an earlier real callback; parent required an explicit separate controlled variant."
+    },
+    {
+      "id": "L049",
+      "parent_failure": "Parent left copied-helper host execution and return-width evidence implicit in a forwarding-wrapper task.",
+      "rule": "A ROM linker alias is not host-executable C. Compose recovered host C with an explicitly controlled double at the copied boundary. Do not infer a narrow return type from argument narrowing; trace actual return evidence. Only claim pointer reload coverage at mutation points the fixture actually exercises.",
+      "evidence": "Session91 proposed u8 return without caller evidence and host-linking the copied131BE0 helper, plus nonexistent+FD field in UnitFieldView. Parent returned u32 contract, copied-boundary double, existingF6/F7 extent and accurate post-call reload claim."
+    },
+    {
+      "id": "L050",
+      "parent_failure": "Parent publication command staged source/build directories but omitted ld, leaving verified linker changes outside the first checkpoint commit.",
+      "rule": "Before pushing a checkpoint, reconcile git status against every reviewed integration path including ld. After committing, inspect remaining tracked changes and ensure the published commit contains the exact verified build inputs.",
+      "evidence": "Parent caught missing ld/rom.ld after5d54ebe and published immediate corrective commit4e77d61 with the already-tested linker assertions. No source or test changes were needed."
+    },
+    {
+      "id": "L051",
+      "parent_failure": "Parent approved shared layout assertions without an explicit target-compiler header compatibility check before lease transfer.",
+      "rule": "Use established compiler-compatible layout assertion idioms and run a target probe before freezing a shared header. Modern system headers can emit syntax unsupported by agbcc2.9 even when host tests pass. If the next author already holds the header lease, record the integration repair and coordinate rather than allow competing edits.",
+      "evidence": "Session90 included stddef.h;91 target probe saw __typeof__(nullptr) nullptr_t rejected by agbcc.91 owns the header lease and was authorized to repair assertions, with90 notified."
+    },
+    {
+      "id": "L052",
+      "parent_failure": "Parent wrapper task omitted explicit empty-input continuation and host layout assertions from its acceptance checklist.",
+      "rule": "When a wrapper traverses then calls another routine, test zero iterations and require the later call even for empty input. Execute actual host offsetof checks as well as target-size assertions; do not let conditional target-only assertions silently skip layout verification on LP64.",
+      "evidence": "Session90 initially tested only nonempty lists; same author added empty lists and required rebuild calls. Session91 initial harness skipped offset assertions on LP64; parent requested actual host offsets and zero-coordinate fixture."
     }
   ]
 }

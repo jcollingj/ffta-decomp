@@ -81,6 +81,11 @@
 .type ResolveOrCreateContentUnitEntry, %function
 .thumb_set ResolveOrCreateContentUnitEntry, 0x08092441
 
+@ Copied coordinate-query dependency; its behavior remains unrecovered.
+.global GetContentCoordinateQueryValue
+.type GetContentCoordinateQueryValue, %function
+.thumb_set GetContentCoordinateQueryValue, 0x08131BE1
+
 @ RAM globals read by the recovered content context getters.
 .global gContentConsumerContext
 .type gContentConsumerContext, %object
