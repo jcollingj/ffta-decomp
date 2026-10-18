@@ -220,6 +220,54 @@
       "status": "matching_c"
     },
     {
+      "name": "VisitContextTreePayloadsInOrderAt10",
+      "start": 628884,
+      "end": 628912,
+      "source": "src/content_tree_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextTreePayloadsInOrderAt14",
+      "start": 628912,
+      "end": 628940,
+      "source": "src/content_tree_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextTreePayloadsInOrderAt18",
+      "start": 628940,
+      "end": 628968,
+      "source": "src/content_tree_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextTreePayloadsReverseAt10",
+      "start": 628968,
+      "end": 628996,
+      "source": "src/content_tree_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextTreePayloadsReverseAt14",
+      "start": 628996,
+      "end": 629024,
+      "source": "src/content_tree_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "VisitContextTreePayloadsReverseAt18",
+      "start": 629024,
+      "end": 629052,
+      "source": "src/content_tree_context_visit.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
       "name": "CountContextListAt10",
       "start": 629944,
       "end": 629956,
@@ -248,6 +296,70 @@
       "start": 630024,
       "end": 630068,
       "source": "src/content_fill.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextListPayloadsAt10",
+      "start": 629980,
+      "end": 630024,
+      "source": "src/content_collect_at10.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextListPayloadsAt18",
+      "start": 630068,
+      "end": 630112,
+      "source": "src/content_collect_remaining.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextTreePayloadsInOrderAt10",
+      "start": 630112,
+      "end": 630156,
+      "source": "src/content_collect_remaining.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextTreePayloadsReverseAt10",
+      "start": 630156,
+      "end": 630200,
+      "source": "src/content_collect_remaining.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextTreePayloadsInOrderAt14",
+      "start": 630200,
+      "end": 630244,
+      "source": "src/content_collect_remaining.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextTreePayloadsReverseAt14",
+      "start": 630244,
+      "end": 630288,
+      "source": "src/content_collect_remaining.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextTreePayloadsInOrderAt18",
+      "start": 630288,
+      "end": 630332,
+      "source": "src/content_collect_remaining.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "CollectContextTreePayloadsReverseAt18",
+      "start": 630332,
+      "end": 630376,
+      "source": "src/content_collect_remaining.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -288,6 +400,14 @@
       "start": 633832,
       "end": 633854,
       "source": "src/content_payload_callback.c",
+      "mode": "thumb",
+      "status": "matching_c"
+    },
+    {
+      "name": "ContentTreePayloadCallbackAdapter",
+      "start": 633856,
+      "end": 633888,
+      "source": "src/content_tree_payload_callback.c",
       "mode": "thumb",
       "status": "matching_c"
     },
@@ -2635,10 +2755,17 @@
     },
     {
       "start": 628884,
+      "end": 629052,
+      "kind": "decompiled_c",
+      "source": "src/content_tree_context_visit.c",
+      "note": "Six context-selected tree payload visitor wrappers"
+    },
+    {
+      "start": 629052,
       "end": 629944,
       "kind": "copied",
       "source": "asm/rom_context_visit_suffix.s",
-      "note": "Unrecovered original code/data after context payload visitors"
+      "note": "Unrecovered original code/data after context-selected tree visitors"
     },
     {
       "start": 629944,
@@ -2650,9 +2777,9 @@
     {
       "start": 629980,
       "end": 630024,
-      "kind": "copied",
-      "source": "asm/rom_content_fill_prefix.s",
-      "note": "Unrecovered original code/data before FillContentConsumerEntries"
+      "kind": "decompiled_c",
+      "source": "src/content_collect_at10.c",
+      "note": "Context +0x10 linked-list payload collector; exact 44-byte matching function"
     },
     {
       "start": 630024,
@@ -2663,10 +2790,17 @@
     },
     {
       "start": 630068,
+      "end": 630376,
+      "kind": "decompiled_c",
+      "source": "src/content_collect_remaining.c",
+      "note": "Seven context list/tree payload collector wrappers; exact 308-byte matching block"
+    },
+    {
+      "start": 630376,
       "end": 633660,
       "kind": "copied",
-      "source": "asm/rom_content_fill_suffix.s",
-      "note": "Unrecovered original code/data after FillContentConsumerEntries and before content unit selection callback"
+      "source": "asm/rom_content_collect_suffix.s",
+      "note": "Unrecovered original code/data after context content collectors and before content unit selection callback"
     },
     {
       "start": 633660,
@@ -2706,9 +2840,9 @@
     {
       "start": 633856,
       "end": 633888,
-      "kind": "copied",
-      "source": "asm/rom_list_count_wrappers_suffix_prefix_prefix_callback_suffix.s",
-      "note": "Unrecovered original code/data before content append callback"
+      "kind": "decompiled_c",
+      "source": "src/content_tree_payload_callback.c",
+      "note": "Tree payload callback adapter; exact 32-byte matching function"
     },
     {
       "start": 633888,

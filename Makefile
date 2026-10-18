@@ -35,17 +35,19 @@ OBJS    := \
 	build/content_coordinate_lookup.o \
 	build/rom_context_lookup_suffix_suffix.o \
 	build/content_context_visit.o \
+	build/content_tree_context_visit.o \
 	build/rom_context_visit_suffix.o \
 	build/list_count_wrappers.o \
-	build/rom_content_fill_prefix.o \
+	build/content_collect_at10.o \
 	build/content_fill.o \
-	build/rom_content_fill_suffix.o \
+	build/content_collect_remaining.o \
+	build/rom_content_collect_suffix.o \
 	build/content_unit_select.o \
 	build/content_selection_predicate.o \
 	build/content_coordinate_select.o \
 	build/content_unit_coordinate_select.o \
 	build/content_payload_callback.o \
-	build/rom_list_count_wrappers_suffix_prefix_prefix_callback_suffix.o \
+	build/content_tree_payload_callback.o \
 	build/content_append.o \
 	build/rom_list_count_wrappers_suffix_prefix_suffix.o \
 	build/container_create.o \

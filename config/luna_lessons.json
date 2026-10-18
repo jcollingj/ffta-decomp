@@ -269,6 +269,24 @@
       "parent_failure": "Parent codec packet did not explicitly apply strict integer validation to version tags or order path checks before directory creation.",
       "rule": "Validate every schema integer including version tags without accepting bool or integral floats. Resolve and validate output confinement before any filesystem mutation, including mkdir; test symlinked ancestors with nonexistent child directories and assert rejected requests leave outside storage unchanged. Preserve atomic no-clobber publication.",
       "evidence": "Session85 version equality accepted True/1.0 and mkdir preceded containment checking. Same author was asked for strict validation and distinguishing rejection tests."
+    },
+    {
+      "id": "L046",
+      "parent_failure": "Despite explicit task signatures, parent allowed precode plans to mix future verification promises with purported evidence and inherited neighboring adapter APIs.",
+      "rule": "An evidence-first plan must distinguish observations already checked from steps still planned. State exact callback symbol, header availability, callback type, direct BL destinations and literal addresses. A missing new dependency header is pending work, not evidence that a similarly named existing adapter implements it. Verify boundaries at actual entry instructions rather than adjacent literal halfwords.",
+      "evidence": "Sessions86/87 initially selected existing list adapter/getter despite tree traversal instructions. Parent returned both;86 then corrected reverse-wrapper boundary typos before implementation."
+    },
+    {
+      "id": "L047",
+      "parent_failure": "Parent used flag1 as shorthand and did not require branch polarity to be stated as an explicit predicate.",
+      "rule": "Name flags by both mask and bit index (mask1, bit0). Express loop branches as explicit zero/nonzero predicates checked against the original condition opcode before implementation.",
+      "evidence": "Session89 plan said zero selected repeats despite BNE and called mask1 bit1. Parent returned correction before coding; author acknowledged nonzero repeat and bit0."
+    },
+    {
+      "id": "L048",
+      "parent_failure": "Parent asked for unsorted-tree tests without requiring a concrete topology and callback-stop trace at plan review.",
+      "rule": "For reordering code, show a structurally valid initial graph violating the current ordering keys, a fixed final graph, and actual callback stop traces. Storage-array order does not establish an ordering violation. Identify the exact controlled dependency that injects mutations, and keep that test distinct from real-dependency composition.",
+      "evidence": "Session89 initially proposed sorted trees with shuffled storage, then included callbacks after a stopping selector. Session90 proposed a rebuild stub mutating context during an earlier real callback; parent required an explicit separate controlled variant."
     }
   ]
 }

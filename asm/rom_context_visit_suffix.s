@@ -2,4 +2,4 @@
 .section .text
 .global rom_context_visit_suffix_start
 rom_context_visit_suffix_start:
-.incbin "baserom.gba", 0x99894, 0x424
+.incbin "baserom.gba", 0x9993C, 0x37C
