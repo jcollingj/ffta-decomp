@@ -93,6 +93,12 @@ OBJS    := \
 	build/game_flags.o \
 	build/save_access.o \
 	build/rom_flags_tail_prefix.o \
+	build/unit_equipment_value16.o \
+	build/unit_stat_dispatch.o \
+	build/rom_unit_stat_gap_prefix.o \
+	build/unit_stat_caps.o \
+	build/rom_unit_stat_gap_suffix.o \
+	build/unit_equipped_stats.o \
 	build/content_unit_loader.o \
 	build/item.o \
 	build/inventory.o \

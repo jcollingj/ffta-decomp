@@ -980,6 +980,118 @@
       "mode": "thumb"
     },
     {
+      "name": "ReadUnitEquipmentValue16",
+      "start": 828308,
+      "end": 828396,
+      "status": "matching_c",
+      "source": "src/unit_equipment_value16.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ReadUnitEquipmentValue16Scaled10",
+      "start": 828396,
+      "end": 828414,
+      "status": "matching_c",
+      "source": "src/unit_equipment_value16.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SelectUnitEquippedStat20Or24",
+      "start": 828416,
+      "end": 828472,
+      "status": "matching_c",
+      "source": "src/unit_stat_dispatch.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SelectUnitEquippedStat20Or24Capped",
+      "start": 828472,
+      "end": 828536,
+      "status": "matching_c",
+      "source": "src/unit_stat_dispatch.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SelectUnitEquippedStat22Or26",
+      "start": 828536,
+      "end": 828592,
+      "status": "matching_c",
+      "source": "src/unit_stat_dispatch.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "SelectUnitEquippedStat22Or26Capped",
+      "start": 828592,
+      "end": 828656,
+      "status": "matching_c",
+      "source": "src/unit_stat_dispatch.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitStat20Capped",
+      "start": 828704,
+      "end": 828728,
+      "status": "matching_c",
+      "source": "src/unit_stat_caps.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitStat24Capped",
+      "start": 828728,
+      "end": 828752,
+      "status": "matching_c",
+      "source": "src/unit_stat_caps.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitStat22Capped",
+      "start": 828752,
+      "end": 828776,
+      "status": "matching_c",
+      "source": "src/unit_stat_caps.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitStat26Capped",
+      "start": 828776,
+      "end": 828800,
+      "status": "matching_c",
+      "source": "src/unit_stat_caps.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitEquippedStat20",
+      "start": 828964,
+      "end": 829036,
+      "status": "matching_c",
+      "source": "src/unit_equipped_stats.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitEquippedStat24",
+      "start": 829036,
+      "end": 829108,
+      "status": "matching_c",
+      "source": "src/unit_equipped_stats.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitEquippedStat22",
+      "start": 829108,
+      "end": 829180,
+      "status": "matching_c",
+      "source": "src/unit_equipped_stats.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "GetUnitEquippedStat26",
+      "start": 829180,
+      "end": 829252,
+      "status": "matching_c",
+      "source": "src/unit_equipped_stats.c",
+      "mode": "thumb"
+    },
+    {
       "name": "LoadContentUnitRecords",
       "start": 829252,
       "end": 829348,
@@ -3202,10 +3314,52 @@
     },
     {
       "start": 824900,
-      "end": 829252,
+      "end": 828308,
       "kind": "copied",
       "source": "asm/rom_flags_tail_prefix.s",
-      "note": "Unclassified copied code/data before the content unit loader"
+      "note": "Unclassified copied code/data before equipment-value readers"
+    },
+    {
+      "start": 828308,
+      "end": 828416,
+      "kind": "decompiled_c",
+      "source": "src/unit_equipment_value16.c",
+      "note": "Two matching equipment-value functions plus two alignment bytes"
+    },
+    {
+      "start": 828416,
+      "end": 828656,
+      "kind": "decompiled_c",
+      "source": "src/unit_stat_dispatch.c",
+      "note": "Four matching selector and capped-selector wrappers"
+    },
+    {
+      "start": 828656,
+      "end": 828704,
+      "kind": "copied",
+      "source": "asm/rom_unit_stat_gap_prefix.s",
+      "note": "Opaque copied gap between unit stat wrapper spans"
+    },
+    {
+      "start": 828704,
+      "end": 828800,
+      "kind": "decompiled_c",
+      "source": "src/unit_stat_caps.c",
+      "note": "Four matching single-stat capped wrappers"
+    },
+    {
+      "start": 828800,
+      "end": 828964,
+      "kind": "copied",
+      "source": "asm/rom_unit_stat_gap_suffix.s",
+      "note": "Unclassified copied code/data before equipped-stat routines"
+    },
+    {
+      "start": 828964,
+      "end": 829252,
+      "kind": "decompiled_c",
+      "source": "src/unit_equipped_stats.c",
+      "note": "Four matching equipped-stat routines including literals"
     },
     {
       "start": 829252,

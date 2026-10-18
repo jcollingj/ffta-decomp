@@ -3,8 +3,8 @@
     {
       "id": "L001",
       "parent_failure": "Parent gave insufficient branch evidence",
-      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry. Signed/unsigned comparison fixtures must use the same bit pattern on opposite sides (for example signed -1 versus unsigned255), not merely any unequal negative/positive values.",
-      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch. Session80 initial -1 versus7 fixture could not detect unsigned-query comparison; author added128/255 collisions."
+      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry. Signed/unsigned comparison fixtures must use the same bit pattern on opposite sides (for example signed -1 versus unsigned255), not merely any unequal negative/positive values. For arithmetic followed by a clamp, choose a vector whose expected result differs when the arithmetic is omitted; a wrap boundary alone may collapse both paths to the same output.",
+      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch. Session80 initial -1 versus7 fixture could not detect unsigned-query comparison; author added128/255 collisions. Session93 flag1/baseFF increment test returned0 both with and without the increment, so parent required base6 and127 discriminators."
     },
     {
       "id": "L002",
@@ -118,7 +118,7 @@
       "id": "L020",
       "parent_failure": "Parent integration prompt allowed only one new object although an interior ROM carve requires a suffix too.",
       "rule": "Compute incbin end as offset plus length. Collision-check new source/object filenames. Interior carves may add a matching object and a uniquely named copied suffix while preserving every unrelated object and its order. Derive every interval subtraction mechanically in the plan, including large data suffixes. Use explicit short semantic --prefix/--suffix names for repeated carves rather than recursively lengthening existing wrapper basenames.",
-      "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing. Session90 repeated recursive wrapper names after parent omitted explicit short names in the integration lease; returned to same author under serialized lease."
+      "evidence": "Session24 initially read the length BDAC8 as an end address and proposed an existing suffix filename; parent review corrected the plan before editing. Session90 repeated recursive wrapper names after parent omitted explicit short names in the integration lease; returned to same author under serialized lease. Session93 hand-entered copied prefix length750 instead ofD50; parent caught it before gate and required mechanically derived subtraction."
     },
     {
       "id": "L021",
@@ -250,7 +250,7 @@
       "id": "L042",
       "parent_failure": "Parent stated owned paths but did not require an explicit final changed-path reconciliation.",
       "rule": "Before reporting frozen, compare actual edited paths with the assignment ownership list. Put independent test runners in their reserved files; do not silently append to a neighboring existing runner. Report any necessary out-of-scope path before editing it.",
-      "evidence": "Session79 added its composition test to existing consumer runner despite owning a new composition runner. Parent returned relocation to same author and requested clearer referenced-unit fixtures."
+      "evidence": "Session79 added its composition test to existing consumer runner despite owning a new composition runner. Parent returned relocation to same author and requested clearer referenced-unit fixtures. Session94 added coordinator WORK_LOG despite owned-file restrictions; parent returned removal to same author and explicitly accepted its accurate integration-placement doc correction."
     },
     {
       "id": "L043",
@@ -311,6 +311,18 @@
       "parent_failure": "Parent wrapper task omitted explicit empty-input continuation and host layout assertions from its acceptance checklist.",
       "rule": "When a wrapper traverses then calls another routine, test zero iterations and require the later call even for empty input. Execute actual host offsetof checks as well as target-size assertions; do not let conditional target-only assertions silently skip layout verification on LP64.",
       "evidence": "Session90 initially tested only nonempty lists; same author added empty lists and required rebuild calls. Session91 initial harness skipped offset assertions on LP64; parent requested actual host offsets and zero-coordinate fixture."
+    },
+    {
+      "id": "L053",
+      "parent_failure": "Parent accepted a narrow callee return declaration based on output range and did not require a final source-to-contiguous-span map before probing related wrappers.",
+      "rule": "A sign-extended narrow result can be returned through an int contract; numerical range alone does not prove the original C return declaration. Compare caller normalization against original instructions. Group production translation units by contiguous ROM order, including interleaved wrapper kinds, never across an unrecovered gap.",
+      "evidence": "Session94 grouped the second dispatch pair with later leaf wrappers across CA4F0..CA520 and used signedshort wrapper locals despite full-r0 comparison. Parent corrected grouping and asked92/94 to evaluate int contracts together."
+    },
+    {
+      "id": "L054",
+      "parent_failure": "Parent requested hand-calculated composition vectors without a typed-input and arithmetic-stage audit.",
+      "rule": "Before composition tests, check each input against its declared representation, enumerate every loop iteration, and compute each conversion, wrapping addition and final clamp. Audit exact external-read traces and cross-selector contributions. Separately linked fixtures need external linkage.",
+      "evidence": "Session99 initial plan counted four rather than five equipment slots, used unrepresentable positive signed-byte modifiers, omitted a final 999 cap, and declared static tables for extern consumers. Same author returned corrected typed tables and staged arithmetic before coding."
     }
   ]
 }
