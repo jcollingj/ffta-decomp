@@ -980,6 +980,22 @@
       "mode": "thumb"
     },
     {
+      "name": "ResolveUnitReference",
+      "start": 827836,
+      "end": 827888,
+      "status": "matching_c",
+      "source": "src/unit_reference.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "ResolveEncodedUnitReference",
+      "start": 827888,
+      "end": 827948,
+      "status": "matching_c",
+      "source": "src/unit_reference.c",
+      "mode": "thumb"
+    },
+    {
       "name": "ApplyUnitContentProperty33",
       "start": 827948,
       "end": 828008,
@@ -3346,10 +3362,17 @@
     },
     {
       "start": 824900,
-      "end": 827948,
+      "end": 827836,
       "kind": "copied",
-      "source": "asm/rom_flags_tail_prefix.s",
-      "note": "Unclassified copied code/data before unit content setup"
+      "source": "asm/rom_unit_reference_prefix.s",
+      "note": "Unclassified copied code/data before unit reference resolvers"
+    },
+    {
+      "start": 827836,
+      "end": 827948,
+      "kind": "decompiled_c",
+      "source": "src/unit_reference.c",
+      "note": "Two matching reference resolvers including literal pools and alignment"
     },
     {
       "start": 827948,
@@ -3398,7 +3421,7 @@
       "end": 828944,
       "kind": "copied",
       "source": "asm/rom_unit_stat_gap_suffix.s",
-      "note": "Copied unit-stat suffix before the derived-byte reader; includes reserved future span 0xCA580–0xCA610"
+      "note": "Copied unit-stat suffix before the derived-byte reader; includes reserved future span 0xCA580\u20130xCA610"
     },
     {
       "start": 828944,

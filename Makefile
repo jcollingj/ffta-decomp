@@ -92,7 +92,8 @@ OBJS    := \
 	build/job_mapping.o \
 	build/game_flags.o \
 	build/save_access.o \
-	build/rom_flags_tail_prefix.o \
+	build/rom_unit_reference_prefix.o \
+	build/unit_reference.o \
 	build/unit_content_setup.o \
 	build/unit_derived_bytes.o \
 	build/unit_equipment_value16.o \

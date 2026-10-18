@@ -76,7 +76,7 @@ lessons, not measured causal claims about productivity:
 
 ## Parent review after all 100 sessions
 
-The experiment completed with 100 distinct sessions independently reviewed. It added 98 matching functions, 4,120 code bytes and 9,592 data bytes, alongside tests, codecs and workflow tools. The repository now has 343 matching C functions; that is a function inventory, not a full-game completion percentage.
+The experiment completed with 100 distinct sessions independently reviewed. It added 98 matching functions, 4,120 code bytes and 9,592 data bytes, alongside tests, codecs and workflow tools. The experiment completion checkpoint had 343 matching C functions; that is a function inventory, not a full-game completion percentage.
 
 The delegation produced useful verified work, but the intended low-intervention workflow is not demonstrated. First-review acceptance was 27 of 97 known results (three unknown). The final two batches each accepted two of ten on first review. Matching code output rose in later batches, but task sizes, dependencies and task selection changed, so this does not establish faster work. Parent and agent effort measurements are absent for all 100 sessions; cost and the 90% agent-effort aspiration remain unmeasured.
 

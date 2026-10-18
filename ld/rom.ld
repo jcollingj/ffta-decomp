@@ -3,6 +3,9 @@ ENTRY(_start)
 
 SECTIONS
 {
+    gUnitReferenceTable0 = 0x085680DC;
+    gUnitReferenceTable1 = 0x085516D0;
+    gUnitReferenceFallback = 0x02001F1C;
     gUnitPoolA = 0x02002FC4;
     gUnitPoolB = 0x02000080;
     gContentRecords = 0x0854CD54;
@@ -217,6 +220,10 @@ SECTIONS
     ASSERT(WriteSaveByte == 0x80c95c0, "WriteSaveByte moved")
     ASSERT(GetGameFlagFromBuffer == 0x80c95d8, "GetGameFlagFromBuffer moved")
     ASSERT(SetGameFlagInBuffer == 0x80c960c, "SetGameFlagInBuffer moved")
+    ASSERT(ResolveUnitReference == 0x080CA1BC, "ResolveUnitReference moved")
+    ASSERT(ResolveEncodedUnitReference == 0x080CA1F0, "ResolveEncodedUnitReference moved")
+    ASSERT(ResolveEncodedUnitReference - ResolveUnitReference == 52, "unit reference region size changed")
+    ASSERT(ApplyUnitContentProperty33 - ResolveEncodedUnitReference == 60, "encoded unit reference region size changed")
     ASSERT(ApplyUnitContentProperty33 == 0x080CA22C, "ApplyUnitContentProperty33 moved")
     ASSERT(LoadUnitContentEquipment - ApplyUnitContentProperty33 == 60, "ApplyUnitContentProperty33 size changed")
     ASSERT(LoadUnitContentEquipment == 0x080CA268, "LoadUnitContentEquipment moved")
