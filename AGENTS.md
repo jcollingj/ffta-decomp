@@ -2,6 +2,17 @@
 
 Read `docs/ROADMAP.md` and `docs/WORK_LOG.md` for scope and verified progress.
 
+## Persistence and the meaning of “continue”
+
+- The standing objective is 100% source-first decompilation with a fully accounted, byte-identical original build, followed by a verified hand-authored map change and a working editor built on recovered formats. Opaque copied game code does not satisfy completion.
+- Every “continue,” “keep going,” or equivalent request means resume sustained work toward that entire objective. It does not mean complete one function, batch, commit, test run, or experiment and stop.
+- Treat passing gates, commits/pushes, and milestones as checkpoints. Report them in commentary, record durable progress, then immediately select and execute the next useful recovery task. Do not require another “continue” at a checkpoint.
+- Stop voluntarily only when the full objective is verified complete, the user explicitly pauses/cancels/redirects the work, or a hard blocker prevents all useful authorized progress. A difficult nonmatch, failed test, unknown format, exhausted hypothesis budget on one routine, or waiting worker is not by itself a hard blocker: debug, build tools, investigate dependencies, or advance another independent task.
+- A hard blocker means required user information, access, or an unavailable external dependency is indispensable and no independent work can proceed. Explain the exact blocker, evidence, attempted remedies, and smallest action needed to unblock it. Do not invent blockers or silently lower acceptance criteria to finish.
+- Keep source recovery, verification, documentation, and authorized checkpoint publication moving together. Preserve tests, byte comparison, original ROM and baseline safeguards; persistence never authorizes bypassing them.
+- Before unavoidable context/runtime limits, write a precise handoff with the verified checkpoint, current changes, active owners, next executable tasks and outstanding failures. Resume from that state when execution continues. Repository instructions cannot override platform shutdowns, limits, or a paused harness goal; disclose such constraints accurately instead of promising unattended execution.
+- The 100-session Luna experiment is a completed measurement milestone, not a stopping condition for the project. Keep its historical metrics separate from subsequent recovery.
+
 - Preserve `baserom.gba`. The expected USA ROM SHA-1 is `4ac05441f4de70a4ec3dd932116346c61b8783d9`.
 - Keep matching builds and modified ROMs separate. `make` checks the matching output; `make mod-ability-name` builds the first bounded data edit.
 - Do not delete or overwrite `checkpoints/baselines/` or `backups/baselines/`. Use `tools/emu/baseline prepare` to create writable working copies.
