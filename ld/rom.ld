@@ -3,8 +3,8 @@ ENTRY(_start)
 
 SECTIONS
 {
-    gUnitReferenceTable0 = 0x085680DC;
-    gUnitReferenceTable1 = 0x085516D0;
+    ASSERT(gUnitReferenceTable0 == 0x085680DC, "gUnitReferenceTable0 moved")
+    ASSERT(gUnitReferenceTable1 == 0x085516D0, "gUnitReferenceTable1 moved")
     gUnitReferenceFallback = 0x02001F1C;
     gUnitPoolA = 0x02002FC4;
     gUnitPoolB = 0x02000080;
@@ -220,6 +220,8 @@ SECTIONS
     ASSERT(WriteSaveByte == 0x80c95c0, "WriteSaveByte moved")
     ASSERT(GetGameFlagFromBuffer == 0x80c95d8, "GetGameFlagFromBuffer moved")
     ASSERT(SetGameFlagInBuffer == 0x80c960c, "SetGameFlagInBuffer moved")
+    ASSERT(EncodeUnitReferencePointer == 0x080CA150, "EncodeUnitReferencePointer moved")
+    ASSERT(ResolveUnitReference - EncodeUnitReferencePointer == 108, "reference encoder size changed")
     ASSERT(ResolveUnitReference == 0x080CA1BC, "ResolveUnitReference moved")
     ASSERT(ResolveEncodedUnitReference == 0x080CA1F0, "ResolveEncodedUnitReference moved")
     ASSERT(ResolveEncodedUnitReference - ResolveUnitReference == 52, "unit reference region size changed")

@@ -48,6 +48,23 @@ class CarvePlanTests(unittest.TestCase):
     def invoke(self, start, end, **kwargs):
         return carve_plan.plan(self.root, start, end, "src/new_code.c", **kwargs)
 
+    def test_data_end_carve_omits_zero_length_suffix(self):
+        result = carve_plan.plan(self.root, 0xFE0, 0x1000, "data/pointers.s")
+        self.assertFalse(result["matching_c_claim"])
+        self.assertEqual(result["objects"]["after"], [
+            "build/first.o", "build/rom_b_prefix.o", "build/pointers.o", "build/last.o"])
+        self.assertEqual([r["side"] for r in result["remainders"]], ["prefix"])
+        self.assertEqual(result["remainders"][0]["incbin"],
+                         {"offset": 0x180, "length": 0xE60})
+        with self.assertRaisesRegex(ValueError, "no suffix remainder"):
+            carve_plan.plan(self.root, 0xFE0, 0x1000, "data/pointers.s",
+                            suffix="asm/empty.s")
+
+    def test_rejects_mixed_source_directory_and_extension(self):
+        for source in ("data/invalid.c", "src/invalid.s", "asm/invalid.s"):
+            with self.subTest(source=source), self.assertRaises(ValueError):
+                carve_plan.plan(self.root, 0xFE0, 0x1000, source)
+
     def test_beginning_carve_has_only_suffix(self):
         result = self.invoke(0x180, 0x1A0)
         self.assertEqual(result["remainders"], [{

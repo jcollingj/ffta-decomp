@@ -92,7 +92,8 @@ OBJS    := \
 	build/job_mapping.o \
 	build/game_flags.o \
 	build/save_access.o \
-	build/rom_unit_reference_prefix.o \
+	build/rom_unit_lookup_prefix.o \
+	build/unit_reference_encode.o \
 	build/unit_reference.o \
 	build/unit_content_setup.o \
 	build/unit_derived_bytes.o \
@@ -173,9 +174,12 @@ OBJS    := \
 	build/class_records16.o \
 	build/rom_mapping_tail.o \
 	build/counted_record_ids.o \
-	build/rom_counted_ids_tail_prefix.o \
+	build/rom_reference1_prefix.o \
+	build/unit_reference_table1.o \
 	build/ability_prefix.o \
-	build/rom_counted_ids_tail_suffix.o \
+	build/rom_reference0_prefix.o \
+	build/unit_reference_table0.o \
+	build/rom_reference0_suffix.o \
 	build/title_palette.o \
 	build/rom2.o
 

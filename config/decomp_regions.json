@@ -980,6 +980,14 @@
       "mode": "thumb"
     },
     {
+      "name": "EncodeUnitReferencePointer",
+      "start": 827728,
+      "end": 827836,
+      "status": "matching_c",
+      "source": "src/unit_reference_encode.c",
+      "mode": "thumb"
+    },
+    {
       "name": "ResolveUnitReference",
       "start": 827836,
       "end": 827888,
@@ -3362,10 +3370,17 @@
     },
     {
       "start": 824900,
-      "end": 827836,
+      "end": 827728,
       "kind": "copied",
-      "source": "asm/rom_unit_reference_prefix.s",
-      "note": "Unclassified copied code/data before unit reference resolvers"
+      "source": "asm/rom_unit_lookup_prefix.s",
+      "note": "Unclassified copied code/data before pointer reference encoder"
+    },
+    {
+      "start": 827728,
+      "end": 827836,
+      "kind": "decompiled_c",
+      "source": "src/unit_reference_encode.c",
+      "note": "Matching unaligned pointer encoder including literal pools"
     },
     {
       "start": 827836,
@@ -3929,10 +3944,17 @@
     },
     {
       "start": 5415230,
-      "end": 5576828,
+      "end": 5576400,
       "kind": "copied",
-      "source": "asm/rom_counted_ids_tail_prefix.s",
-      "note": "Unclassified bytes before authored ability definitions"
+      "source": "asm/rom_reference1_prefix.s",
+      "note": "Unclassified original bytes"
+    },
+    {
+      "start": 5576400,
+      "end": 5576828,
+      "kind": "source_data",
+      "source": "data/unit_reference_table1.s",
+      "note": "107 explicit ROM pointers searched by recovered reference encoder; pointees remain copied"
     },
     {
       "start": 5576828,
@@ -3943,10 +3965,24 @@
     },
     {
       "start": 5578984,
+      "end": 5669084,
+      "kind": "copied",
+      "source": "asm/rom_reference0_prefix.s",
+      "note": "Unclassified original bytes"
+    },
+    {
+      "start": 5669084,
+      "end": 5671984,
+      "kind": "source_data",
+      "source": "data/unit_reference_table0.s",
+      "note": "725 explicit ROM pointers searched by recovered reference encoder; pointees remain copied"
+    },
+    {
+      "start": 5671984,
       "end": 9798104,
       "kind": "copied",
-      "source": "asm/rom_counted_ids_tail_suffix.s",
-      "note": "Unclassified code and data after authored ability prefix"
+      "source": "asm/rom_reference0_suffix.s",
+      "note": "Unclassified original bytes"
     },
     {
       "start": 9798104,

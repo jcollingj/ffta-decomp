@@ -335,6 +335,12 @@
       "parent_failure": "Parent batched staged whitespace checking and commit without fail-fast shell behavior; a new untracked document had escaped the earlier unstaged diff check.",
       "rule": "Check staged content after adding new files and stop publication immediately on any failed check. Use separate dependent tool calls or fail-fast execution; unstaged git diff does not inspect untracked files.",
       "evidence": "Parent removed a trailing blank line from the session100 report before push after the staged check warned but the batched commit still ran. This is recorded as a parent documentation cleanup, not a source recovery change."
+    },
+    {
+      "id": "L057",
+      "parent_failure": "After the completed experiment, parent bypassed the C-only carve planner for data and emitted a zero-length incbin suffix.",
+      "rule": "Use the generalized carve planner/renderer for src/*.c and data/*.s. Omit zero-length remainders entirely; a zero incbin count is not a safe empty object. Validate full ledger and exact ROM before publishing every carve.",
+      "evidence": "The local ARM assembler warned on count0 but included the rest of baserom, shifting the build. Parent removed the empty wrapper, preserved the byte match, extended the existing planner to data sources and added end/whole-region data-carve patch tests."
     }
   ]
 }

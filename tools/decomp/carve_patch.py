@@ -138,7 +138,7 @@ def main(argv=None):
                         help="inclusive ROM offset (decimal or 0x-prefixed)")
     parser.add_argument("--end", required=True, type=lambda value: int(value, 0),
                         help="exclusive ROM offset (decimal or 0x-prefixed)")
-    parser.add_argument("--source", required=True, help="new src/NAME.c path")
+    parser.add_argument("--source", required=True, help="new src/NAME.c or data/NAME.s path")
     parser.add_argument("--prefix", help="optional prefix source path")
     parser.add_argument("--suffix", help="optional suffix source path")
     args = parser.parse_args(argv)

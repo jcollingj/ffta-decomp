@@ -2,7 +2,7 @@
 """Plan a copied-ROM region carve without changing repository files.
 
 The plan is advisory. It does not edit the ROM, source, manifest, or Makefile,
-and it does not establish that a proposed C implementation matches the game.
+and it does not establish that proposed C or authored data matches the game.
 """
 import argparse
 import importlib.util
@@ -95,9 +95,10 @@ def plan(root, start, end, source, prefix=None, suffix=None):
     if _incbins(root, old_source) != [(old_start, old_end - old_start)]:
         raise ValueError("copied source incbin must exactly match its ledger interval")
 
-    source = _source_path(source, "new", root, {"src"}, {".c"})
-    if not source.startswith("src/") or not source.endswith(".c"):
-        raise ValueError("new source must be src/NAME.c")
+    source = _source_path(source, "new", root, {"src", "data"}, {".c", ".s"})
+    if (PurePosixPath(source).parts[0], PurePosixPath(source).suffix) not in {
+            ("src", ".c"), ("data", ".s")}:
+        raise ValueError("new source must be src/NAME.c or data/NAME.s")
 
     segments = []
     if old_start < start:
@@ -185,7 +186,7 @@ def main():
                         help="inclusive ROM offset (decimal or 0x-prefixed)")
     parser.add_argument("--end", required=True, type=lambda x: int(x, 0),
                         help="exclusive ROM offset (decimal or 0x-prefixed)")
-    parser.add_argument("--source", required=True, help="new src/NAME.c path")
+    parser.add_argument("--source", required=True, help="new src/NAME.c or data/NAME.s path")
     parser.add_argument("--prefix", help="optional prefix source path, for example asm/rom_x_prefix.s")
     parser.add_argument("--suffix", help="optional suffix source path, for example asm/rom_x_suffix.s")
     parser.add_argument("--json", action="store_true", help="emit deterministic machine-readable JSON")

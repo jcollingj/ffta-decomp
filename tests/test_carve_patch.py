@@ -90,6 +90,19 @@ class CarvePatchTests(unittest.TestCase):
                     self.assertIn(f'.incbin "baserom.gba", {offset:#x}, {length:#x}', content)
                 self.assertEqual(self._snapshot(self.root), before)
 
+    def test_data_carves_apply_without_empty_boundary_wrappers(self):
+        for start, end, expected in [(0xFE0, 0x1000, ["rom_b_prefix.s"]),
+                                     (0x180, 0x1000, [])]:
+            with self.subTest(start=start):
+                before = self._snapshot(self.root)
+                patch = carve_patch.render(self.root, start, end, "data/pointers.s")
+                applied = self._apply(patch)
+                self.assertEqual(sorted(p.name for p in (applied / "asm").glob("rom_b*.s")),
+                                 expected)
+                self.assertIn("build/pointers.o", (applied / "Makefile").read_text())
+                self.assertFalse((applied / "data/pointers.s").exists())
+                self.assertEqual(self._snapshot(self.root), before)
+
     def test_unrelated_objects_and_comment_order_are_preserved(self):
         patch = carve_patch.render(self.root, 0x200, 0x240, "src/new_code.c")
         applied = self._apply(patch)
