@@ -93,11 +93,14 @@ OBJS    := \
 	build/game_flags.o \
 	build/save_access.o \
 	build/rom_flags_tail_prefix.o \
+	build/unit_content_setup.o \
+	build/unit_derived_bytes.o \
 	build/unit_equipment_value16.o \
 	build/unit_stat_dispatch.o \
 	build/rom_unit_stat_gap_prefix.o \
 	build/unit_stat_caps.o \
 	build/rom_unit_stat_gap_suffix.o \
+	build/unit_derived_byte_read.o \
 	build/unit_equipped_stats.o \
 	build/content_unit_loader.o \
 	build/item.o \
@@ -218,6 +221,7 @@ build/%.o: src/%.c $(AGBCC) Makefile config/toolchain.json
 	$(CPP) -P -Iinclude -MMD -MP -MF build/$*.d -MT $@ $< -o build/$*.i
 	$(AGBCC) $(CFLAGS) build/$*.i -o build/$*.s
 	$(AS) -mcpu=arm7tdmi -o $@ build/$*.s
+
 
 build/%.o: asm/%.s baserom.gba
 	@mkdir -p build

@@ -1,3 +1,3 @@
-@ Copied bytes before the recovered equipment-value and unit-stat routines.
+@ Copied bytes before the derived-byte updater and equipment-value routines.
 .section .text
-.incbin "baserom.gba", 0xC9644, 0xD50
+.incbin "baserom.gba", 0xC9644, 0xBE8

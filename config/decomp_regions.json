@@ -980,6 +980,30 @@
       "mode": "thumb"
     },
     {
+      "name": "ApplyUnitContentProperty33",
+      "start": 827948,
+      "end": 828008,
+      "status": "matching_c",
+      "source": "src/unit_content_setup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "LoadUnitContentEquipment",
+      "start": 828008,
+      "end": 828136,
+      "status": "matching_c",
+      "source": "src/unit_content_setup.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "UpdateUnitDerivedBytes",
+      "start": 828136,
+      "end": 828306,
+      "status": "matching_c",
+      "source": "src/unit_derived_bytes.c",
+      "mode": "thumb"
+    },
+    {
       "name": "ReadUnitEquipmentValue16",
       "start": 828308,
       "end": 828396,
@@ -1057,6 +1081,14 @@
       "end": 828800,
       "status": "matching_c",
       "source": "src/unit_stat_caps.c",
+      "mode": "thumb"
+    },
+    {
+      "name": "RefreshAndReadUnitDerivedByte",
+      "start": 828944,
+      "end": 828964,
+      "status": "matching_c",
+      "source": "src/unit_derived_byte_read.c",
       "mode": "thumb"
     },
     {
@@ -3314,10 +3346,24 @@
     },
     {
       "start": 824900,
-      "end": 828308,
+      "end": 827948,
       "kind": "copied",
       "source": "asm/rom_flags_tail_prefix.s",
-      "note": "Unclassified copied code/data before equipment-value readers"
+      "note": "Unclassified copied code/data before unit content setup"
+    },
+    {
+      "start": 827948,
+      "end": 828136,
+      "kind": "decompiled_c",
+      "source": "src/unit_content_setup.c",
+      "note": "Two matching unit content setup routines, including second routine's literal pool"
+    },
+    {
+      "start": 828136,
+      "end": 828308,
+      "kind": "decompiled_c",
+      "source": "src/unit_derived_bytes.c",
+      "note": "Matching derived-byte updater and two alignment bytes"
     },
     {
       "start": 828308,
@@ -3349,10 +3395,17 @@
     },
     {
       "start": 828800,
-      "end": 828964,
+      "end": 828944,
       "kind": "copied",
       "source": "asm/rom_unit_stat_gap_suffix.s",
-      "note": "Unclassified copied code/data before equipped-stat routines"
+      "note": "Copied unit-stat suffix before the derived-byte reader; includes reserved future span 0xCA580–0xCA610"
+    },
+    {
+      "start": 828944,
+      "end": 828964,
+      "kind": "decompiled_c",
+      "source": "src/unit_derived_byte_read.c",
+      "note": "Matching derived-byte signed reader"
     },
     {
       "start": 828964,

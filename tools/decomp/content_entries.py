@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Losslessly inspect the three evidenced bytes in 48-byte content entries."""
+"""Losslessly inspect evidenced fields in 48-byte content entries."""
 
 from __future__ import annotations
 
@@ -19,7 +19,8 @@ ROM_BASE = 0x08000000
 RECORD_SIZE = 40
 ENTRY_SIZE = 48
 FORMAT = "ffta-content-source-entries"
-VERSION = 1
+LEGACY_VERSION = 1
+VERSION = 2
 REPO_ROOT = Path(__file__).resolve().parents[2]
 OUTPUT_ROOT = REPO_ROOT / "build" / "content-entries"
 
@@ -44,33 +45,62 @@ def _hex_address(value: Any, name: str, *, nullable: bool = False) -> int | None
     return int(value, 16)
 
 
-def encode_entry(entry: Any, index: int = 0) -> bytes:
+def _entry_version(version: Any) -> int:
+    version = _integer(version, "version", LEGACY_VERSION, VERSION)
+    if version not in (LEGACY_VERSION, VERSION):
+        raise ContentEntryError("unsupported entry version")
+    return version
+
+
+def encode_entry(entry: Any, index: int = 0, version: int = VERSION) -> bytes:
+    version = _entry_version(version)
     label = f"entries[{index}]"
-    if not isinstance(entry, dict) or set(entry) != {
-        "opaque_prefix_hex", "byte5", "byte6", "byte7", "opaque_suffix_hex"
-    }:
+    expected_keys = {"opaque_prefix_hex", "byte5", "byte6", "byte7",
+                     "opaque_suffix_hex"}
+    if version == VERSION:
+        expected_keys.add("equipment_ids")
+    if not isinstance(entry, dict) or set(entry) != expected_keys:
         raise ContentEntryError(f"{label} has an invalid shape")
     prefix = entry["opaque_prefix_hex"]
     suffix = entry["opaque_suffix_hex"]
     if not isinstance(prefix, str) or re.fullmatch(r"[0-9a-fA-F]{10}", prefix) is None:
         raise ContentEntryError(f"{label}.opaque_prefix_hex must encode exactly 5 bytes")
-    if not isinstance(suffix, str) or re.fullmatch(r"[0-9a-fA-F]{80}", suffix) is None:
-        raise ContentEntryError(f"{label}.opaque_suffix_hex must encode exactly 40 bytes")
+    suffix_bytes = 40 if version == LEGACY_VERSION else 30
+    if (not isinstance(suffix, str)
+            or re.fullmatch(rf"[0-9a-fA-F]{{{suffix_bytes * 2}}}", suffix) is None):
+        raise ContentEntryError(
+            f"{label}.opaque_suffix_hex must encode exactly {suffix_bytes} bytes")
     fields = bytes(_integer(entry[f"byte{n}"], f"{label}.byte{n}", 0, 255)
                    for n in (5, 6, 7))
-    return bytes.fromhex(prefix) + fields + bytes.fromhex(suffix)
+    if version == LEGACY_VERSION:
+        return bytes.fromhex(prefix) + fields + bytes.fromhex(suffix)
+    equipment_ids = entry["equipment_ids"]
+    if not isinstance(equipment_ids, list) or len(equipment_ids) != 5:
+        raise ContentEntryError(f"{label}.equipment_ids must contain exactly 5 IDs")
+    encoded_ids = b"".join(
+        _integer(item_id, f"{label}.equipment_ids[{slot}]", 0, 0xFFFF).to_bytes(2, "little")
+        for slot, item_id in enumerate(equipment_ids)
+    )
+    return (bytes.fromhex(prefix) + fields + encoded_ids + bytes.fromhex(suffix))
 
 
-def decode_entry(raw: bytes) -> dict[str, Any]:
+def decode_entry(raw: bytes, version: int = VERSION) -> dict[str, Any]:
+    version = _entry_version(version)
     if len(raw) != ENTRY_SIZE:
         raise ContentEntryError("source entry must be exactly 48 bytes")
-    return {
+    entry = {
         "opaque_prefix_hex": raw[:5].hex(),
         "byte5": raw[5],
         "byte6": raw[6],
         "byte7": raw[7],
-        "opaque_suffix_hex": raw[8:].hex(),
     }
+    if version == LEGACY_VERSION:
+        entry["opaque_suffix_hex"] = raw[8:].hex()
+        return entry
+    entry["equipment_ids"] = [int.from_bytes(raw[offset:offset + 2], "little")
+                              for offset in range(8, 18, 2)]
+    entry["opaque_suffix_hex"] = raw[18:].hex()
+    return entry
 
 
 def decode_rom_record(rom: bytes, record_offset: int) -> tuple[int, int, int | None]:
@@ -129,7 +159,8 @@ def rebuild_payload(document: Any) -> bytes:
         raise ContentEntryError("document has an invalid top-level shape")
     if document["format"] != FORMAT:
         raise ContentEntryError("unsupported format or version")
-    if _integer(document["version"], "version", VERSION, VERSION) != VERSION:
+    version = _entry_version(document["version"])
+    if version not in (LEGACY_VERSION, VERSION):
         raise ContentEntryError("unsupported format or version")
     if document["rom_sha1"] != ROM_SHA1:
         raise ContentEntryError("document ROM SHA-1 does not match the supported USA ROM")
@@ -156,7 +187,7 @@ def rebuild_payload(document: Any) -> bytes:
             raise ContentEntryError("source pointer and source file offset disagree")
         if translated + count * ENTRY_SIZE > ROM_SIZE:
             raise ContentEntryError("counted source payload exceeds the 16 MiB ROM")
-    return b"".join(encode_entry(entry, i) for i, entry in enumerate(entries))
+    return b"".join(encode_entry(entry, i, version) for i, entry in enumerate(entries))
 
 
 def _reject_duplicate_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:

@@ -3,8 +3,8 @@
     {
       "id": "L001",
       "parent_failure": "Parent gave insufficient branch evidence",
-      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry. Signed/unsigned comparison fixtures must use the same bit pattern on opposite sides (for example signed -1 versus unsigned255), not merely any unequal negative/positive values. For arithmetic followed by a clamp, choose a vector whose expected result differs when the arithmetic is omitted; a wrap boundary alone may collapse both paths to the same output.",
-      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch. Session80 initial -1 versus7 fixture could not detect unsigned-query comparison; author added128/255 collisions. Session93 flag1/baseFF increment test returned0 both with and without the increment, so parent required base6 and127 discriminators."
+      "rule": "Before coding, record early exits and mutually exclusive branches with original addresses. Review special-value equality collisions, such as unit job255 matching a job255 entry. Signed/unsigned comparison fixtures must use the same bit pattern on opposite sides (for example signed -1 versus unsigned255), not merely any unequal negative/positive values. For arithmetic followed by a clamp, choose a vector whose expected result differs when the arithmetic is omitted; a wrap boundary alone may collapse both paths to the same output. For a branch fixture, neutralize earlier conditions that produce the same output; otherwise a later predicate can be broken without failing the test.",
+      "evidence": "Same-item replacement erroneously called the final callback; independent job255 handling cleared a field on the normal matching branch. Session80 initial -1 versus7 fixture could not detect unsigned-query comparison; author added128/255 collisions. Session93 flag1/baseFF increment test returned0 both with and without the increment, so parent required base6 and127 discriminators. Session96 denied-job fixture retained bit15 from an A5 fill, masking the equality predicate; parent returned explicit zero flags."
     },
     {
       "id": "L002",
@@ -16,7 +16,7 @@
       "id": "L003",
       "parent_failure": "Parent omitted dependency discovery instructions",
       "rule": "Resolve call targets through ld/rom.ld, source declarations, and symbol tables before inventing names. Report unknown verified targets. UNINVENTORIED is a missing-reference warning, not a blocked compilation.",
-      "evidence": "Agents invented a name for already recovered ApplyItemAbilityFlags and mistook probe warning for failure."
+      "evidence": "Agents invented a name for already recovered ApplyItemAbilityFlags and mistook probe warning for failure. Session97 initially created a second Copied-suffixed sum API despite an existing compatible public declaration; author reused the original contract with a typed copied alias."
     },
     {
       "id": "L004",
@@ -190,7 +190,7 @@
       "id": "L032",
       "parent_failure": "Parent did not require an explicit comparison scope for every reported byte metric",
       "rule": "Report symbol-aligned differences separately from whole-block differences including alignment/extra bytes. Read each count from its named JSON field and label original versus candidate extents; do not infer block metrics from the function summary.",
-      "evidence": "Session46 reported68 symbol differences as block differences; comparison.json recorded70 block differences. Parent requested corrected research and reproduction."
+      "evidence": "Session46 reported68 symbol differences as block differences; comparison.json recorded70 block differences. Parent requested corrected research and reproduction. Session95 called a68-byte interval including2pad bytes a symbol comparison; same author separated66-byte function metrics from region metrics."
     },
     {
       "id": "L033",
@@ -226,7 +226,7 @@
       "id": "L038",
       "parent_failure": "Parent inferred callback signature from the outer traversal before inspecting the intervening payload adapter.",
       "rule": "Trace actual callback callers and adapters before selecting a shared function signature. Distinguish the traversal node from the payload passed by an adapter. For pointer getters, distinguish a null member result from a null owner that original code dereferences. Test branch selectors with values that distinguish neighboring accessors and non-one truthy flags. Follow the complete immediate caller chain, including wrapper-created callback pairs, before approving a callback type; merely reading the callback body cannot distinguish a container node from a payload whose first word is another pointer. Document the actual BL destination separately from function-pointer literals passed as callback arguments.",
-      "evidence": "Session66 parent corrected the proposed direct VisitLinkedNodes contract after inspecting 9ABE8 and bridge14224C; session65 corrected null-owner and host-offset plan assumptions; session64 needed current0/fallback1 and flag2 discriminator fixtures. Parent session71 packet still misclassified9AB3C as a direct list callback. Raw99840 showed the9ABE8 payload adapter before invocation; parent corrected the packet and requested shared UnitFieldView representation before acceptance. Session73 corrected conflation of the9ABE9 callback literal with the wrapper BL targetC7CC0 before implementation."
+      "evidence": "Session66 parent corrected the proposed direct VisitLinkedNodes contract after inspecting 9ABE8 and bridge14224C; session65 corrected null-owner and host-offset plan assumptions; session64 needed current0/fallback1 and flag2 discriminator fixtures. Parent session71 packet still misclassified9AB3C as a direct list callback. Raw99840 showed the9ABE8 payload adapter before invocation; parent corrected the packet and requested shared UnitFieldView representation before acceptance. Session73 corrected conflation of the9ABE9 callback literal with the wrapper BL targetC7CC0 before implementation. Session97 forcing test initially used mode6 that overwrote its result; author added default-mode truthy flags and real E9-bit-set composition."
     },
     {
       "id": "L039",
@@ -261,8 +261,8 @@
     {
       "id": "L044",
       "parent_failure": "Parent requested guarded whole images without explicitly distinguishing live sentinels from expected-image metadata.",
-      "rule": "A guard must reside in actual storage accessible to the production operation; constants synthesized by the snapshot helper cannot detect overwrites. Compare complete live objects/globals and use a sanitizer for global-array bounds when adjacent sentinels cannot be represented safely. Do not claim guard coverage from fields created only in a copied test image.",
-      "evidence": "Session84 initialized guard constants anew in both expected and actual snapshots; parent returned removal and real whole-global/sanitizer verification to the same author."
+      "rule": "A guard must reside in actual storage accessible to the production operation; constants synthesized by the snapshot helper cannot detect overwrites. Compare complete live objects/globals and use a sanitizer for global-array bounds when adjacent sentinels cannot be represented safely. Do not claim guard coverage from fields created only in a copied test image. Check the live guard and full image after every operation under test, not only the first call in a scenario.",
+      "evidence": "Session84 initialized guard constants anew in both expected and actual snapshots; parent returned removal and real whole-global/sanitizer verification to the same author. Session99 created guards throughout but initially observed only its first call; same author added per-call complete comparisons."
     },
     {
       "id": "L045",
@@ -323,6 +323,18 @@
       "parent_failure": "Parent requested hand-calculated composition vectors without a typed-input and arithmetic-stage audit.",
       "rule": "Before composition tests, check each input against its declared representation, enumerate every loop iteration, and compute each conversion, wrapping addition and final clamp. Audit exact external-read traces and cross-selector contributions. Separately linked fixtures need external linkage.",
       "evidence": "Session99 initial plan counted four rather than five equipment slots, used unrepresentable positive signed-byte modifiers, omitted a final 999 cap, and declared static tables for extern consumers. Same author returned corrected typed tables and staged arithmetic before coding."
+    },
+    {
+      "id": "L055",
+      "parent_failure": "Parent integration lease required promotion and consistent names, but did not demand an explicit source/symbol mapping before edits.",
+      "rule": "When admitting a candidate, move it from src/nonmatching to its approved src path and use the standard build rule. Reconcile exported names in header, implementation, linker, ledger, tests and documentation before building; do not silently rename exports during integration.",
+      "evidence": "Session97 draft added special rules to compile matching candidates from nonmatching paths and used a different reader symbol. Same author corrected promotion and names before verification."
+    },
+    {
+      "id": "L056",
+      "parent_failure": "Parent batched staged whitespace checking and commit without fail-fast shell behavior; a new untracked document had escaped the earlier unstaged diff check.",
+      "rule": "Check staged content after adding new files and stop publication immediately on any failed check. Use separate dependent tool calls or fail-fast execution; unstaged git diff does not inspect untracked files.",
+      "evidence": "Parent removed a trailing blank line from the session100 report before push after the staged check warned but the batched commit still ran. This is recorded as a parent documentation cleanup, not a source recovery change."
     }
   ]
 }

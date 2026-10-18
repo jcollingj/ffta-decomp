@@ -37,12 +37,72 @@ class ContentEntryCodecTests(unittest.TestCase):
         for value in range(256):
             entry = {"opaque_prefix_hex": "0011223344", "byte5": value,
                      "byte6": value, "byte7": value,
-                     "opaque_suffix_hex": "a5" * 40}
+                     "equipment_ids": [0, 1, 0x1234, 0xFFFF, 0],
+                     "opaque_suffix_hex": "a5" * 30}
             self.assertEqual(codec.decode_entry(codec.encode_entry(entry)), entry)
         for field in ("byte5", "byte6", "byte7"):
             entry[field] = True
             with self.assertRaises(codec.ContentEntryError):
                 codec.encode_entry(entry)
+
+    def test_versioned_complete_roundtrips_and_legacy_payload_compatibility(self):
+        raw = bytes(range(codec.ENTRY_SIZE))
+        for version in (1, 2):
+            decoded = codec.decode_entry(raw, version=version)
+            self.assertEqual(codec.encode_entry(decoded, version=version), raw)
+        old_document = codec.extract_entries((ROOT / "baserom.gba").read_bytes(),
+                                             0x54CD7C)
+        v2_payload = codec.rebuild_payload(old_document)
+        v1_document = copy.deepcopy(old_document)
+        v1_document["version"] = 1
+        v1_document["entries"] = [codec.decode_entry(v2_payload[i:i + 48], version=1)
+                                  for i in range(0, len(v2_payload), 48)]
+        self.assertEqual(codec.rebuild_payload(v1_document), v2_payload)
+
+    def test_equipment_little_endian_mapping_extremes_and_exact_edit_spans(self):
+        raw = bytes(range(codec.ENTRY_SIZE))
+        decoded = codec.decode_entry(raw)
+        self.assertEqual(decoded["equipment_ids"], [0x0908, 0x0B0A, 0x0D0C,
+                                                    0x0F0E, 0x1110])
+        self.assertEqual(codec.encode_entry(decoded), raw)
+        extremes = dict(decoded, equipment_ids=[0, 0xFFFF, 0, 0xFFFF, 0])
+        encoded_extremes = codec.encode_entry(extremes)
+        self.assertEqual(encoded_extremes[8:18], b"\0\0\xff\xff\0\0\xff\xff\0\0")
+        self.assertEqual(codec.decode_entry(encoded_extremes)["equipment_ids"],
+                         [0, 0xFFFF, 0, 0xFFFF, 0])
+        for slot in range(5):
+            edited = dict(decoded)
+            ids = list(decoded["equipment_ids"])
+            ids[slot] = 0xA5C3
+            edited["equipment_ids"] = ids
+            rebuilt = codec.encode_entry(edited)
+            start = 8 + slot * 2
+            self.assertEqual([i for i, pair in enumerate(zip(raw, rebuilt))
+                              if pair[0] != pair[1]], [start, start + 1])
+            self.assertEqual(rebuilt[:start], raw[:start])
+            self.assertEqual(rebuilt[start + 2:], raw[start + 2:])
+
+    def test_direct_entry_versions_and_equipment_values_are_strict(self):
+        raw = bytes(range(codec.ENTRY_SIZE))
+        v1 = codec.decode_entry(raw, version=1)
+        v2 = codec.decode_entry(raw, version=2)
+        for bad_version in (True, 1.0, 2.0, 0, 3):
+            with self.subTest(version=bad_version):
+                with self.assertRaises(codec.ContentEntryError):
+                    codec.decode_entry(raw, version=bad_version)
+                with self.assertRaises(codec.ContentEntryError):
+                    codec.encode_entry(v2, version=bad_version)
+        for bad_ids in ([True, 0, 0, 0, 0], [1.0, 0, 0, 0, 0],
+                        [-1, 0, 0, 0, 0], [0x10000, 0, 0, 0, 0],
+                        [0, 0, 0, 0], [0, 0, 0, 0, 0, 0]):
+            malformed = dict(v2, equipment_ids=bad_ids)
+            with self.subTest(ids=bad_ids):
+                with self.assertRaises(codec.ContentEntryError):
+                    codec.encode_entry(malformed)
+        with self.assertRaises(codec.ContentEntryError):
+            codec.encode_entry(dict(v1, equipment_ids=[0] * 5), version=1)
+        with self.assertRaises(codec.ContentEntryError):
+            codec.encode_entry({**v2, "extra": 1})
 
     def test_record_extent_pointer_and_payload_bounds(self):
         image = bytearray(64)
@@ -110,6 +170,10 @@ class ContentEntryCodecTests(unittest.TestCase):
         bad = copy.deepcopy(document); bad["entries"][0]["byte7"] = 256; mutations.append(bad)
         bad = copy.deepcopy(document); bad["entries"][0]["opaque_prefix_hex"] = "0011"; mutations.append(bad)
         bad = copy.deepcopy(document); bad["entries"][0]["opaque_suffix_hex"] = "00" * 39; mutations.append(bad)
+        bad = copy.deepcopy(document); bad["entries"][0]["equipment_ids"] = [True] * 5; mutations.append(bad)
+        bad = copy.deepcopy(document); bad["entries"][0]["equipment_ids"] = [0] * 4; mutations.append(bad)
+        bad = copy.deepcopy(document); bad["entries"][0]["equipment_ids"].append(0); mutations.append(bad)
+        bad = copy.deepcopy(document); bad["entries"][0]["legacy_extra"] = 1; mutations.append(bad)
         bad = copy.deepcopy(document); bad["extra"] = 1; mutations.append(bad)
         bad = copy.deepcopy(document); bad["rom_sha1"] = "0" * 40; mutations.append(bad)
         for malformed in mutations:
@@ -128,6 +192,7 @@ class ContentEntryCodecTests(unittest.TestCase):
                            capture_output=True, text=True)
             document = json.loads(json_path.read_text(encoding="utf-8"))
             self.assertEqual(document["record_count"], 8)
+            self.assertEqual(document["version"], 2)
             subprocess.run(prefix + ["rebuild", str(json_path), "--output", str(bin_path)],
                            check=True, capture_output=True, text=True)
             self.assertEqual(bin_path.read_bytes(), rom.read_bytes()[0x52A4D0:0x52A650])
